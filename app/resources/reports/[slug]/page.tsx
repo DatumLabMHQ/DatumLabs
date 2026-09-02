@@ -119,9 +119,9 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
 
       <main id="main" className="wrap">
         <article style={{ maxWidth: 820, margin: "0 auto", paddingBottom: 40 }}>
-          {meta.cover ? (
+          {(meta.hero || meta.cover) ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={meta.cover} alt={meta.title} className="rpt-figure" style={{ width: "100%", borderRadius: 16, border: "1px solid var(--border-subtle)", margin: "8px 0 24px" }} />
+            <img src={meta.hero || meta.cover} alt={meta.title} className="rpt-figure" style={{ width: "100%", borderRadius: 16, border: "1px solid var(--border-subtle)", margin: "8px 0 24px" }} />
           ) : null}
           {meta.gated ? <ReportGate>{body}</ReportGate> : body}
         </article>

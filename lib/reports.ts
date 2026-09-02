@@ -16,6 +16,9 @@ export type ReportMeta = {
   summary: string
   excerpt?: string
   cover?: string
+  /** Optional in-article hero. Falls back to `cover`. Lets the card use a
+   *  portrait/mockup crop while the article opens on a wide banner. */
+  hero?: string
   pdf?: string
   gated?: boolean
   publishedAt: string
@@ -67,6 +70,7 @@ function normalize(slug: string, data: any): ReportMeta {
     summary: data.summary || "",
     excerpt: data.excerpt || data.summary || "",
     cover: data.cover,
+    hero: data.hero,
     pdf: data.pdf,
     gated: data.gated !== false, // default gated
     publishedAt: data.publishedAt || data.date || new Date(0).toISOString(),
