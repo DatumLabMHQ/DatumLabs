@@ -9,6 +9,16 @@ export const metadata: Metadata = {
 
 import Link from "next/link"
 
+/**
+ * NAVI — embedded dashboard.
+ *
+ * The standalone navi_dash deployment was superseded by the Sui Lending
+ * terminal (repo: DatumLabMHQ/SuiLending, https://sui-lending.vercel.app),
+ * which carries the same NAVI data plus Suilend, Scallop, AlphaLend and
+ * Bucket. This page keeps the /navi URL and embeds the terminal's NAVI
+ * protocol view directly. See /lending-terminal-sui for the cross-protocol
+ * overview.
+ */
 export default function NaviDashboardPage() {
   return (
     <div className="flex flex-col w-full h-screen">
@@ -22,7 +32,7 @@ export default function NaviDashboardPage() {
         </Link>
       </div>
       <iframe
-        src="https://navi-dash.vercel.app/navi/overview"
+        src="https://sui-lending.vercel.app/Protocol.html?protocol=navi"
         className="w-full flex-1 border-0"
         title="NAVI Lending Dashboard"
         allow="clipboard-write"
