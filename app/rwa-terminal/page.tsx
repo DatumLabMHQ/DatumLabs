@@ -11,7 +11,7 @@ export default function RwaTerminalPage() {
   return (
     <div className="w-full h-screen">
       <iframe
-        src="https://rwa-terminal-dashboard.pages.dev/"
+        src="https://rwa-terminal-dashboard-27g.pages.dev/"
         className="w-full h-full border-0"
         title="RWA Terminal"
         allow="clipboard-write"
