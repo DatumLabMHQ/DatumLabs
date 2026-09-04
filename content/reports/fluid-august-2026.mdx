@@ -1,0 +1,159 @@
+---
+title: "Fluid in August 2026: everyone grew, so growth is the wrong question"
+slug: fluid-august-2026
+period: August 2026
+publishedAt: 2026-09-02
+summary: Fluid's deposits rose 4.5% in August and every other major lender rose too, leaving Fluid fifth of ten at the sector median. The capital efficiency decline reverses under a price-neutral test, and the Jupiter Lend white-label now generates half the fee base without reaching Fluid's revenue line.
+excerpt: Deposits up 4.5%, sector median up 7.0%, and an efficiency decline that reverses once you strip out collateral repricing. What August's headline number hides.
+cover: /images/reports/fluid-august-2026-cover.jpg
+hero: /images/reports/fluid-august-2026-hero.jpg
+gated: false
+---
+
+Fluid's deposits rose for a second consecutive month in August. So did every other major lending protocol, and Fluid finished fifth of ten at the sector median. Once the peer set is in view, the more interesting findings are the ones the headline number hides: a capital efficiency decline that reverses under a price-neutral test, a white-label deployment that has roughly doubled the fee base without reaching Fluid's revenue line, and an exchange business still contracting in every currency it can be measured in.
+
+*Figures cover 1 to 31 August 2026, compared against the 31 days of July. Methodology and named gaps are at the end.*
+
+<KPIGrid>
+  <KPI label="Gross deposits" value="$3.34B" sub="up 4.5%, fifth of ten lenders" />
+  <KPI label="Sector median growth" value="+7.0%" sub="Fluid +7.1%, every lender grew" />
+  <KPI label="Fluid's take rate" value="14.0%" sub="up from 13.0%, on $3.68M of fees" />
+  <KPI label="Smart Vault volume" value="$206.9M" sub="from zero since 10 August" />
+</KPIGrid>
+
+## Key takeaways
+
+- Gross deposits averaged **$3.34B**, up **4.5%** on July and **17.2%** year on year. Active loans averaged **$1.66B**, up 4.4%. The book closed the month at $3.59B, **13.7%** above where it opened.
+- **The growth was market-wide.** All ten major lending protocols grew. Sector median **+7.0%**; Fluid Lending **+7.1%**, fifth of ten. Aggregate deposits across the group rose **11.3%**, from $54.66B to $60.84B.
+- **Dollar figures overstate deposit growth.** ETH rose 31.1%, BTC 24.2% and SOL 41.9% over the same window, so part of every lender's increase is collateral being marked higher.
+- **Capital efficiency fell from 103% to 98%, and the decline reverses under test.** It came from Jupiter Lend, whose supply is 43.2% Solana-linked. Holding prices constant, Jupiter Lend's efficiency **rose** from 94.1% to 99.4%. Fluid's own Ethereum book held at 120%.
+- **Jupiter Lend's markets now generate 49.6% of the fee base the Fluid stack touches**, $3.63M against Fluid's own $3.68M, none of which is separable in Fluid's reported revenue.
+- **Fluid's own revenue reached $514K, up 9.3%**, on a 14.0% take rate that rose from 13.0% in July.
+- **DEX volume fell 15.0% in dollars and 14.7% denominated in ETH**, confirming a real decline rather than a currency effect. It is 87.9% below August last year.
+- **Fluid is no longer the second-largest DEX on Ethereum.** On 30-day volume Curve sits ahead, $3.16B against $2.77B, placing Fluid third with each protocol's versions combined and fourth as DefiLlama lists them.
+- **Smart Vaults reached $206.9M of trading volume** in three weeks from a standing start, with 65% of it in the final seven days.
+
+---
+
+<Callout tone="brand">Fluid grew 7.1% in August. The sector median grew 7.0%. Those are the same sentence, and the rest of this report is about what that headline number hides.</Callout>
+
+## The number that means less than it looks
+
+Gross deposits averaged **$3.34B** in August, up **4.5%** on July and 17.2% on the same month last year. Active loans averaged **$1.66B**, up 4.4%. From the first of the month to the last, the book climbed from $3.16B to **$3.59B**, a 13.7% gain. Read alone, that is a protocol pulling clear of a long drawdown.
+
+<Figure src="/images/reports/fluid-august-2026-05-trajectory.png" caption="Gross deposits and active loans, monthly average." />
+
+The year gives it scale. Deposits opened 2026 at $4.77B, fell to a $2.97B trough in June, and August's $3.34B stands **12.2% above that trough** and 30.0% below where the year began. Two months of growth have retraced part of a longer slide.
+
+The more useful question is whether any of it says something about Fluid specifically.
+
+## Everyone grew
+
+It does not. Measured identically across the ten largest lending protocols over the same window and on the same gross basis, every one of them grew in August.
+
+<Figure src="/images/reports/fluid-august-2026-01-peers.png" caption="Monthly average gross deposits, August against July, ten major lending protocols." />
+
+Sector median growth was **+7.0%**. Fluid Lending grew **+7.1%**, ranking fifth of ten, a tenth of a point above the middle. Aggregate deposits across the group rose from $54.66B to **$60.84B**, up **11.3%**, with Morpho Blue (+15.5%) and Aave V3 (+12.6%) capturing the larger share.
+
+A month in which everything rises describes conditions, not competitiveness. Jupiter Lend is worth isolating: as the largest single deployment in the Fluid ecosystem, it grew **+2.5%**, the weakest reading in the peer set and 4.5 points below the median.
+
+## What a dollar measured
+
+The denominator deserves scrutiny too.
+
+| Asset | 1 Aug | 31 Aug | Change |
+|---|---|---|---|
+| Ethereum | $1,865 | $2,445 | +31.1% |
+| Bitcoin | $63,013 | $78,282 | +24.2% |
+| Solana | $73 | $104 | +41.9% |
+
+Deposits are denominated in dollars, and in August the underlying assets appreciated by between a quarter and over two-fifths. Single-digit dollar growth against that backdrop does not establish that new capital arrived; some portion is existing capital marked higher. The effect scales with collateral volatility and disappears where collateral is stablecoins.
+
+Jupiter Lend illustrates it sharply. **43.2% of its supply is Solana-linked**, SOL rose 41.9%, and its dollar deposits rose 2.5%. A book carrying that much volatile collateral cannot rise 2.5% in dollars through a 42% rally without contracting in real terms. Fluid's own Ethereum markets are predominantly stablecoins and tokenized real-world assets, so their dollar figure sits close to their real size.
+
+Where a book's composition can be measured, the two effects separate cleanly. The next section does exactly that.
+
+## The efficiency decline that reverses under test
+
+Capital efficiency, active loans divided by net deposits, is Fluid's strongest claim against larger competitors. In August it fell from **103% to 98%**, as deposits grew 16.4% against loan growth of 10.8%.
+
+<Figure src="/images/reports/fluid-august-2026-03-efficiency.png" caption="Capital efficiency by deployment, start of August against end." />
+
+The decomposition locates the move. **Jupiter Lend fell from 94% to 87%**, absorbing $252.3M of new deposits against a smaller rise in borrowing. **Fluid's own Ethereum book held at 120%**, down three points and second only to Euler V2 across the peer set. Arbitrum slipped two points, while Plasma improved twenty-two.
+
+Whether that reflects weaker borrowing or the same repricing that flattered the deposit line can be settled rather than hedged. Jupiter Lend's supply is 43.2% Solana-linked against 56.8% stablecoins and tokenized assets, measured per market, and its debt legs are predominantly stablecoins. Deflating the Solana-linked share of end-August collateral to 1 August prices removes **$137.3M** of pure repricing from the denominator:
+
+| Basis | 1 Aug | 31 Aug | Change |
+|---|---|---|---|
+| As reported (USD) | 94.1% | 86.7% | -7.4pp |
+| **Price-neutral** | 94.1% | **99.4%** | **+5.3pp** |
+
+**Jupiter Lend's capital efficiency improved in August.** The reported decline is collateral marked higher against stablecoin debt that did not move. The attribution splits as 12.7 points of price effect against 5.3 points of genuine behaviour. The conclusion is robust to the debt-side assumption: even if a fifth of Jupiter's debt were also Solana-linked, price-neutral efficiency lands at 93.6%, flat rather than down.
+
+Two implications follow. Headline efficiency for any lender holding volatile collateral is partly a price index and will move in a rally for reasons unrelated to borrowing. And Fluid's shared-liquidity design did not soften; on a like-for-like basis it did not soften at all.
+
+## Reach, and what it costs
+
+Fluid's own markets earned **$514K** in August, up **9.3%** on July, on **$3.68M** of fees. The take rate rose from 13.0% to **14.0%**, so what Fluid kept grew faster than the fee base beneath it.
+
+The larger number sits outside that line. Jupiter Lend's markets generated **$3.63M** of fees in August, within 2% of Fluid's own and **49.6%** of the two combined. On the fee base alone, the Fluid stack now earns interest on roughly twice the borrowing that Fluid's own deployments carry.
+
+Almost none of that reaches Fluid's reported revenue. Interest paid by Jupiter Lend's borrowers is divided between lenders, Jupiter and Fluid, and DefiLlama books Fluid's share inside supply-side revenue, where it cannot be separated from lender interest. The **5.0%** that Jupiter Lend retains as protocol revenue, $182K in August, goes to Jupiter and JUP token holders under the 50/50 arrangement described in Fluid's launch announcement [2]. Fluid's cut is real and is not measurable from public data.
+
+That is the shape of the white-label trade. It roughly doubles the interest the technology earns on, and it moves the resulting margin into a line no public source separates. Whether the trade is a good one turns on figures neither Fluid nor Jupiter publishes.
+
+## The exchange business
+
+Trading volume totalled **$2.78B**, down **15.0%** on July and 87.9% below August last year.
+
+<Figure src="/images/reports/fluid-august-2026-02-dex-usd-vs-eth.png" caption="Fluid DEX monthly volume, in dollars and denominated in ETH." />
+
+A dollar-denominated decline during a rally invites the objection that it is a currency effect. It is not. Denominated in ETH, volume fell **14.7%**, within half a point of the dollar reading. Since March the DEX has contracted from 3.27M ETH of monthly volume to **1.48M**, roughly 55% in ETH terms.
+
+June demonstrates why the unit matters: volume fell 8.5% in dollars but rose 17.2% in ETH, because ETH declined that month. The denominator changed the sign of the reading. August's decline survives that test in both directions.
+
+The decline has now cost Fluid a position it held for most of the year. On 30-day Ethereum volume, **Curve DEX sits ahead of Fluid DEX, $3.16B against $2.77B**. Combining each protocol's versions gives Uniswap $21.62B, Curve $3.16B and Fluid $2.77B, which places **Fluid third**; taken exactly as DefiLlama lists them, with Uniswap's V4 and V3 counted separately, Fluid is fourth. The ordering is the same on a 24-hour window, and over seven days Fluid sits fourth behind a newer venue as well. Fluid ranked second on this measure through the second quarter and Token Terminal's Q2 report recorded it [1]. A business whose volume has fallen 87.9% in a year does not hold its ranking indefinitely, and this is the month it moved.
+
+## The one line growing
+
+Jupiter Lend v2 launched on 10 August. Fluid's announcement described it as "built entirely on Fluid's infrastructure" and confirmed the 50/50 revenue share [2]. Its Smart Vaults allow a deposit to serve as DEX liquidity while earning lending yield, applying Fluid's shared-liquidity design on Solana.
+
+<Figure src="/images/reports/fluid-august-2026-04-smart-vaults.png" caption="Daily Smart Vault trading volume through August." />
+
+Smart Vaults recorded **$206.9M of trading volume** in three weeks, crossing an eight-figure day on **21 August at $12.1M** and peaking at **$31.3M on the 27th**. Volume is a flow rather than a stock, so none of it is price appreciation. The trajectory matters more than the total: **$133.6M, roughly 65%, arrived in the final seven days**, and the last four days of the month all cleared $10M.
+
+Scale keeps the interpretation honest. At $206.9M, Smart Vaults are 7.4% of Fluid's own DEX volume and do not offset the decline on Ethereum. What they demonstrate is that the same design producing falling volume in one venue is producing rapidly rising volume in another.
+
+## Where the month leaves Fluid
+
+August was a good month for lending and an ordinary one for Fluid. Deposits and loans rose for a second consecutive month, revenue outpaced deposit growth, the core Ethereum book held an efficiency almost every competitor sits far below, and on a price-neutral basis the Solana deployment improved rather than deteriorated. Against that, growth landed at the sector median, part of it was collateral repricing rather than new capital, the exchange business declined again in every currency, and the ecosystem's largest deployment grew the slowest in the peer group while returning the least margin per dollar of fees.
+
+The tension sits between two halves of one design. On Ethereum, where Fluid's shared liquidity has run longest, deposits grow while trading volume falls. On Solana, through Jupiter, the same mechanism produced $206.9M of volume from nothing in three weeks while the deposit book underperformed its peers and returned a third of the take rate. The architecture is not the variable. The venue, the flow that reaches it, and the commercial terms attached to it are.
+
+September poses concrete questions. Whether Smart Vault volume holds its late-August run rate once launch attention fades. Whether Fluid's own DEX finds a floor in ETH terms as well as dollars. Whether the blended take rate keeps falling as Solana grows into a larger share of the book. And whether a third month of growth turns into share gains rather than another median.
+
+---
+
+## Methodology and coverage
+
+**Sources and basis.** Protocol metrics come from DefiLlama's public API (`fluid-lending`, `jupiter-lend`, `fluid-dex`, `jupiter-lend-dex`) [4], prices from its coins API, and supply composition from per-market `yields.llama.fi` data. Ethereum DEX rankings are read from `defillama.com/dexs/chains/ethereum` on 30-day volume as of 3 September. TVL is gross, idle deposits plus active loans, matching Token Terminal's definition [1]; DefiLlama's headline TVL is already net of borrows, so gross is that figure plus the per-chain borrowed series. Capital efficiency is active loans divided by net deposits, with deployments held separate so Fluid and Jupiter Lend compare like for like. Stock metrics are monthly averages and flow metrics monthly totals; July and August both have 31 days, so no day-count adjustment applies. The peer table measures `fluid-lending` alone (+7.1%) while the headline deposit figure combines it with Jupiter Lend (+4.5%), and each is labelled at point of use. The price-neutral counterfactual holds Jupiter Lend's Solana-linked collateral, 43.2% of supply measured per market at month end, at 1 August prices; the debt-side sensitivity is reported in the text.
+
+**First-party cross-check.** Fluid publishes a key-free API at `api.fluid.instadapp.io` [5]. Read directly, it returns 272 vaults across five chains. Vaults carrying smart debt denominate that leg in DEX liquidity shares with no USD field and cannot be priced from the feed, so the comparison is restricted to plain-debt vaults: Fluid's own numbers give **$713.6M of borrows against DefiLlama's $821.8M, or 86.8% coverage**, with the shortfall matching the vaults excluded by construction. The two sources agree on the portion that is comparable. On fees, Fluid's adapter reads Dune over a date range rather than a single-day snapshot, and August's daily figures move 6.5% day over day against the monthly mean, with no zero and no negative days.
+
+**Revenue scope.** Revenue is Fluid's own, taken from the `fluid` entry that covers Lending, Lite, DEX and DEX Lite. Jupiter Lend's revenue line is **not** added to it. DefiLlama defines that line as interest going to Jupiter and JUP token holders, and books "interest distributed to lenders and Fluid" in supply-side revenue instead, so Fluid's earnings from the white-label are real but not separable in this data. Any figure combining the two entries credits Fluid with Jupiter's take.
+
+**Reconciliation with Fluid's own recap.** Fluid published a monthly recap on 2 September. Three of its figures reconcile: cumulative DEX volume stated as "$228B+" sums to **$229.79B**, Jupiter Lend's "$2B total market size" measures **$2.01B**, and "$4B market size" reconciles at **$4.09B** on a whole-ecosystem basis that adds Fluid DEX, Fluid Lite and the Jupiter Lend DEX to the lending book. This report uses a lending-book basis and prints $3.60B for the same date; the difference is scope, not error. The fourth figure does not reconcile. "$18.1B trading volume for the first semester of 2026" is Token Terminal's **second-quarter** number [1], which the measurement here puts at $17.90B. The first half of 2026 sums to **$45.90B**, so the recap understates Fluid's own half-year volume by roughly two and a half times.
+
+**Named gaps.** Smart Vault supply does not reconcile: Jupiter's interface reported $15.6M of supply against $12.5M of active loans in late August while DefiLlama's `jupiter-lend-dex` reported $8.1M, and the definitional difference is unresolved, so no supply figure is published here and the volume series carries that section instead. A full first-party TVL reconstruction is not possible because smart-collateral and smart-debt legs carry no USD field. No per-asset claim is drawn from DefiLlama's per-protocol token breakdown, which disagrees with per-market data by up to five times; composition figures come from the per-market surface. DefiLlama's fee figure runs roughly double Token Terminal's on a different accounting basis, so retained revenue carries the financial analysis. And whether Fluid's DEX v2 and its own Solana DEX have shipped could not be confirmed against a primary source; both were listed as forthcoming in Fluid's 5 August H1 recap [3] and neither is treated as launched.
+
+## References
+
+1. Token Terminal, "Fluid Q2 2026 Report," August 2026. https://tokenterminal.com/explorer/projects/instadapp
+2. Fluid, "Jupiter Lend v2 Is Live: Powered by Fluid," 10 August 2026. https://fluid.io/blog/general-jupiter-lend-v2-is-live-powered-by-fluid
+3. Fluid, "Fluid H1 2026 Recap," 5 August 2026. https://fluid.io/blog/general-fluid-h1-2026-recap
+4. DefiLlama, protocol and DEX data. https://defillama.com/protocol/fluid-lending
+5. Fluid, first-party API. https://api.fluid.instadapp.io/v2/1/vaults
+
+_Data: DefiLlama public API, `yields.llama.fi` per-market data, and Fluid's first-party API, reconciled to Token Terminal's Fluid Q2 2026 report. Every figure updates live at [datumlab.xyz/fluid-terminal](https://datumlab.xyz/fluid-terminal)._
+
+_For informational purposes only. Not investment advice._
