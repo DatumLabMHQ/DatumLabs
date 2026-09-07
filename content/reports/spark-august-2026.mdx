@@ -47,7 +47,7 @@ Now put that next to the peers. Measured the same way across the ten largest len
 
 SparkLend grew **+10.7%**, third of ten and 3.7 points clear of the median, behind Morpho Blue (+15.5%) and Aave V3 (+12.6%). Beating the median in a month when nothing fell is a real result. It is also worth separating from the market conditions that produced most of the level, which is where the next section goes.
 
-Spark's own recap for the month reports two collateral records, WBTC supply passing 3,000 units on 1 August and wstETH supply passing $3B on 21 August [3]. Both check out against the reserve data.
+Spark's own recap for the month reports two collateral records, WBTC supply passing 3,000 units on 1 August and wstETH supply passing $3B on 21 August [4]. Both check out against the reserve data.
 
 ## What a dollar measured
 
@@ -63,7 +63,7 @@ Deposit figures are counted in dollars and held in tokens, and that is easy to f
 
 The same effect runs through capital efficiency, and there it runs the wrong way. Active loans divided by net deposits reads **46.3%** at month end against **49.1%** at the start, a fall of 2.8 points. Hold end-of-month token quantities at start-of-month prices and the same measure **rises 1.6 points**. Collateral repriced upward faster than borrowing against it grew, so the ratio fell while the book itself became modestly more productive. The reported decline is a denominator effect and nothing more.
 
-One independent check before moving on. Reserve supply of **$6.45B** less borrows of **$2.02B** gives **$4.42B**, against the **$4.4B** SparkLend TVL Spark published for the same date [3]. The on-chain read and the protocol's own figure agree.
+One independent check before moving on. Reserve supply of **$6.45B** less borrows of **$2.02B** gives **$4.42B**, against the **$4.4B** SparkLend TVL Spark published for the same date [4]. The on-chain read and the protocol's own figure agree.
 
 ## The earnings went the other way
 
@@ -152,31 +152,35 @@ So the question August leaves is not about growth. It is whether a business buil
 
 Spark answers that on its own dashboard. At month-end rates it projects **$12.83M** of annual net returns against a 12-month target runway of **$14.40M**, a projected protocol surplus of **-$1,566,693** [2]. Its own forward split puts Distribution Rewards at **77.95%** of that projection and the Liquidity Layer at **11.91%**, or $1.53M, close to the run rate the 6 basis point spread implies. On the protocol's own published numbers, the Distribution Rewards line set by Sky is most of the business model, and the model does not currently cover its costs.
 
-Two things would change that picture, and they are the signals I will be watching in September. The Sky Savings Rate falling, which lowers Spark's cost of capital directly. Or the Liquidity Layer earning more on the half of its book that sits outside SparkLend. August delivered neither.
+Two things would change that picture, and both are worth watching in September. The Sky Savings Rate falling, which lowers Spark's cost of capital directly. Or the Liquidity Layer earning more on the half of its book that sits outside SparkLend. August delivered neither.
 
-## Methodology and coverage
+## Methodology
 
-**Window.** 1 to 31 August 2026, a complete calendar month, compared against 1 to 31 July 2026. Both are 31 days, so no day-count normalisation is required.
+Every figure in this report updates live on the Datum Labs lending terminal [1].
 
-**Sources.** All fee, revenue, spread and Liquidity Layer composition figures come from Spark's own published financials at data.spark.finance [2], operated by Block Analitica. Deposits, per-chain splits, the peer set and prices come from DefiLlama [1]. SparkLend collateral composition is read on-chain from the protocol data provider. Internal consistency was checked with 45 identities before drafting, all passing.
+**Sources.** Fee, revenue, spread and Liquidity Layer composition come from Spark's own published financials at data.spark.finance [2], operated by Block Analitica. Deposits, per-chain splits, the peer set and prices come from DefiLlama [3]. SparkLend collateral composition is read on-chain from the protocol data provider. The window is 1 to 31 August 2026 against 1 to 31 July, both 31 days, so no day-count adjustment applies. Internal consistency was checked with 45 identities before drafting, all passing.
 
-**On DefiLlama's revenue series.** This report does not use DefiLlama's fee and revenue data for the Liquidity Layer. That adapter reads a Dune table published by Spark, one day at a time, and stores whatever it finds. Compare its output against the source and the pattern is clear: it captured 100% to 102% of Spark's reported gross yield every month through April 2026, then **79.9%** in May, **72.6%** in June, **66.9%** in July and **67.9%** in August. Three July days match Spark's records to the dollar while seventeen are short by more than $100,000, and the served series swings **51.6%** day over day where the source moves **4.5%**. Netting a full month of funding cost against a partial month of yield turns a profit into a loss: DefiLlama reports **-$649,334** for the Liquidity Layer in August where Spark's own accounting shows **+$301,520**. The defect has been reported to DefiLlama. It affects the fee adapter only, not the TVL feed this report uses for deposits [5].
+- **Deposits are gross**, meaning idle deposits plus active loans. DefiLlama's headline TVL is already net of borrows, so gross adds the per-chain borrowed series.
+- **Capital efficiency** is active loans divided by net deposits. The constant-price version holds end-of-month token quantities at 1 August prices, which separates borrowing from repricing.
+- **The spread** is the Liquidity Layer's asset yield less its cost of capital [8]. Spark publishes three different Liquidity Layer totals: allocated assets $2.29B, assets $2.64B and total assets $2.72B. This report uses allocated assets throughout except for the spread, which is calculated on total assets as Spark publishes it.
+- **Distribution Rewards are a payment from Sky**, not product earnings. They sit inside family net revenue because Spark books them there, and they are separated wherever that distinction changes the reading.
+- **Stock metrics are monthly averages, flows are monthly totals.**
 
-**Named gaps.**
+**Why DefiLlama's Spark revenue is not used.** That adapter reads a Dune table published by Spark one day at a time and stores whatever it finds. It captured 100% to 102% of Spark's reported gross yield every month through April 2026, then **79.9%** in May, **72.6%** in June, **66.9%** in July and **67.9%** in August. Three July days match to the dollar while seventeen are short by more than $100,000, and the served series swings **51.6%** day over day where the source moves **4.5%**. Netting a full month of funding cost against a partial month of yield turns a profit into a loss: it reports **-$649,334** for the Liquidity Layer in August where Spark's own accounting shows **+$301,520**. The defect has been reported to DefiLlama and affects the fee adapter only, not the TVL feed used here for deposits [6].
 
-- **Net revenue is not a precise figure.** At 3.8% of gross it is the small difference between two large numbers. Blockworks Research agrees with Spark on gross yield to within 1% across four quarters and on Distribution Rewards to within 1%, but books a 2% to 6% lower funding cost, which is enough to change the sign of net in some quarters [6]. Quote gross yield, funding cost and the spread; treat net as a range.
-- **Distribution Rewards may be revised.** They settle as a monthly off-chain rebate. Spark's figures matched Blockworks to within 1% on every settled quarter but ran materially below for July and August as of 1 September. No revision had appeared at the time of writing.
-- **Savings TVL is not reconciled.** Spark's recap reports $4.9B [3]; its own vault endpoint sums to $3.37B and DefiLlama reports $1.21B. The three count different things and the scope difference has not been resolved, so no Savings figure is used in this report's headline claims.
-- **Liquidity Layer composition is a point-in-time read** taken at month end, not an average across the month.
-- **The Liquidity Layer's daily revenue is not published first-party**, so the within-month split of earnings is inferred from the daily spread series rather than measured directly.
-- **Spark publishes three different totals for the Liquidity Layer**: allocated assets $2.29B, assets $2.64B and total assets $2.72B. This report uses allocated assets throughout except where the spread is quoted, which is calculated on total assets as Spark publishes it.
+**Gaps.** Net revenue is 3.8% of gross, the small difference between two large numbers. Blockworks Research agrees with Spark on gross yield and on Distribution Rewards to within 1% across four quarters but books a 2% to 6% lower funding cost, which is enough to change the sign in some quarters [5], so gross yield, funding cost and the spread carry the analysis and net is treated as a range. Distribution Rewards settle as a monthly off-chain rebate and may be revised [7]; July and August ran materially below Blockworks as of 1 September with no revision published. Savings TVL is not reconciled: Spark's recap reports $4.9B [4], its own vault endpoint sums to $3.37B and DefiLlama reports $1.21B, so no Savings figure appears in any headline claim. Liquidity Layer composition is a month-end point-in-time read rather than an average, and its daily revenue is not published first-party, so the within-month split of earnings is inferred from the daily spread series.
 
 ## References
 
-1. DefiLlama, Spark protocol. https://defillama.com/protocol/spark
+1. Datum Labs, "Lending Intelligence Terminal," live dashboard. https://www.datumlab.xyz/lending-terminal
 2. Spark Data Hub, operated by Block Analitica. https://data.spark.finance
-3. Spark, August 2026 recap. https://x.com/sparkfinance
-4. Sky Forum, Monthly Settlement Cycle. https://forum.sky.money
-5. DefiLlama dimension-adapters, `fees/spark-liquidity-layer`. https://github.com/DefiLlama/dimension-adapters
-6. Blockworks Research, Spark. https://blockworks.com/analytics/spark
-7. Spark documentation. https://docs.spark.fi
+3. DefiLlama, Spark protocol. https://defillama.com/protocol/spark
+4. Spark, August 2026 recap. https://x.com/sparkfinance
+5. Blockworks Research, Spark. https://blockworks.com/analytics/spark
+6. DefiLlama dimension-adapters, `fees/spark-liquidity-layer`. https://github.com/DefiLlama/dimension-adapters
+7. Sky Forum, Monthly Settlement Cycle. https://forum.sky.money
+8. Spark documentation. https://docs.spark.fi
+
+*Data: Spark's own published financials at data.spark.finance, operated by Block Analitica, for all fee, revenue and spread figures; DefiLlama for deposits, per-chain splits and the peer set; SparkLend collateral read on-chain. Every figure updates live at [datumlab.xyz/lending-terminal](https://www.datumlab.xyz/lending-terminal).*
+
+*For informational purposes only. Not investment advice.*
