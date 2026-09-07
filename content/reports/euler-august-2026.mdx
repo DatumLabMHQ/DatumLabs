@@ -1,0 +1,208 @@
+---
+title: "Euler in August 2026: the deposits grew, the book did not"
+slug: euler-august-2026
+period: August 2026
+publishedAt: 2026-09-07
+summary: Euler's deposits rose 5.9% while its loan book shrank, in a month when every major lender grew and the median was 7.0%. Revaluing collateral at 1 August prices turns the gain into a 2.7% decline, and the protocol running the most intensively lent book in lending kept $51.7K on $2.0M of interest.
+excerpt: Deposits up 5.9%, loans down 0.1%, and a real change of minus 2.7% once collateral repricing is removed. Read from 1,017 vaults on-chain.
+cover: /images/reports/euler-august-2026-cover.jpg
+hero: /images/reports/euler-august-2026-hero.jpg
+gated: false
+---
+
+Euler's dollar deposits rose 5.9% in August while its loan book shrank slightly, in a month when every major lending protocol grew and the sector median was 7.0%. On the two chains holding three quarters of the book, deposits rose 3.3% in dollars and fell 2.7% once collateral repricing is removed. Monad ended the month larger than Ethereum for the first time, and the protocol running the most intensively lent book in lending retained $51.7K on $2.0M of interest.
+
+<KPIGrid>
+  <KPI label="Gross deposits" value="$950.5M" sub="up 5.9%, below the 7.0% sector median" />
+  <KPI label="Real change, ETH + Monad" value="-2.7%" sub="against +3.3% as reported" />
+  <KPI label="Utilization" value="60.6%" sub="first of ten major lenders" />
+  <KPI label="Take rate" value="2.60%" sub="$51.7K kept on $2.0M of interest" />
+</KPIGrid>
+
+*Figures cover 1 to 31 August 2026. Fees and revenue are rebuilt first-party from Euler's contracts, covering all 31 days on both sides of the month-on-month, because DefiLlama's fee adapter stopped reporting after 22 August. Methodology, coverage and named gaps are at the end.*
+
+<Callout tone="brand" title="The finding">
+Euler's deposits rose 5.9% in dollars while its loan book shrank. On the two chains holding three quarters of the protocol, revaluing end-of-month collateral at 1 August prices turns a 3.3% gain into a 2.7% decline. The growth was the collateral, not the deposits.
+</Callout>
+
+## Key takeaways
+
+- **Gross deposits averaged $950.5M**, up 5.9% on July and down 65.3% year on year. **Active loans averaged $591.3M, down 0.1%.** Deposits grew and borrowing did not.
+- **The growth was market-wide, and Euler captured less of it than most.** All ten major lending protocols grew in August. Sector median **+7.0%**; Euler **+5.9%**, seventh of ten. Aggregate deposits across the group rose 11.3%.
+- **August's dollar figures overstate deposit growth.** ETH rose 31.1%, BTC 24.2% and XRP 29.0% over the same window.
+- **On a price-neutral basis the book shrank.** Revaluing end-August collateral at 1 August prices removes $38.0M, 5.8% of the covered book. Ethereum and Monad together rose 3.3% in dollars and **fell 2.7%** in real terms.
+- **Monad ended August larger than Ethereum**, $385.6M against $334.3M. It led on only 7 of 31 days, and continuously from 28 August after a single day cut $47.7M from Ethereum's book.
+- **Euler runs the most intensively lent book in lending on both measures**: 153.6% loans to net deposits and 60.6% utilization, first of ten on each. That comes from looping, which concentrates liquidation risk in the same place it creates efficiency.
+- **883 vaults have been deployed on Ethereum, but 26 hold 97.5% of the chain's book**, and two curators run most of the protocol. Sentora curates 67.5% of Ethereum, K3 Capital 74.5% of Monad, together 71.3% of what was read on-chain.
+- **Borrowers paid $2.0M of interest and Euler kept $51.7K**, a 2.60% take rate. The protocol's share of the interest fee was set to zero on 12 May 2026, and the fee transfers show it collecting 0.0% since June. EUL buybacks have been stopped for 142 days.
+
+---
+
+## The month in one number, and why it is the wrong one
+
+Gross deposits averaged **$950.5M** in August, up **5.9%** on July. Active loans averaged **$591.3M**, down **0.1%**.
+
+That divergence is the first thing worth noticing. Deposits grew by roughly $53M on the month while borrowing fell slightly, so none of the additional capital was lent out. Utilization fell with it, from 62% at the end of July to **60.6%**.
+
+Context is heavier still. Deposits peaked at **$4.21B on 7 October 2025**, and the book closed August **77.4% below that**. Two of the intervening months have been positive, so the direction has changed while the distance has not.
+
+The more useful question is whether 5.9% says anything about Euler at all.
+
+## Everyone grew
+
+It does not. Measured identically across the ten largest lending protocols, over the same window and on the same gross basis, every one of them grew in August.
+
+<Figure src="/images/reports/euler-august-2026-01-peers.png" caption="Monthly average gross deposits, August against July, ten major lending protocols." />
+
+Sector median growth was **+7.0%**. Euler grew **+5.9%**, seventh of ten, behind Fluid (+7.1%), Compound V3 (+6.9%) and Venus (+9.3%). Aggregate deposits across the group rose from $54.66B to **$60.84B**, up 11.3%, with Morpho Blue (+15.5%) and Aave V3 (+12.6%) taking most of it.
+
+A month in which everything rises describes conditions. Euler also remains the smallest of the ten at $950.5M against Aave V3's $26.70B, so an identical percentage represents a far smaller absolute gain.
+
+## What a dollar measured
+
+The denominator deserves scrutiny before the growth figure is accepted at all.
+
+| Asset | 1 Aug | 31 Aug | Change |
+|---|---|---|---|
+| Ethereum | $1,864.93 | $2,445.02 | +31.1% |
+| Bitcoin | $63,013.10 | $78,282.14 | +24.2% |
+| XRP | $1.06 | $1.37 | +29.0% |
+
+Deposits are denominated in dollars, and the assets sitting in them appreciated by roughly a quarter to a third over the month. Single-digit dollar growth against that backdrop does not establish that new capital arrived. The effect scales with how much volatile collateral a book holds, and disappears where collateral is stablecoins.
+
+For most lenders that has to remain a caveat. For Euler it can be measured directly, because the vault contracts publish token quantities.
+
+## The growth that was not growth
+
+Every Euler market is an ERC-4626 vault listed by its factory, so the book can be read directly: **1,017 vaults** across Ethereum and Monad, holding **76.2%** of the protocol. That read returns token quantities rather than dollar values, which makes the counterfactual exact rather than estimated.
+
+<Figure src="/images/reports/euler-august-2026-02-price-neutral.png" caption="Deposits as reported against deposits at 1 August prices, Ethereum and Monad." />
+
+The method revalues end-of-month quantities at start-of-month prices. Reported gross is those quantities at 31 August prices; price-neutral gross is the same quantities at 1 August prices. Because both legs use end-of-month quantities, the comparison needs no assumption about how composition moved during the month.
+
+It also checks itself. Every ETH-linked asset in the book moved between +30.8% and +31.5% over the window, and every dollar-denominated asset moved between -0.0% and +0.6%. That clean separation is what the method rests on, and it is visible in the measured data rather than assumed from an asset's name.
+
+| Basis | 1 Aug | 31 Aug | Change |
+|---|---|---|---|
+| As reported (USD) | $697.2M | $719.9M | **+3.3%** |
+| **Price-neutral** | $697.2M | **$678.5M** | **-2.7%** |
+
+Repricing accounts for **$38.0M**, 5.8% of the covered book. Euler's deposits rose in dollars and fell in real terms.
+
+The effect concentrates where the volatile collateral sits. Monad's book repriced by **$33.2M, 9.4% of its gross**, against Ethereum's $4.8M, or 1.6%, because Ethereum's collateral is almost entirely dollars. Read through utilization the measure moves the other way from the headline: 56.8% reported becomes **60.3%** price-neutral across the two chains, because the denominator shrinks while the loans do not. Under a sensitivity that revalues the debt leg as well, price-neutral utilization lands at 57.6%, still above the reported figure.
+
+## Monad ended the month larger than Ethereum
+
+The deposit growth also arrived in one place. Monad added **$81.1M** over the month while Ethereum lost **$58.4M** and Plasma lost $24.7M.
+
+<Figure src="/images/reports/euler-august-2026-03-deployments.png" caption="Monthly average gross deposits by chain, Ethereum and Monad against the protocol total." />
+
+Monad closed August at **$385.6M, 40.6% of the book**, against Ethereum's **$334.3M, or 35.2%**. The crossover was not clean: Monad first moved ahead on 23 August, gave the lead back on the 26th and 27th, and has been ahead continuously since the 28th, leading on **7 of 31 days** in total.
+
+The decisive move was a single day, and its shape is worth reading carefully. On 28 August Ethereum's gross fell **$47.7M**, from $377.7M to $330.1M. Outstanding debt accounted for **$42.9M** of that, while net deposits fell only **$4.8M**. A repayment on its own does not shrink a lending book: the repaid asset lands back in the vault as idle liquidity, so debt falls, net rises and gross is unchanged. Gross falls only when the collateral leaves too. Debt down $42.9M against almost no change in idle liquidity is the signature of a levered position closing, where the borrowed funds had themselves been redeposited as collateral, so unwinding removed the debt and the collateral funding it in the same movement.
+
+The longer trend sits on a different basis and is worth separating from those month-end figures. Comparing **monthly averages**, Ethereum has fallen 52% since May while Monad has grown 5.2 times, narrowing the gap between them from **$711M in May**, when Ethereum averaged $777M against Monad's $66M, to **$25M in August**, at $370M against $344M. On that averaged basis Ethereum is still marginally ahead. The crossover belongs to the last days of August rather than to the month as a whole.
+
+The two deployments are structurally different businesses. Ethereum runs at **72.5% utilization** against Monad's **35.9%**, and Monad's largest vaults hold collateral with no borrowing against it at all: vUSD ($73.6M), wstETH ($41.9M), a Pendle principal token ($36.2M) and gAUSD ($24.7M) sit there with zero loans. Ethereum is a drawn lending book. Monad is a collateral warehouse where the borrowing has not arrived.
+
+That distinction matters for what the growth is worth, because the two chains do not pay the same.
+
+## The hardest-working book in lending
+
+Euler runs the highest loans-to-net-deposits ratio of any major lender, at **153.6%**, and the highest utilization, at **60.6%**. It is first of ten on both, ahead of Fluid Lending (113% and 53%) and far ahead of Aave V3 (71% and 42%).
+
+<Figure src="/images/reports/euler-august-2026-04-efficiency.png" caption="Loans over net deposits and utilization, ten major lending protocols." />
+
+A ratio above 100% means borrowed balances exceed net deposits, which is only possible through looping. A borrower deposits collateral, borrows against it, redeposits what was borrowed and borrows again. Each turn adds to outstanding loans while the unborrowed cash in the vaults stays roughly flat, so the same base capital ends up backing several layers of debt. Euler's Ethereum Vault Connector is built to make that chaining possible across vaults.
+
+Both readings are true and this report picks neither. It is efficient: more of every deposited dollar is working than at any competitor. It also concentrates risk, because a move against looped collateral unwinds through every layer at once, and the free liquidity that would absorb it is thin by construction.
+
+The thinness is visible per chain. **Plasma closed August at 98.0% utilization and Sonic at 98.9%**, leaving $2.1M and $255K of unborrowed deposits against loan books of $104.6M and $23.2M. A lender in those markets cannot withdraw at size without waiting for a repayment.
+
+The loans-to-net figure needs handling with care. It is unbounded, and as a book approaches full draw the denominator collapses and the ratio runs away: Plasma's reads 4,981% and Sonic's 8,978% for that reason alone. Utilization is bounded between 0% and 100% and is the more stable measure. Euler leads on both, so the ranking survives either way, and the 153.6% is the more fragile of the two numbers.
+
+## 883 vaults, 26 that matter
+
+The vault-level read makes the concentration explicit, and the headline count needs care. Euler's factory has deployed **883 proxies on Ethereum**, which is every vault ever created through it rather than a list of live markets. Of those, **447 have a collateral configured** and can actually be borrowed against, **372 hold any balance at all**, and **26 hold more than $1M**. Those 26 hold **97.5% of the chain's book**, and the four largest hold **65%**.
+
+<Figure src="/images/reports/euler-august-2026-05-vault-concentration.png" caption="Largest Ethereum vaults by gross supplied, against all other funded vaults." />
+
+Those four are eRLUSD-7, eUSDC-70, ePYUSD-6 and eUSDC-80, holding between $50.3M and $55.9M each, and every one is a dollar market. Monad is less concentrated but not by much, its top four at 51.6% of a 134-vault deployment.
+
+That registry also names who configures each market, which turns the concentration into something more specific than a vault count. Joining Euler's own product-to-curator mapping onto the on-chain balances attributes **85.7% of Ethereum's book and 100% of Monad's**. On Ethereum, **Sentora curates $221.4M, or 67.5% of the chain**, through just two products: its RLUSD market ($114.8M) and its PYUSD market ($106.5M). On Monad, **K3 Capital curates $285.4M, or 74.5%**, spread across fourteen isolated markets, with Valos second at $86.8M. Taken together, **two curators are responsible for 71.3% of the $710.9M read on-chain**. The vault count measures how open the system is to new markets. The curator count measures who is actually underwriting the risk in it, and that answer is far more concentrated.
+
+This is why 883 should not be read as a market count. Euler publishes its own product registry, the one its interface reads, and on Ethereum that registry lists **66 products referencing 98 distinct vaults**, against 883 ever deployed. The distance between the two is empty and abandoned deployments rather than hidden activity. Permissionless vault creation is the core of the Euler V2 design, and 883 fairly measures how cheap it is to launch a market. It does not measure how many markets matter. Across both chains, **46 of 1,017 deployed vaults hold more than $1M**, and those few carry effectively the entire book.
+
+## Where the fees go, and where they do not
+
+Euler's borrowers paid **$2.0M** in interest in August and the protocol kept **$51.7K** of it, a blended take rate of **2.60%**. Lenders received $1.78M and the curators who run the vaults took $153.0K. Both August and July are measured the same way across the same 31 days and the same ten chains, so the comparison is like for like: fees rose **2.5%** and revenue **2.3%**. Those are the smallest movements in this report, and they hide the largest one.
+
+<Figure src="/images/reports/euler-august-2026-06-take-rate.png" caption="Share of fees and share of revenue by chain, with the take rate on each." />
+
+**Ethereum's fee base fell 12.5%, from $1.16M to $1.02M, while Monad's rose 91.5%, from $238.6K to $457.0K.** Six of the ten chains measured shrank, including Plasma by half and Base by a quarter. The flat protocol total is one chain's growth cancelling six chains' decline, which is the deposit migration described earlier arriving in earnings about a month behind the balances.
+
+The chains do not contribute in proportion. **Ethereum produces 51.1% of fees and 42.7% of revenue at a 2.17% take rate. Monad produces 23.0% of fees and 8.9% of revenue at 1.01%. Avalanche produces 22.4% of fees, almost exactly Monad's share, and 44.4% of revenue at 5.16%.** Two chains that look the same size to borrowers hand the protocol amounts that differ fivefold.
+
+The reason is a governance decision with a date on it rather than anything about pricing. Euler's `ProtocolConfig` contract sets the share of the interest fee the protocol receives, and on both Ethereum and Monad that share was set to **zero on 12 May 2026**, down from 50% [9]. What the protocol still books comes from two narrow places: **472 Ethereum vaults whose curator has never set a payout address**, where the protocol collects the entire interest fee by default, and seven vaults carrying an explicit override. All four of Euler's largest Ethereum markets sit outside both, and pay it nothing.
+
+The fee transfers confirm it from the other end. Euler's vaults emit an event that separates the protocol's cut from the curator's whenever accrued fees are realised, and reading those transfers directly on Ethereum, the protocol's share ran between 50% and 69% from January to May. **From June it is 0.0%, in every month including August.** A further **$107.7K** of protocol fees sits accrued and unconverted across four vaults, so even the residual is not being collected.
+
+Concentration compounds this. **Avalanche's eUSDt-3 alone produced $403.9K of interest in August, 20.3% of the protocol's entire fee base from one market**, and it is 90.8% of the chain that supplies 44.4% of Euler's revenue. That vault is fully drawn, holding $16.2M of borrows against no free liquidity, and charges 34.97%. Its debt is roughly flat across the month, so it is being serviced rather than stranded, but a blended take rate reveals none of this.
+
+**How these figures were derived, and what is missing.** DefiLlama's Euler fee adapter stopped publishing after 22 August, so the entire fee family here is rebuilt from Euler's own contracts rather than taken from a feed [2]. Every vault the factory has ever deployed is enumerated and read at each UTC midnight block, and interest is computed two mathematically independent ways: from the change in each vault's share price, which is the method the aggregator uses, and from the change in its `interestAccumulator`, which is the index borrower debt is stored against. The two agree per chain between 0.995 and 1.046. Where a chain has no public archive node, Monad being the only one, the same accumulator arithmetic is rebuilt from `VaultStatus` events instead, and that route was validated by running it on Ethereum against the archive answer first.
+
+Three things are disclosed rather than smoothed over. **$1.36M of interest is excluded** as uncollectible: it accrued on Euler's Sonic vaults caught in the Stream Finance collapse, which sit at 100% utilisation with zero cash while the rate model holds their borrow rates at 99.91% and 299.63% [10]. The debt index compounds regardless, so both methods agree on that figure and neither cross-check can flag it; it is excluded on judgement, and the equivalent July figure was $1.25M. **Three chains are excluded as unverified**, Unichain, Linea and BOB, where the two methods diverged past the tolerance; together they are 0.28% of the fee base. What remains covers **99.72%** of the chain split DefiLlama itself publishes for August.
+
+Measured this way, the published figures are too high. **DefiLlama overstates Euler's fees by 14.5% and its revenue by 38.5%**, because its adapter multiplies each vault's per-share growth by total assets where the correct multiplier is total shares, which carries a vault's entire accumulated appreciation as a single day of interest. Compared on the days both cover, their implied take rate is 3.18% against an actual 2.63%. Blockworks Research, which measures the protocol and curator margin together rather than the protocol's own share, reports **$365.1K** for August against the **$204.8K** of combined protocol and curator fees found here; the difference is almost exactly the Stream Finance accrual, and adding it back brings the two within 8% [5].
+
+What reaches the token is shorter still. DefiLlama attributes holder revenue to buy-back auctions on Euler's FeeFlow contract, and reading that contract directly on Ethereum, the last purchase settled on **11 April 2026** for 19,714.91 EUL. It has recorded no events in the **142 days** since. Cumulative buybacks stand at $3.2M against a peak month of $713K in October 2025. On the accounting path the aggregator tracks, EUL value accrual is stopped.
+
+## Where the month leaves Euler
+
+August was a good month for lending and a weak one for Euler. Revenue edged 2.3% ahead of July, Monad kept compounding, and the protocol held the most intensively lent book in the sector on both measures. Against that, growth came in a point below the sector median, the part of it that can be measured precisely turns out to be collateral repricing rather than new capital, the loan book shrank while deposits rose, the largest and fastest-growing deployment returns a fifth of the margin Avalanche does on almost the same fee base, and the token's buyback mechanism has been idle for over four months.
+
+The tension is between intensity and scale. Euler's design does more with each dollar than anything else in lending, and it is applied to the smallest book of the ten. The same looping that produces a 153.6% ratio means the free liquidity behind it is thin, with two chains above 98% utilization and four Ethereum vaults holding two thirds of that chain. Efficiency of this kind is a genuine engineering result and a concentration of risk in the same measurement.
+
+September poses concrete questions. Whether Monad's collateral starts being borrowed against, which is what would turn a 36% utilization warehouse into a lending market. Whether Ethereum's decline, 52% since May, finds a floor. Whether the blended take rate keeps falling as Monad grows. And whether anything restarts the buyback, or whether the April auction was the last one.
+
+---
+
+## Methodology and coverage
+
+**First-party coverage.** The load-bearing figures are verified against a direct read of Euler's vault contracts rather than an aggregator alone. Euler V2 is the Euler Vault Kit: every market is an ERC-4626 vault deployed by a GenericFactory that exposes the full list, so the vault set is enumerated rather than assumed. All **1,017 vaults** across Ethereum (883) and Monad (134) were read for `cash()` and `totalBorrows()` with zero call failures, covering **$704.9M of the protocol's $925.4M, or 76.2%**. That maps onto DefiLlama's model exactly, whose `tvl` is cash and whose `{chain}-borrowed` is total borrows. Measured at the same instant, the on-chain read differs from DefiLlama by **0.4% on Monad and 2.8% on Ethereum**. Quantities are first-party; only USD prices come from an external feed.
+
+**Independent reproduction.** Every headline figure in this report was recomputed from the raw DefiLlama API by a second script written independently of the data pipeline, then compared. All 16 checked figures matched to 0.00%. That pass also confirmed the sector median is the true median of ten values (7.01%) rather than the upper of the two middle values (7.14%), a distinction that changes the published figure.
+
+**Sources.** Protocol metrics from DefiLlama's public API, slug `euler` for the parent and `euler-v2` for the product [1]. Prices from DefiLlama's coins API. Product and curator names from Euler's own public label registry [8], which is the registry its interface reads; it carries labels only, no balances and no financials. Fees and revenue are not taken from DefiLlama. They are rebuilt from Euler's own contracts, reading every vault the factory has deployed at each UTC midnight block across ten chains, after that feed stopped publishing on 22 August. DefiLlama's open-source adapter [2] was read first and its arithmetic replicated exactly, which is what allows the divergence from it to be stated as a measured quantity. Protocol fee share history from Euler's `ProtocolConfig` contract [9]; realised fee splits from `ConvertFees` events. Third-party comparison against Blockworks Research [5]. Vault reads via public RPC, and via Etherscan V2 logs on Monad, which has no public archive node.
+
+**Basis.** Deposits are gross, defined as idle deposits plus active loans. DefiLlama's headline TVL is already net of borrows, so gross is that figure plus the per-chain borrowed series. Capital efficiency is active loans over net deposits; utilization is active loans over gross deposits. Both appear wherever either is quoted, because the first is unbounded and unstable near full draw. Stock metrics are monthly averages. Earlier editions stated flow metrics as daily rates to handle unequal window lengths; here both months are full 31 days measured identically, so fees and revenue are given as monthly totals.
+
+**Price-neutral method.** End-of-month token quantities are revalued at 1 August prices and compared against the same quantities at 31 August prices. Because both legs use end quantities, no assumption is made about how composition changed within the month. Assets with no price at either date are excluded rather than estimated. The sensitivity revaluing the debt leg as well is reported in the text.
+
+**Four handling decisions, each of which changed a number.**
+
+1. DefiLlama appends one intraday point per series for the current day, and its per-chain series are not timestamp-aligned. Every series is collapsed to one value per calendar date, taking the 00:00:00 UTC close. Taking the last point of each day instead adopts the live snapshot as that day's value, which on Euler's Ethereum read $79.05M against a $96.71M close, an 18% error.
+2. DefiLlama exposes both a bare `borrowed` aggregate and per-chain `{chain}-borrowed` series. For Euler the bare key is exactly the sum of the 16 per-chain keys, so counting both would double the loan book and double the efficiency ratio. Only per-chain series are used.
+3. The per-protocol `tokens` and `tokensInUsd` breakdown is not used anywhere in this report. On a sister protocol it disagreed with per-market data by up to five times. Composition here comes from the on-chain vault read instead.
+4. Euler's parent slug and the sum of its children were checked for the double-counting that affects multi-product families. They agree to **0.00%** in every month back to August 2025, because there is one live product; `euler-v1` holds $30K. The parent is headlined and the check is reported rather than assumed.
+
+**Named gaps.** DefiLlama's Euler fee adapter **stopped reporting after 22 August**, leaving 9 of 31 days missing, so the fee family in this report is not taken from it. It is rebuilt from Euler's contracts and the gaps in that rebuild are these. **$1.36M of accrued interest is excluded as uncollectible**, all of it on Sonic vaults caught in the Stream Finance collapse, which stand at 100% utilisation with zero cash while the interest rate model holds them at 99.91% and 299.63% [10]; the debt index compounds regardless, so both independent methods agree on the figure and neither can flag it, and the decision to exclude it is a judgement rather than a measurement. The comparable July figure is $1.25M, so the exclusion does not distort the month-on-month. **Unichain, Linea and BOB are excluded as unverified**, being the three chains where the share-price and accumulator methods diverged beyond tolerance; together they are 0.28% of the fee base. What remains covers **99.72%** of the chain split DefiLlama publishes for August. **Monad has no public archive node**, keeping roughly three days of state and capping log queries at a 100 block range, so its figures come from the event-based route rather than the state-based one; that route was validated on Ethereum against the archive answer before being relied on. Fee rate parameters on Monad are reconstructed from `GovSetFeeReceiver` events rather than read at current state, because two of its largest markets had their payout addresses set mid-month and a current-state read would have dated both changes wrongly. Four assets holding **$43.0M** on-chain (gAUSD, xUSD, ynRWAx and aHyperBTC) have no usable price history and are excluded from the price-neutral calculation; the three that are dollar-denominated would not have repriced, so their exclusion slightly overstates the measured repricing share. The 23.8% of the protocol outside Ethereum and Monad was not read on-chain, so the price-neutral result covers those two chains only and is not scaled to the whole book. On-chain quantities were read on 2 September rather than at the 31 August close, so composition shares carry a two-day offset; levels in the report come from the dated DefiLlama series, not from that read. Euler publishes no financials of its own: its app API returns 403, `data.euler.finance` resolves to an error page on every path, and no monthly recap covering August was found. Its public label registry [8] carries names only. The fee and revenue figures here are therefore computed from its contracts rather than read from anything Euler publishes. An independent comparison against Blockworks Research read $984M of deposits and $634M of loans on 27 August, within 2.3% and 1.5% of this pipeline on that date; that surface renders values only in a live browser session and could not be re-read for the 31 August close. EulerSwap is excluded from this edition. Curator attribution uses Euler's own published product registry rather than the aggregator's vault naming, which names a curator for only a minority of vaults. The registry accounts for 85.7% of Ethereum's book and 100% of Monad's; the unattributed Ethereum remainder is vaults holding a balance that no listed product references, and it is left unattributed rather than assigned.
+
+**Key figures.** Gross deposits $950.5M average (+5.9% MoM, -65.3% YoY); active loans $591.3M (-0.1%); sector median +7.0%, Euler seventh of ten; price-neutral change on Ethereum and Monad -2.7% against +3.3% reported; repricing $38.0M, 5.8% of the covered book; utilization 60.6% and loans over net 153.6%, first of ten on both; Monad $385.6M against Ethereum $334.3M; 883 Ethereum proxies deployed but 26 holding 97.5% of that chain; fees $2.0M (+2.5% MoM), revenue $51.7K (+2.3%), take rate 2.60%, all 31 days first-party across ten chains; $1.36M excluded as uncollectible; protocol fee share set to zero 12 May 2026 and 0.0% of realised fees collected since June; buybacks stopped 142 days.
+
+## References
+
+1. DefiLlama, Euler V2 protocol data. https://defillama.com/protocol/euler-v2
+2. DefiLlama, dimension-adapters, Euler fee adapter methodology. https://github.com/DefiLlama/dimension-adapters/blob/master/fees/euler/index.ts
+3. Euler Finance, protocol documentation, Euler Vault Kit and Ethereum Vault Connector. https://docs.euler.finance
+4. Euler Finance, application. https://app.euler.finance
+5. Blockworks Research, Euler financials dashboard, August 2026 revenue $365,149. https://app.blockworksresearch.com/analytics/euler
+6. Etherscan, FeeFlow controller `0xFcd3Db06EA814eB21C84304fC7F90798C00D1e32`, last buy transaction 11 April 2026. https://etherscan.io/tx/0x68429b6656d473be726ddf1c7b205ee011f67d846c8a128afd821d3abb32bc56
+7. Datum Labs, "Euler Research Terminal," live dashboard. https://datumlab.xyz/euler-terminal
+8. Euler Finance, product and entity label registry. https://labels.euler.finance/master/1/products.json
+9. Etherscan, Euler `ProtocolConfig` `0x4cD6BF1D183264c02Be7748Cb5cd3A47d013351b`, `SetProtocolFeeShare` 5000 to 0 on 12 May 2026. https://etherscan.io/address/0x4cD6BF1D183264c02Be7748Cb5cd3A47d013351b#events
+10. DefiLlama, dimension-adapters, excluded vault list, Sonic entries annotated as Stream Finance related. https://github.com/DefiLlama/dimension-adapters/blob/master/helpers/lists.ts
+
+*Data: DefiLlama public API for deposits and loans, a first-party read of 1,017 Euler EVK vaults covering 76.2% of the protocol, and a first-party rebuild of fees and revenue across ten chains covering 99.7% of the fee base. Every figure updates live at datumlab.xyz/euler-terminal.*
+
+*For informational purposes only. Not investment advice.*
