@@ -3,20 +3,20 @@ title: "Euler in August 2026: the deposits grew, the book did not"
 slug: euler-august-2026
 period: August 2026
 publishedAt: 2026-09-07
-summary: Euler's deposits rose 5.9% while its loan book shrank, in a month when every major lender grew and the median was 7.0%. Revaluing collateral at 1 August prices turns the gain into a 2.7% decline, and the protocol running the most intensively lent book in lending kept $51.7K on $2.0M of interest.
-excerpt: Deposits up 5.9%, loans down 0.1%, and a real change of minus 2.7% once collateral repricing is removed. Read from 1,017 vaults on-chain.
+summary: Monad ended August larger than Ethereum for the first time. Euler's deposits rose 5.9% in dollars and fell 2.7% once collateral repricing is removed, two curators run 71.3% of the book, and the protocol accrued $51.7K on $2.0M of borrower interest.
+excerpt: Monad ended August larger than Ethereum for the first time. Deposits rose 5.9% in dollars and fell 2.7% once collateral repricing is stripped out.
 cover: /images/reports/euler-august-2026-cover.jpg
 hero: /images/reports/euler-august-2026-hero.jpg
 gated: false
 ---
 
-Euler's dollar deposits rose 5.9% in August while its loan book shrank slightly, in a month when every major lending protocol grew and the sector median was 7.0%. On the two chains holding three quarters of the book, deposits rose 3.3% in dollars and fell 2.7% once collateral repricing is removed. Monad ended the month larger than Ethereum for the first time, and the protocol running the most intensively lent book in lending retained $51.7K on $2.0M of interest.
+Monad ended August larger than Ethereum for the first time, closing at $385.6M against $334.3M. Across the protocol Euler's dollar deposits rose 5.9% while its loan book shrank slightly, in a month when every major lending protocol grew and the sector median was 7.0%. On the two chains holding three quarters of the book, deposits rose 3.3% in dollars and fell 2.7% once collateral repricing is removed.
 
 <KPIGrid>
   <KPI label="Gross deposits" value="$950.5M" sub="up 5.9%, below the 7.0% sector median" />
   <KPI label="Real change, ETH + Monad" value="-2.7%" sub="against +3.3% as reported" />
   <KPI label="Utilization" value="60.6%" sub="first of ten major lenders" />
-  <KPI label="Take rate" value="2.60%" sub="$51.7K kept on $2.0M of interest" />
+  <KPI label="Take rate" value="2.60%" sub="$51.7K accrued on $2.0M of interest" />
 </KPIGrid>
 
 *Figures cover 1 to 31 August 2026. Fees and revenue are rebuilt first-party from Euler's contracts, covering all 31 days on both sides of the month-on-month, because DefiLlama's fee adapter stopped reporting after 22 August. Methodology, coverage and named gaps are at the end.*
@@ -33,8 +33,8 @@ Euler's deposits rose 5.9% in dollars while its loan book shrank. On the two cha
 - **On a price-neutral basis the book shrank.** Revaluing end-August collateral at 1 August prices removes $38.0M, 5.8% of the covered book. Ethereum and Monad together rose 3.3% in dollars and **fell 2.7%** in real terms.
 - **Monad ended August larger than Ethereum**, $385.6M against $334.3M. It led on only 7 of 31 days, and continuously from 28 August after a single day cut $47.7M from Ethereum's book.
 - **Euler runs the most intensively lent book in lending on both measures**: 153.6% loans to net deposits and 60.6% utilization, first of ten on each. That comes from looping, which concentrates liquidation risk in the same place it creates efficiency.
-- **883 vaults have been deployed on Ethereum, but 26 hold 97.5% of the chain's book**, and two curators run most of the protocol. Sentora curates 67.5% of Ethereum, K3 Capital 74.5% of Monad, together 71.3% of what was read on-chain.
-- **Borrowers paid $2.0M of interest and Euler kept $51.7K**, a 2.60% take rate. The protocol's share of the interest fee was set to zero on 12 May 2026, and the fee transfers show it collecting 0.0% since June. EUL buybacks have been stopped for 142 days.
+- **Two curators run most of the protocol.** Sentora curates 67.5% of Ethereum, K3 Capital 74.5% of Monad, together **71.3%** of what was read on-chain. Anyone can deploy a vault on Euler; far fewer underwrite one.
+- **Borrowers paid $2.0M of interest and Euler accrued $51.7K**, a 2.60% take rate, none of which reached it on Ethereum. The protocol's share of the interest fee was set to zero on 12 May 2026, and the fee transfers show it collecting 0.0% since June. EUL buybacks have been stopped for 142 days.
 
 ---
 
@@ -99,7 +99,7 @@ The deposit growth also arrived in one place. Monad added **$81.1M** over the mo
 
 Monad closed August at **$385.6M, 40.6% of the book**, against Ethereum's **$334.3M, or 35.2%**. The crossover was not clean: Monad first moved ahead on 23 August, gave the lead back on the 26th and 27th, and has been ahead continuously since the 28th, leading on **7 of 31 days** in total.
 
-The decisive move was a single day, and its shape is worth reading carefully. On 28 August Ethereum's gross fell **$47.7M**, from $377.7M to $330.1M. Outstanding debt accounted for **$42.9M** of that, while net deposits fell only **$4.8M**. A repayment on its own does not shrink a lending book: the repaid asset lands back in the vault as idle liquidity, so debt falls, net rises and gross is unchanged. Gross falls only when the collateral leaves too. Debt down $42.9M against almost no change in idle liquidity is the signature of a levered position closing, where the borrowed funds had themselves been redeposited as collateral, so unwinding removed the debt and the collateral funding it in the same movement.
+The decisive move was a single day, and its shape is worth reading carefully. On 28 August Ethereum's gross fell **$47.7M**, from $377.7M to $330.1M. Outstanding debt accounted for **$42.9M** of that, while net deposits fell only **$4.8M**. Debt down $42.9M against almost no change in idle liquidity is a levered position closing rather than ordinary repayment: the borrowed funds had themselves been redeposited as collateral, so unwinding removed both in one movement.
 
 The longer trend sits on a different basis and is worth separating from those month-end figures. Comparing **monthly averages**, Ethereum has fallen 52% since May while Monad has grown 5.2 times, narrowing the gap between them from **$711M in May**, when Ethereum averaged $777M against Monad's $66M, to **$25M in August**, at $370M against $344M. On that averaged basis Ethereum is still marginally ahead. The crossover belongs to the last days of August rather than to the month as a whole.
 
@@ -117,25 +117,17 @@ A ratio above 100% means borrowed balances exceed net deposits, which is only po
 
 Both readings are true and this report picks neither. It is efficient: more of every deposited dollar is working than at any competitor. It also concentrates risk, because a move against looped collateral unwinds through every layer at once, and the free liquidity that would absorb it is thin by construction.
 
-The thinness is visible per chain. **Plasma closed August at 98.0% utilization and Sonic at 98.9%**, leaving $2.1M and $255K of unborrowed deposits against loan books of $104.6M and $23.2M. A lender in those markets cannot withdraw at size without waiting for a repayment.
+That leadership needs one qualification, because a drawn balance is not always a working one. **Plasma holds 18.2% of Euler's loan book and produces 1.31% of its fees**: $90.8M of it sits borrowed at a **0.2%** rate, which is a position being carried rather than a loan being paid for. And **Sonic's book is 98.9% drawn because it is stuck**, not because it is busy. Reading those vaults directly, $23.3M is borrowed against $260K of idle liquidity at rates the model has pinned to **99.9% and 299.6%**, and every one of them is a vault caught in the Stream Finance collapse where nobody is repaying [7]. Utilization counts a defaulted market and a working one the same way.
 
-The loans-to-net figure needs handling with care. It is unbounded, and as a book approaches full draw the denominator collapses and the ratio runs away: Plasma's reads 4,981% and Sonic's 8,978% for that reason alone. Utilization is bounded between 0% and 100% and is the more stable measure. Euler leads on both, so the ranking survives either way, and the 153.6% is the more fragile of the two numbers.
+## Two curators run most of the book
 
-## 883 vaults, 26 that matter
+Euler publishes its own product registry, the one its interface reads, and joining it to a direct read of the vaults names who configures each market [3]. **Sentora curates $221.4M, 67.5% of Ethereum, through two products.** **K3 Capital curates $285.4M, 74.5% of Monad**, across fourteen isolated markets, with Valos second at $86.8M. Between them, two firms account for **71.3%** of everything read on-chain.
 
-The vault-level read makes the concentration explicit, and the headline count needs care. Euler's factory has deployed **883 proxies on Ethereum**, which is every vault ever created through it rather than a list of live markets. Of those, **447 have a collateral configured** and can actually be borrowed against, **372 hold any balance at all**, and **26 hold more than $1M**. Those 26 hold **97.5% of the chain's book**, and the four largest hold **65%**.
-
-<Figure src="/images/reports/euler-august-2026-05-vault-concentration.png" caption="Largest Ethereum vaults by gross supplied, against all other funded vaults." />
-
-Those four are eRLUSD-7, eUSDC-70, ePYUSD-6 and eUSDC-80, holding between $50.3M and $55.9M each, and every one is a dollar market. Monad is less concentrated but not by much, its top four at 51.6% of a 134-vault deployment.
-
-That registry also names who configures each market, which turns the concentration into something more specific than a vault count. Joining Euler's own product-to-curator mapping onto the on-chain balances attributes **85.7% of Ethereum's book and 100% of Monad's**. On Ethereum, **Sentora curates $221.4M, or 67.5% of the chain**, through just two products: its RLUSD market ($114.8M) and its PYUSD market ($106.5M). On Monad, **K3 Capital curates $285.4M, or 74.5%**, spread across fourteen isolated markets, with Valos second at $86.8M. Taken together, **two curators are responsible for 71.3% of the $710.9M read on-chain**. The vault count measures how open the system is to new markets. The curator count measures who is actually underwriting the risk in it, and that answer is far more concentrated.
-
-This is why 883 should not be read as a market count. Euler publishes its own product registry, the one its interface reads, and on Ethereum that registry lists **66 products referencing 98 distinct vaults**, against 883 ever deployed. The distance between the two is empty and abandoned deployments rather than hidden activity. Permissionless vault creation is the core of the Euler V2 design, and 883 fairly measures how cheap it is to launch a market. It does not measure how many markets matter. Across both chains, **46 of 1,017 deployed vaults hold more than $1M**, and those few carry effectively the entire book.
+Curators choose the collateral, the caps and the interest rate model. Anyone can deploy a vault on Euler, so the count of markets measures how open the system is. The count of curators measures who is actually underwriting it, and that number is far smaller.
 
 ## Where the fees go, and where they do not
 
-Euler's borrowers paid **$2.0M** in interest in August and the protocol kept **$51.7K** of it, a blended take rate of **2.60%**. Lenders received $1.78M and the curators who run the vaults took $153.0K. Both August and July are measured the same way across the same 31 days and the same ten chains, so the comparison is like for like: fees rose **2.5%** and revenue **2.3%**. Those are the smallest movements in this report, and they hide the largest one.
+Euler's borrowers paid **$2.0M** in interest in August and the protocol accrued **$51.7K** of it, a blended take rate of **2.60%**. Lenders received $1.78M and the curators who run the vaults took $153.0K. Both August and July are measured the same way across the same 31 days and the same ten chains, so the comparison is like for like: fees rose **2.5%** and revenue **2.3%**. Those are the smallest movements in this report, and they hide the largest one.
 
 <Figure src="/images/reports/euler-august-2026-06-take-rate.png" caption="Share of fees and share of revenue by chain, with the take rate on each." />
 
@@ -143,11 +135,11 @@ Euler's borrowers paid **$2.0M** in interest in August and the protocol kept **$
 
 The chains do not contribute in proportion. **Ethereum produces 51.1% of fees and 42.7% of revenue at a 2.17% take rate. Monad produces 23.0% of fees and 8.9% of revenue at 1.01%. Avalanche produces 22.4% of fees, almost exactly Monad's share, and 44.4% of revenue at 5.16%.** Two chains that look the same size to borrowers hand the protocol amounts that differ fivefold.
 
-The reason is a governance decision with a date on it rather than anything about pricing. Euler's `ProtocolConfig` contract sets the share of the interest fee the protocol receives, and on both Ethereum and Monad that share was set to **zero on 12 May 2026**, down from 50% [4]. What the protocol still books comes from two narrow places: **472 Ethereum vaults whose curator has never set a payout address**, where the protocol collects the entire interest fee by default, and seven vaults carrying an explicit override. All four of Euler's largest Ethereum markets sit outside both, and pay it nothing.
+The reason is a governance decision with a date on it. Euler's `ProtocolConfig` contract sets the share of the interest fee the protocol receives, and on both Ethereum and Monad that share was set to **zero on 12 May 2026**, down from 50% [4]. **Avalanche was never changed and still runs at 50%**, which is the whole reason a chain with 22.4% of the fees supplies 44.4% of the revenue. On Ethereum what remains comes from **472 vaults whose curator has never set a payout address**, where the protocol collects the entire interest fee by default. All four of Euler's largest Ethereum markets sit outside that, and pay it nothing.
 
-The fee transfers confirm it from the other end. Euler's vaults emit an event that separates the protocol's cut from the curator's whenever accrued fees are realised, and reading those transfers directly on Ethereum, the protocol's share ran between 50% and 69% from January to May. **From June it is 0.0%, in every month including August.** A further **$107.7K** of protocol fees sits accrued and unconverted across four vaults, so even the residual is not being collected.
+Both surviving sources are narrow enough to name. On Ethereum a single vault, **eUSDC-47, is 99.2% of the protocol's current revenue run-rate**, borrowing $4.3M at 82.1%. On Avalanche it is **eUSDt-3, at 83.0%**, a vault that alone produced **$403.9K of interest in August, 20.3% of Euler's entire fee base**, fully drawn on $16.2M of borrows at 34.97% and still being serviced. Euler's revenue line is two stressed markets, and it moves with their borrow rates rather than with the size of the book.
 
-Concentration compounds this. **Avalanche's eUSDt-3 alone produced $403.9K of interest in August, 20.3% of the protocol's entire fee base from one market**, and it is 90.8% of the chain that supplies 44.4% of Euler's revenue. That vault is fully drawn, holding $16.2M of borrows against no free liquidity, and charges 34.97%. Its debt is roughly flat across the month, so it is being serviced rather than stranded, but a blended take rate reveals none of this.
+The fee transfers confirm it from the other end. Euler's vaults emit an event that separates the protocol's cut from the curator's whenever accrued fees are realised, and reading those transfers directly on Ethereum, the protocol's share ran between 50% and 69% from January to May. **From June it is 0.0%, in every month including August.** So the $51.7K above is what accrued to the protocol, not what reached it: on Ethereum none of it did, and a further **$107.7K** sits accrued and unconverted across four vaults.
 
 **How these figures were derived, and what is missing.** DefiLlama's Euler fee adapter stopped publishing after 22 August, so the entire fee family here is rebuilt from Euler's own contracts rather than taken from a feed [6]. Every vault the factory has ever deployed is enumerated and read at each UTC midnight block, and interest is computed two mathematically independent ways: from the change in each vault's share price, which is the method the aggregator uses, and from the change in its `interestAccumulator`, which is the index borrower debt is stored against. The two agree per chain between 0.995 and 1.046. Where a chain has no public archive node, Monad being the only one, the same accumulator arithmetic is rebuilt from `VaultStatus` events instead, and that route was validated by running it on Ethereum against the archive answer first.
 
