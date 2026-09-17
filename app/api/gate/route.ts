@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic"
  */
 export async function POST(request: Request) {
   try {
-    const { name, email, occupation } = await request.json()
+    const { name, email, occupation, source } = await request.json()
 
     if (!name || typeof name !== "string") {
       return NextResponse.json({ error: "Name is required" }, { status: 400 })
@@ -40,7 +40,8 @@ export async function POST(request: Request) {
       email,
       reactivate_existing: true,
       send_welcome_email: false,
-      utm_source: "report-gate",
+      // Dashboards on the Datum standard forward their sign-in gate here with their slug as the source.
+      utm_source: typeof source === "string" && /^[a-z0-9-]{1,40}$/.test(source) ? source : "report-gate",
     }
 
     // First try with custom fields (Name, Occupation).
