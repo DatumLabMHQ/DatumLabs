@@ -11,7 +11,7 @@ export default function RwaTerminalPage() {
   return (
     <div className="w-full h-screen">
       <iframe
-        src="https://rwa-terminal-dashboard-27g.pages.dev/"
+        src="https://rwa-terminal-dashboard.vercel.app/"
         className="w-full h-full border-0"
         title="RWA Terminal"
         allow="clipboard-write"

@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
-const DASHBOARD_ORIGIN = "https://centrifuge-dashboard-datum.vercel.app"
+const DASHBOARD_ORIGIN = "https://centrifuge-rwa-next.vercel.app"
 const PARENT_BASE = "/centrifugerwa"
 
 /**

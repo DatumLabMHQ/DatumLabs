@@ -54,7 +54,7 @@ export default function LendingTerminalSuiPage() {
         </Link>
       </div>
       <iframe
-        src="https://sui-lending.vercel.app/"
+        src="https://sui-lending-dashboard-neon.vercel.app/"
         className="w-full flex-1 border-0"
         title="Lending Terminal: SUI"
         allow="clipboard-write"
