@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const DASHBOARD_ORIGIN = "https://lending-intelligence-terminal.vercel.app"
+const DASHBOARD_ORIGIN = "https://lending-intelligence-terminal-dusky.vercel.app"
 const PARENT_BASE = "/lending-terminal"
 const MESSAGE_SOURCE = "datumlabs-lending-terminal"
 
