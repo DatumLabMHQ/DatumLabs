@@ -48,7 +48,7 @@ export default function MorphoTerminalPage() {
         </Link>
       </div>
       <iframe
-        src="https://morpho-terminal.vercel.app/"
+        src="https://morpho-terminal-dashboard.vercel.app/"
         className="w-full flex-1 border-0"
         title="Morpho Research Terminal"
         allow="clipboard-write"

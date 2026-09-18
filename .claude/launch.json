@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "datumlabs-dev",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["dev", "-p", "3012"],
+      "port": 3012
+    }
+  ]
+}
