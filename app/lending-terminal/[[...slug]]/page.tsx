@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import LendingTerminalIframe from "./client"
 
 const OG_IMAGE_URL =
-  "https://lending-intelligence-terminal-dusky.vercel.app/og-lending-terminal.png"
+  "https://lending-intelligence-terminal.vercel.app/og-lending-terminal.png"
 const CANONICAL_URL = "https://www.datumlab.xyz/lending-terminal"
 
 export const metadata: Metadata = {
@@ -43,7 +43,7 @@ interface PageProps {
 
 /**
  * Optional catch-all route for `/lending-terminal/*`. The dashboard itself
- * lives at https://lending-intelligence-terminal-dusky.vercel.app and is embedded
+ * lives at https://lending-intelligence-terminal.vercel.app and is embedded
  * via iframe — but because the parent owns the URL bar, deep paths like
  * `/lending-terminal/protocols?p=spark` need a real route here, otherwise
  * Next.js returns 404 on reload.
