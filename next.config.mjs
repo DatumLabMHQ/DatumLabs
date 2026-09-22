@@ -28,7 +28,7 @@ const nextConfig = {
         destination: 'https://incentiv-dashboard.vercel.app/Incentiv/:path*',
       },
       // SparkLend Terminal — proxy /sparklend/* through to the dedicated
-      // sparklend-dashboard project (basePath is set to "/sparklend" there
+      // spark-dashboard-next project (basePath is set to "/sparklend" there
       // so internal links / assets emit the same prefix and survive this
       // rewrite). This replaces the old iframe wrapper: cross-origin
       // iframes to *.vercel.app get silently blocked in some browser
@@ -36,11 +36,11 @@ const nextConfig = {
       // partitioning), so we serve it from the same origin instead.
       {
         source: '/sparklend',
-        destination: 'https://sparklend-dashboard.vercel.app/sparklend',
+        destination: 'https://spark-dashboard-next.vercel.app/sparklend',
       },
       {
         source: '/sparklend/:path*',
-        destination: 'https://sparklend-dashboard.vercel.app/sparklend/:path*',
+        destination: 'https://spark-dashboard-next.vercel.app/sparklend/:path*',
       },
     ];
   },
