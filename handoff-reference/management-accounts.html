@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Management Accounts, Datum Labs</title>
+<meta name="description" content="Your protocol’s monthly accounts: what you earned, paid out, spent on incentives and kept, by chain and by market.">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/colors.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/typography.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/charts.css">
+<link rel="stylesheet" href="css/site-v2.css">
+<link rel="stylesheet" href="css/site-brand.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+.brand .nav-logo-lockup{display:flex;align-items:center;gap:10px}
+.nav-logo-lockup img{height:26px;width:auto;display:block}
+.nav-logo-lockup .logo-white{display:none}
+.footer-logo img{height:30px;width:auto;display:block}
+.footer-logo .logo-white{display:none}
+</style>
+</head>
+<body>
+<div class="page-rules" aria-hidden="true"><i></i><i></i></div>
+
+<nav class="nav is-dark">
+  <a href="index-v2.html" class="brand" data-logo="lockup">
+    <span class="nav-logo-lockup">
+      <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+      <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+    </span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link-top is-active" aria-current="page" href="services.html">Services</a>
+    <div class="nav-drop">
+      <button type="button" aria-expanded="false" aria-haspopup="true">Resources <i class="ph-fill ph-caret-down caret" aria-hidden="true"></i></button>
+      <div class="nav-menu">
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Research</p>
+          <a href="research.html"><span class="t">Datum Reports</span><span class="d">Monthly State of Lending and published analysis.</span></a>
+          <a href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener"><span class="t">W3GM Podcast <span class="ext">↗</span></span><span class="d">Conversations with builders across web3.</span></a>
+        </div>
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Products</p>
+          <a href="https://onchainsuite.xyz" target="_blank" rel="noopener"><span class="t">OnchainSuite <span class="ext">↗</span></span><span class="d">Protocol analytics, owned and versioned.</span></a>
+          <a href="https://setnel.xyz" target="_blank" rel="noopener"><span class="t">Setnel <span class="ext">↗</span></span><span class="d">Onchain monitoring and alerting.</span></a>
+          <a href="platform.html"><span class="t">Atlas</span><span class="d">The pipeline behind every number we publish.</span></a>
+        </div>
+      </div>
+    </div>
+    <a class="nav-link-top" href="live-dashboards.html">Dashboards</a>
+    <a class="nav-link-top" href="about.html">About</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn btn-primary" href="contact.html">Contact us</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-progress"></div>
+</nav>
+
+<div class="nav-mobile" id="navMobile" hidden>
+  <div class="nav-mobile-group">
+    <a href="services.html">Services</a>
+    <a href="live-dashboards.html">Dashboards</a>
+    <a href="about.html">About</a>
+    <p class="nav-mobile-h">Research</p>
+    <a class="nav-mobile-sub" href="research.html">Datum Reports</a>
+    <a class="nav-mobile-sub" href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener">W3GM Podcast ↗</a>
+    <p class="nav-mobile-h">Products</p>
+    <a class="nav-mobile-sub" href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a>
+    <a class="nav-mobile-sub" href="https://setnel.xyz" target="_blank" rel="noopener">Setnel ↗</a>
+    <a class="nav-mobile-sub" href="platform.html">Atlas</a>
+  </div>
+  <a class="btn btn-primary nav-mobile-cta" href="contact.html">Contact us</a>
+</div>
+
+<main>
+<section class="page-header ph-rel" data-nav-dark data-theme="dark">
+  <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+  <div class="wrap ph-inner">
+    <h1>Management Accounts</h1>
+    <p class="lede">Your accounts, closed every month, by working day five.</p>
+    <p class="support">What you earned, what you paid out, what you spent on incentives, what you kept. By chain and by market, with the reason behind each move.</p>
+  </div>
+</section><section class="section tint" id="gap">
+  <div class="wrap">
+    <div class="lead-split">
+      <h2>Nobody adds it up.</h2>
+      <div class="prose">
+        <p class="lead-claim">Three numbers, three places, no reconciliation.</p>
+        <p>Your protocol earns interest, pays most of it out to suppliers, and spends tokens to bring the deposits in. So &ldquo;did we make money on Base last quarter?&rdquo; gets a guess, and your forum gets whatever the loudest tracker says.</p>
+        <p>We add it up monthly, by chain and by market, then read it: which markets carry you, which cost you money, and what last month&rsquo;s rewards actually bought once they stopped.</p>
+      </div>
+    </div>
+    <p class="stat-eyebrow" style="margin-top:56px">The one page, every month</p>
+    <div class="cs-nums cs-nums-4">
+      <div class="cs-stat"><span class="cs-stat-val">Earned</span><span class="cs-stat-lbl">Interest, by market</span></div>
+      <div class="cs-stat"><span class="cs-stat-val">Paid out</span><span class="cs-stat-lbl">Suppliers&rsquo; share</span></div>
+      <div class="cs-stat"><span class="cs-stat-val">Spent</span><span class="cs-stat-lbl">Incentives, by campaign</span></div>
+      <div class="cs-stat"><span class="cs-stat-val">Kept</span><span class="cs-stat-lbl">The net</span></div>
+    </div>
+  </div>
+</section><section data-pin class="section" id="ships" data-centre-head>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>A page you log into, and a report that reads it.</h2>
+    </div>
+    <div class="cells cells-3">
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-file-text" aria-hidden="true"></i></span><span class="cell-name">The monthly pack</span></h3><p>One page of numbers, two to four pages of reading. Movement on the month named and explained.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-tree-structure" aria-hidden="true"></i></span><span class="cell-name">By chain, by market</span></h3><p>Every figure splits to the market that produced it, so you can see which deployment carries you.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-coins" aria-hidden="true"></i></span><span class="cell-name">Incentives, costed</span></h3><p>Every campaign named, with what it cost, what it brought in, and what stayed after the rewards stopped.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-monitor" aria-hidden="true"></i></span><span class="cell-name">The live page</span></h3><p>Built with you, rebuilt from the chain every hour in Atlas, with your closed months kept in it.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-scales" aria-hidden="true"></i></span><span class="cell-name">The reconciliation</span></h3><p>Where our figure differs from a public tracker, the gap is shown and the reason named.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-user-circle" aria-hidden="true"></i></span><span class="cell-name">A named analyst</span></h3><p>One person who knows your protocol, on a monthly call, and reachable on the days in between.</p></div>
+    </div>
+  </div>
+</section><section class="section tint" id="close">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Working day five, every month.</h2>
+    </div>
+    <div class="cells cells-4 close-cells">
+      <div class="cell"><span class="close-day">Day 1&ndash;2</span><h3><span class="cell-name">Pulled and reconciled</span></h3><p>The month is pulled and reconciled in Atlas: interest, supplier share, incentive spend, fees, by chain and market.</p></div>
+      <div class="cell"><span class="close-day">Day 3</span><h3><span class="cell-name">Read and written</span></h3><p>Your analyst reads it and writes the movement: what moved, why, and what it means for next month.</p></div>
+      <div class="cell"><span class="close-day">Day 4</span><h3><span class="cell-name">Reviewed</span></h3><p>Internal review. Every figure traced to the run that produced it.</p></div>
+      <div class="cell"><span class="close-day">Day 5</span><h3><span class="cell-name">Delivered</span></h3><p>Pack to you, live page updated, call booked. Final. If it changes after this, it is a correction and we post it.</p></div>
+    </div>
+    <p class="smallprint">The page is yours. If you stop working with us it stays up, with your history in it, frozen at the last month we closed.</p>
+  </div>
+</section><section class="section" id="who">
+  <div class="wrap">
+    <div class="who-plate" data-theme="dark">
+      <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+      <div class="who-plate-inner">
+        <div>
+          <h2>You have a token and a forum, and no finance team.</h2>
+          <p>Management Accounts is built for protocols with real revenue and nobody whose whole job is the numbers.</p>
+        </div>
+        <p class="who-note">Modelled hourly in Atlas: Aave, Morpho, Moonwell, SparkLend, Fluid, Euler, NAVI and Centrifuge. If yours is not on the list, modelling it is part of onboarding.</p>
+      </div>
+    </div>
+    <div class="cells cells-2 who-cells">
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-bank" aria-hidden="true"></i></span><span class="cell-name">You run a market with real revenue</span></h3><p>A lending market, a stablecoin or a yield protocol, and no one whose whole job is the numbers.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-users-three" aria-hidden="true"></i></span><span class="cell-name">Your committee asks quarterly</span></h3><p>Your <span class="tip" title="A group elected or appointed to make spending and risk decisions on the protocol&rsquo;s behalf.">committee</span> or DAO asks for an update and someone builds it by hand each time.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-coins" aria-hidden="true"></i></span><span class="cell-name">You spend on incentives</span></h3><p>And cannot say what the last campaign actually bought.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-shield-check" aria-hidden="true"></i></span><span class="cell-name">You post numbers in public</span></h3><p>And want the one you post to be one you can defend line by line.</p></div>
+    </div>
+  </div>
+</section></main>
+
+
+<footer class="footer dark-band" data-nav-dark data-theme="dark">
+  <div class="band-rules" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a href="index-v2.html" class="brand footer-logo" aria-label="Datum Labs">
+          <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+          <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+        </a>
+        <p class="blurb" style="color:var(--dim)">Datum Labs is a financial data and reporting service for blockchain protocols. Numbers you can defend in public.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/Datumlabs_" target="_blank" rel="noopener" aria-label="X"><i class="ph-duotone ph-x-logo" aria-hidden="true"></i><span>X</span></a>
+          <a href="https://www.linkedin.com/showcase/dat-umlab/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph-duotone ph-linkedin-logo" aria-hidden="true"></i><span>LinkedIn</span></a>
+          <a href="mailto:hello@datumlab.xyz" aria-label="Email"><i class="ph-duotone ph-envelope-simple" aria-hidden="true"></i><span>Email</span></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>WORK</h3>
+        <ul>
+          <li><a href="research.html">Research, all published work</a></li>
+          <li><a href="platform.html">Atlas</a></li>
+          <li><a href="live-dashboards.html">Dashboards</a></li>
+          <li><a href="case-study-moonwell-oev.html">Moonwell OEV</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>COMPANY</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DATUM LABS</span>
+      <span>FINANCIAL DATA AND REPORTING FOR BLOCKCHAIN PROTOCOLS</span>
+      <span>X @DATUMLABS_</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/nav-drop.js"></script>
+<script src="js/nav-theme.js"></script>
+<script src="js/dither.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#F5F7FA">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F7FA"/>
+    <text x="600" y="460" font-family="Georgia,'Source Serif 4',serif" font-size="320" font-weight="600" fill="#4A6CF7" text-anchor="middle">D</text>
+    <text x="600" y="650" font-family="monospace" font-size="34" letter-spacing="12" fill="#03072D" text-anchor="middle">DATUM LABS</text>
+  </svg>
+</template>
+</body>
+</html>

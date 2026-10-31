@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Dashboards, Datum Labs</title>
+<!-- Datum Labs Design System v2 -->
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/colors.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/typography.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/charts.css">
+<link rel="stylesheet" href="css/site-v2.css">
+<link rel="stylesheet" href="css/site-brand.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+</head>
+<body>
+
+<div class="page-rules" aria-hidden="true"><i></i><i></i></div>
+
+<nav class="nav is-dark">
+  <a href="index-v2.html" class="brand" data-logo="lockup">
+    <span class="nav-logo-lockup">
+      <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+      <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+    </span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link-top" href="services.html">Services</a>
+    <div class="nav-drop">
+      <button type="button" aria-expanded="false" aria-haspopup="true">Resources <i class="ph-fill ph-caret-down caret" aria-hidden="true"></i></button>
+      <div class="nav-menu">
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Research</p>
+          <a href="research.html"><span class="t">Datum Reports</span><span class="d">Monthly State of Lending and published analysis.</span></a>
+          <a href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener"><span class="t">W3GM Podcast <span class="ext">↗</span></span><span class="d">Conversations with builders across web3.</span></a>
+        </div>
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Products</p>
+          <a href="https://onchainsuite.xyz" target="_blank" rel="noopener"><span class="t">OnchainSuite <span class="ext">↗</span></span><span class="d">Protocol analytics, owned and versioned.</span></a>
+          <a href="https://setnel.xyz" target="_blank" rel="noopener"><span class="t">Setnel <span class="ext">↗</span></span><span class="d">Onchain monitoring and alerting.</span></a>
+          <a href="platform.html"><span class="t">Atlas</span><span class="d">The pipeline behind every number we publish.</span></a>
+        </div>
+      </div>
+    </div>
+    <a class="nav-link-top is-active" aria-current="page" href="live-dashboards.html">Dashboards</a>
+    <a class="nav-link-top" href="about.html">About</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn btn-primary" href="contact.html">Contact us</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-progress"></div>
+</nav>
+
+<div class="nav-mobile" id="navMobile" hidden>
+  <div class="nav-mobile-group">
+    <a href="services.html">Services</a>
+    <a href="live-dashboards.html">Dashboards</a>
+    <a href="about.html">About</a>
+    <p class="nav-mobile-h">Research</p>
+    <a class="nav-mobile-sub" href="research.html">Datum Reports</a>
+    <a class="nav-mobile-sub" href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener">W3GM Podcast ↗</a>
+    <p class="nav-mobile-h">Products</p>
+    <a class="nav-mobile-sub" href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a>
+    <a class="nav-mobile-sub" href="https://setnel.xyz" target="_blank" rel="noopener">Setnel ↗</a>
+    <a class="nav-mobile-sub" href="platform.html">Atlas</a>
+  </div>
+  <a class="btn btn-primary nav-mobile-cta" href="contact.html">Contact us</a>
+</div>
+
+<main>
+
+<section class="page-header ph-rel" data-nav-dark data-theme="dark">
+  <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+  <div class="wrap ph-inner">
+    <h1>Real-time protocol dashboards. <span class="it">Hosted by us.</span></h1>
+    <p class="lede">Custom-built, fully-owned dashboards we operate for protocol teams. Live data feeds, market metrics, and interactive analytics, instrumented end-to-end by Datum Labs and embedded directly inside their products.</p>
+  </div>
+</section>
+
+<section class="section" id="facts" data-pin-persist data-nav-light>
+  <div class="wrap">
+    <div class="cs-facts">
+      <div><span class="k">Active deployments</span><span class="v">3</span></div>
+      <div><span class="k">Chains covered</span><span class="v">14</span></div>
+      <div><span class="k">TVL observed</span><span class="v">$2.1B</span></div>
+      <div><span class="k">Uptime</span><span class="v">99.97%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BORROW & LEND CATEGORY -->
+<section class="section" id="lend">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Borrow and lend.</h2>
+        <p style="color:var(--dim)">Three live, one onboarding. Each page is rebuilt from the chain every hour and carries the time of its last run.</p>
+    </div>
+    <div class="pc-grid pc-grid-2">
+      <a class="pc pc-case" href="https://www.datumlab.xyz/aave/dashboard" target="_blank" rel="noopener">
+        <div class="pc-top">
+          <div>
+            <h3>Aave<i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+            <span class="pc-cat">Multi-chain lending markets</span>
+      </div>
+          <img src="images/aave-logo.png" alt="">
+        </div>
+        <div class="pc-foot"><span class="pc-chains">Live &middot; hosted by us</span></div>
+      </a>
+      <a class="pc pc-case" href="https://www.datumlab.xyz/navi/dashboard" target="_blank" rel="noopener">
+        <div class="pc-top">
+          <div>
+            <h3>NAVI<i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+            <span class="pc-cat">Sui-native money market</span>
+          </div>
+          <img src="images/navi-logo.png" alt="">
+        </div>
+        <div class="pc-foot"><span class="pc-chains">Live &middot; hosted by us</span></div>
+      </a>
+      <a class="pc pc-case" href="https://www.datumlab.xyz/Incentiv/dashboard/overview" target="_blank" rel="noopener">
+        <div class="pc-top">
+          <div>
+            <h3>Incentiv<i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+            <span class="pc-cat">L1 incentive accounting</span>
+          </div>
+          <img src="images/incentiv-logo.png" alt="">
+        </div>
+        <div class="pc-foot"><span class="pc-chains">Live &middot; hosted by us</span></div>
+      </a>
+      <a class="pc pc-case pc-pending" href="https://calendly.com/datumlabss/30min" target="_blank" rel="noopener">
+        <div class="pc-top">
+          <div>
+            <h3>Your protocol<i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+            <span class="pc-cat">Onboarding &middot; Q1 2026</span>
+          </div>
+          <span class="pc-mark"><i class="ph-duotone ph-plus" aria-hidden="true"></i></span>
+        </div>
+        <div class="pc-foot"><span class="pc-chains">Request a build</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer dark-band" data-nav-dark data-theme="dark">
+  <div class="band-rules" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a href="index-v2.html" class="brand footer-logo" aria-label="Datum Labs">
+          <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+          <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+        </a>
+        <p class="blurb" style="color:var(--dim)">Datum Labs is a financial data and reporting service for blockchain protocols. Numbers you can defend in public.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/Datumlabs_" target="_blank" rel="noopener" aria-label="X"><i class="ph-duotone ph-x-logo" aria-hidden="true"></i><span>X</span></a>
+          <a href="https://www.linkedin.com/showcase/dat-umlab/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph-duotone ph-linkedin-logo" aria-hidden="true"></i><span>LinkedIn</span></a>
+          <a href="mailto:hello@datumlab.xyz" aria-label="Email"><i class="ph-duotone ph-envelope-simple" aria-hidden="true"></i><span>Email</span></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>WORK</h3>
+        <ul>
+          <li><a href="research.html">Research, all published work</a></li>
+          <li><a href="platform.html">Atlas</a></li>
+          <li><a href="live-dashboards.html">Dashboards</a></li>
+          <li><a href="case-study-moonwell-oev.html">Moonwell OEV</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>COMPANY</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DATUM LABS</span>
+      <span>FINANCIAL DATA AND REPORTING FOR BLOCKCHAIN PROTOCOLS</span>
+      <span>X @DATUMLABS_</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/nav-drop.js"></script>
+<script src="js/nav-theme.js"></script>
+<script src="js/dither.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#F5F7FA">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F7FA"/>
+    <text x="600" y="460" font-family="Georgia,'Source Serif 4',serif" font-size="320" font-weight="600" fill="#4A6CF7" text-anchor="middle">D</text>
+    <text x="600" y="650" font-family="monospace" font-size="34" letter-spacing="12" fill="#03072D" text-anchor="middle">DATUM LABS</text>
+  </svg>
+</template>
+
+
+<!-- ─── Tweaks (button radius · header weight · nav logo) ────── -->
+<style>
+  /* tweakable variables */
+  .btn, .footer-cta { border-radius: var(--tw-btn-radius, 0px); }
+  .page-header h1, .section-head h2, .lab-card h3 { font-weight: var(--tw-head-weight, 700); }
+
+  /* nav logo variants */
+  #nav-brand .nav-logo-lockup, #nav-brand .nav-logo-mark, #nav-brand .nav-logo-word { display: none; align-items: center; gap: 10px; }
+  #nav-brand[data-logo="lockup"] .nav-logo-lockup { display: flex; }
+  #nav-brand[data-logo="mark"] .nav-logo-mark { display: flex; }
+  #nav-brand[data-logo="wordmark"] .nav-logo-word { display: flex; }
+  .nav-logo-lockup img { height: 24px; width: auto; display: block; }
+  .nav-logo-lockup .logo-white { display: none; }
+  [data-theme="dark"] .nav-logo-lockup .logo-white { display: block; }
+  [data-theme="dark"] .nav-logo-lockup .logo-color { display: none; }
+  .nav-logo-mark img { height: 28px; width: auto; display: block; }
+
+  #tweaks { position: fixed; right: 16px; bottom: 16px; z-index: 200; width: 268px; background: var(--bg-2); color: var(--fg); border: 1px solid var(--line); box-shadow: 0 18px 44px rgba(0,0,0,0.32); font-family: var(--font-sans, 'Inter Tight', system-ui, sans-serif); display: none; }
+  #tweaks.open { display: block; }
+  #tweaks .tw-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 15px; border-bottom: 1px solid var(--line); }
+  #tweaks .tw-title { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--flag); }
+  #tweaks .tw-x { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 13px; color: var(--dim); line-height: 1; padding: 2px 4px; cursor: pointer; }
+  #tweaks .tw-x:hover { color: var(--fg); }
+  #tweaks .tw-body { padding: 15px; display: flex; flex-direction: column; gap: 16px; }
+  #tweaks .tw-row { display: flex; flex-direction: column; gap: 8px; }
+  #tweaks .tw-label { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--dim); }
+  #tweaks .tw-seg { display: flex; border: 1px solid var(--line); }
+  #tweaks .tw-seg button { flex: 1; padding: 7px 4px; font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.4px; text-transform: uppercase; color: var(--dim); border-right: 1px solid var(--line); background: transparent; cursor: pointer; transition: background 140ms, color 140ms; }
+  #tweaks .tw-seg button:last-child { border-right: none; }
+  #tweaks .tw-seg button.on { background: var(--flag); color: #fff; }
+</style>
+
+<div id="tweaks" role="dialog" aria-label="Tweaks">
+  <div class="tw-head">
+    <span class="tw-title">Tweaks</span>
+    <button class="tw-x" id="tw-close" aria-label="Close">✕</button>
+  </div>
+  <div class="tw-body">
+    <div class="tw-row">
+      <span class="tw-label">Button radius</span>
+      <div class="tw-seg" data-tweak="btnRadius">
+        <button data-val="0px">Sharp</button>
+        <button data-val="8px">Soft</button>
+        <button data-val="24px">Round</button>
+        <button data-val="999px">Pill</button>
+      </div>
+    </div>
+    <div class="tw-row">
+      <span class="tw-label">Header weight</span>
+      <div class="tw-seg" data-tweak="headWeight">
+        <button data-val="400">Light</button>
+        <button data-val="600">Semi</button>
+        <button data-val="700">Bold</button>
+      </div>
+    </div>
+    <div class="tw-row">
+      <span class="tw-label">Nav logo</span>
+      <div class="tw-seg" data-tweak="navLogo">
+        <button data-val="wordmark">Word</button>
+        <button data-val="lockup">Lockup</button>
+        <button data-val="mark">Mark</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* EDITMODE-BEGIN */ var DEFAULTS = {
+    "btnRadius": "0px",
+    "headWeight": "700",
+    "navLogo": "wordmark"
+  }; /* EDITMODE-END */
+
+  function load() {
+    var v = {};
+    for (var k in DEFAULTS) {
+      var s = null; try { s = localStorage.getItem('dtm-ld-' + k); } catch (e) {}
+      v[k] = s !== null ? s : DEFAULTS[k];
+    }
+    return v;
+  }
+  var state = load();
+
+  function apply(k, val) {
+    var root = document.documentElement;
+    if (k === 'btnRadius') root.style.setProperty('--tw-btn-radius', val);
+    else if (k === 'headWeight') root.style.setProperty('--tw-head-weight', val);
+    else if (k === 'navLogo') { var b = document.getElementById('nav-brand'); if (b) b.setAttribute('data-logo', val); }
+  }
+  function reflect(k, val) {
+    document.querySelectorAll('[data-tweak="' + k + '"] button').forEach(function (btn) {
+      btn.classList.toggle('on', btn.dataset.val === val);
+    });
+  }
+  Object.keys(state).forEach(function (k) { apply(k, state[k]); reflect(k, state[k]); });
+
+  function setTweak(k, val) {
+    state[k] = val;
+    try { localStorage.setItem('dtm-ld-' + k, val); } catch (e) {}
+    apply(k, val); reflect(k, val);
+    var edits = {}; edits[k] = val;
+    try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits: edits }, '*'); } catch (e) {}
+  }
+  document.querySelectorAll('#tweaks [data-tweak]').forEach(function (group) {
+    var k = group.dataset.tweak;
+    group.querySelectorAll('button').forEach(function (btn) {
+      btn.addEventListener('click', function () { setTweak(k, btn.dataset.val); });
+    });
+  });
+
+  var panel = document.getElementById('tweaks');
+  document.getElementById('tw-close').addEventListener('click', function () {
+    panel.classList.remove('open');
+    try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch (e) {}
+  });
+  window.addEventListener('message', function (e) {
+    var t = e && e.data && e.data.type;
+    if (t === '__activate_edit_mode') panel.classList.add('open');
+    else if (t === '__deactivate_edit_mode') panel.classList.remove('open');
+  });
+  try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (e) {}
+})();
+</script>
+</body>
+</html>

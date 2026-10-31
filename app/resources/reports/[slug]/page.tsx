@@ -5,9 +5,7 @@ import { ArrowLeft, Download } from "lucide-react"
 import { compileMDX } from "next-mdx-remote/rsc"
 import remarkGfm from "remark-gfm"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { RevealController } from "@/components/reveal-controller"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 import { ReportGate } from "@/components/report-gate"
 import { mdxComponents } from "@/components/mdx/mdx-components"
 import { getReportMeta, getReportSlugs, getReportSource } from "@/lib/reports"
@@ -101,18 +99,20 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
 
   return (
     <>
-      <RevealController />
-      <SiteNav active="Resources" />
+      <PageRules />
+      <NavV3 active="research" navDark />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <header className="page-header">
-        <div className="wrap" style={{ maxWidth: 820 }}>
-          <Link href="/resources/reports" className="kicker" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 16 }}>
-            <ArrowLeft style={{ width: 14, height: 14 }} /> Reports
+      <header className="page-header ph-rel" data-nav-dark data-theme="dark">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
+        <div className="wrap ph-inner" style={{ maxWidth: 820 }}>
+          <Link href="/research" className="crumb" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 16 }}>
+            <ArrowLeft style={{ width: 14, height: 14 }} /> Research
           </Link>
-          {meta.period ? <div className="kicker" style={{ marginBottom: 8 }}>{meta.period}</div> : null}
+          {meta.period ? <div className="crumb" style={{ marginBottom: 8 }}>{meta.period}</div> : null}
           <h1>{meta.title}</h1>
-          <p>{meta.summary}</p>
+          <p className="lede">{meta.summary}</p>
           <div className="meta-row"><span>Published {formatDate(meta.publishedAt)}</span></div>
         </div>
       </header>
@@ -127,7 +127,7 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
         </article>
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </>
   )
 }

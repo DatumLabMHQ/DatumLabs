@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Collateral File, Datum Labs</title>
+<meta name="description" content="The file a lending market risk team wants to read before they accept your token as collateral, plus the live asset page behind it.">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/colors.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/typography.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/charts.css">
+<link rel="stylesheet" href="css/site-v2.css">
+<link rel="stylesheet" href="css/site-brand.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+.brand .nav-logo-lockup{display:flex;align-items:center;gap:10px}
+.nav-logo-lockup img{height:26px;width:auto;display:block}
+.nav-logo-lockup .logo-white{display:none}
+.footer-logo img{height:30px;width:auto;display:block}
+.footer-logo .logo-white{display:none}
+</style>
+</head>
+<body>
+<div class="page-rules" aria-hidden="true"><i></i><i></i></div>
+
+<nav class="nav is-dark">
+  <a href="index-v2.html" class="brand" data-logo="lockup">
+    <span class="nav-logo-lockup">
+      <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+      <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+    </span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link-top is-active" aria-current="page" href="services.html">Services</a>
+    <div class="nav-drop">
+      <button type="button" aria-expanded="false" aria-haspopup="true">Resources <i class="ph-fill ph-caret-down caret" aria-hidden="true"></i></button>
+      <div class="nav-menu">
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Research</p>
+          <a href="research.html"><span class="t">Datum Reports</span><span class="d">Monthly State of Lending and published analysis.</span></a>
+          <a href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener"><span class="t">W3GM Podcast <span class="ext">↗</span></span><span class="d">Conversations with builders across web3.</span></a>
+        </div>
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Products</p>
+          <a href="https://onchainsuite.xyz" target="_blank" rel="noopener"><span class="t">OnchainSuite <span class="ext">↗</span></span><span class="d">Protocol analytics, owned and versioned.</span></a>
+          <a href="https://setnel.xyz" target="_blank" rel="noopener"><span class="t">Setnel <span class="ext">↗</span></span><span class="d">Onchain monitoring and alerting.</span></a>
+          <a href="platform.html"><span class="t">Atlas</span><span class="d">The pipeline behind every number we publish.</span></a>
+        </div>
+      </div>
+    </div>
+    <a class="nav-link-top" href="live-dashboards.html">Dashboards</a>
+    <a class="nav-link-top" href="about.html">About</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn btn-primary" href="contact.html">Contact us</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-progress"></div>
+</nav>
+
+<div class="nav-mobile" id="navMobile" hidden>
+  <div class="nav-mobile-group">
+    <a href="services.html">Services</a>
+    <a href="live-dashboards.html">Dashboards</a>
+    <a href="about.html">About</a>
+    <p class="nav-mobile-h">Research</p>
+    <a class="nav-mobile-sub" href="research.html">Datum Reports</a>
+    <a class="nav-mobile-sub" href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener">W3GM Podcast ↗</a>
+    <p class="nav-mobile-h">Products</p>
+    <a class="nav-mobile-sub" href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a>
+    <a class="nav-mobile-sub" href="https://setnel.xyz" target="_blank" rel="noopener">Setnel ↗</a>
+    <a class="nav-mobile-sub" href="platform.html">Atlas</a>
+  </div>
+  <a class="btn btn-primary nav-mobile-cta" href="contact.html">Contact us</a>
+</div>
+
+<main>
+<section class="page-header ph-rel" data-nav-dark data-theme="dark">
+  <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+  <div class="wrap ph-inner">
+    <h1>Collateral File</h1>
+    <p class="lede">The file a risk team wants to read before they vote on your token.</p>
+    <p class="support">Five working days. One written file, one live asset page, and a person who answers when the forum pushes back.</p>
+  </div>
+</section><section class="section tint" id="why">
+  <div class="wrap">
+    <div class="lead-split">
+      <h2>A listing is won in the risk review, not the forum post.</h2>
+      <div class="prose">
+        <p class="lead-claim">Risk teams are asked to accept an asset they did not issue, on numbers they cannot check.</p>
+        <p>Most listing requests give them a paragraph of narrative and a price chart. So the request sits, gets a cautious cap, or gets refused without a reason anyone can act on.</p>
+        <p>We answer their four questions in writing, with the query behind each figure and the date it was true, then stand up a live asset page carrying the same numbers so they can watch the asset instead of taking our word for it once.</p>
+      </div>
+    </div>
+    <p class="stat-eyebrow" style="margin-top:56px">What they actually ask</p>
+    <div class="cs-nums cs-nums-4">
+      <div class="cs-stat"><span class="cs-stat-val">Yield</span><span class="cs-stat-lbl">Where it comes from, and who pays it</span></div>
+      <div class="cs-stat"><span class="cs-stat-val">Stress</span><span class="cs-stat-lbl">What happens to the price</span></div>
+      <div class="cs-stat"><span class="cs-stat-val">Exit</span><span class="cs-stat-lbl">How deep, and on which venue</span></div>
+      <div class="cs-stat"><span class="cs-stat-val">Control</span><span class="cs-stat-lbl">Who can change the terms, and how fast</span></div>
+    </div>
+  </div>
+</section><section data-pin class="section" id="ships" data-centre-head>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>A file, a page, and someone on the thread.</h2>
+    </div>
+    <div class="cells cells-3">
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-file-text" aria-hidden="true"></i></span><span class="cell-name">The file</span></h3><p>Twelve to twenty pages: yield source, redemption mechanics, <span class="tip" title="How much the price can move when someone trades a large size.">depth and slippage</span> by venue, concentration, governance surface, and the parameters we would argue for.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-sliders-horizontal" aria-hidden="true"></i></span><span class="cell-name">The parameter ask</span></h3><p>A specific proposal: <span class="tip" title="How much you can borrow against the asset, as a share of its value.">LTV</span>, liquidation threshold, supply cap, oracle choice, and the reasoning for each. A number we will defend.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-monitor" aria-hidden="true"></i></span><span class="cell-name">The live asset page</span></h3><p>Hosted by us, rebuilt hourly in <span class="tip" title="The Datum Labs data platform.">Atlas</span>. Supply, borrow, concentration, depth and peg, with the time of the last run.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-chats-circle" aria-hidden="true"></i></span><span class="cell-name">The forum defence</span></h3><p>We are on the thread through the review. Disputed figures get a written reply the same working day, both numbers shown, the gap named.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-arrow-counter-clockwise" aria-hidden="true"></i></span><span class="cell-name">The correction promise</span></h3><p>If we get a figure wrong we correct it within one working day and post the correction wherever the original went.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-prohibit" aria-hidden="true"></i></span><span class="cell-name">What we will not do</span></h3><p>We will not write a file that argues for a number we do not believe. If the asset is not ready we will say so, and what would make it ready.</p></div>
+    </div>
+  </div>
+</section><section class="section tint" id="close">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Five working days.</h2>
+    </div>
+    <div class="cells cells-4 close-cells">
+      <div class="cell"><span class="close-day">Day 1</span><h3><span class="cell-name">Kickoff</span></h3><p>We agree the target markets and the parameters you want. Bring your docs, contracts and the venues you care about. One hour of your time.</p></div>
+      <div class="cell"><span class="close-day">Day 2&ndash;3</span><h3><span class="cell-name">Modelled</span></h3><p>We model the asset in Atlas and build the live page: yield source, depth, concentration, peg behaviour under stress. Nothing needed from you.</p></div>
+      <div class="cell"><span class="close-day">Day 4</span><h3><span class="cell-name">Draft</span></h3><p>Draft file to you with the parameter ask. One round of comments, on a call if you want it.</p></div>
+      <div class="cell"><span class="close-day">Day 5</span><h3><span class="cell-name">Final</span></h3><p>Final file, live page published, forum post drafted. We stay on the thread from here.</p></div>
+    </div>
+    <p class="smallprint">Assumes your documentation exists and someone on your side can answer questions inside a day. If the asset is new and the history is thin, we will tell you on the kickoff call rather than at the end.</p>
+  </div>
+</section><section class="section" id="who">
+  <div class="wrap">
+    <div class="who-plate" data-theme="dark">
+      <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+      <div class="who-plate-inner">
+        <div>
+          <h2>You issue the asset. Someone else has to accept it.</h2>
+          <p>The Collateral File is built for issuers who need a lending market&rsquo;s risk team to say yes.</p>
+        </div>
+        <p class="who-note">Files written against Aave, Morpho, Moonwell, SparkLend, Fluid and Euler.</p>
+      </div>
+    </div>
+    <div class="cells cells-2 who-cells">
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-coin-vertical" aria-hidden="true"></i></span><span class="cell-name">You issue a stablecoin or yield token</span></h3><p>And you want it listed as collateral on a major lending market.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-clipboard-text" aria-hidden="true"></i></span><span class="cell-name">You were asked for a risk write-up</span></h3><p>And you do not have an analyst who can produce one.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-hourglass" aria-hidden="true"></i></span><span class="cell-name">A listing request stalled</span></h3><p>And nobody told you which number caused it.</p></div>
+      <div class="cell"><h3><span class="ic"><i class="ph-duotone ph-broadcast" aria-hidden="true"></i></span><span class="cell-name">You want the page to outlive the vote</span></h3><p>The same asset page the risk team sees stays live, so the next raise is easier.</p></div>
+    </div>
+  </div>
+</section></main>
+
+
+<footer class="footer dark-band" data-nav-dark data-theme="dark">
+  <div class="band-rules" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a href="index-v2.html" class="brand footer-logo" aria-label="Datum Labs">
+          <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+          <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+        </a>
+        <p class="blurb" style="color:var(--dim)">Datum Labs is a financial data and reporting service for blockchain protocols. Numbers you can defend in public.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/Datumlabs_" target="_blank" rel="noopener" aria-label="X"><i class="ph-duotone ph-x-logo" aria-hidden="true"></i><span>X</span></a>
+          <a href="https://www.linkedin.com/showcase/dat-umlab/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph-duotone ph-linkedin-logo" aria-hidden="true"></i><span>LinkedIn</span></a>
+          <a href="mailto:hello@datumlab.xyz" aria-label="Email"><i class="ph-duotone ph-envelope-simple" aria-hidden="true"></i><span>Email</span></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>WORK</h3>
+        <ul>
+          <li><a href="research.html">Research, all published work</a></li>
+          <li><a href="platform.html">Atlas</a></li>
+          <li><a href="live-dashboards.html">Dashboards</a></li>
+          <li><a href="case-study-moonwell-oev.html">Moonwell OEV</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>COMPANY</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DATUM LABS</span>
+      <span>FINANCIAL DATA AND REPORTING FOR BLOCKCHAIN PROTOCOLS</span>
+      <span>X @DATUMLABS_</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/nav-drop.js"></script>
+<script src="js/nav-theme.js"></script>
+<script src="js/dither.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#F5F7FA">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F7FA"/>
+    <text x="600" y="460" font-family="Georgia,'Source Serif 4',serif" font-size="320" font-weight="600" fill="#4A6CF7" text-anchor="middle">D</text>
+    <text x="600" y="650" font-family="monospace" font-size="34" letter-spacing="12" fill="#03072D" text-anchor="middle">DATUM LABS</text>
+  </svg>
+</template>
+</body>
+</html>

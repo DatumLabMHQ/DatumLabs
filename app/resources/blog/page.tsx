@@ -2,8 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteBackground, SiteFooter } from "@/components/site-background"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 import { sanityFetch } from "@/sanity/lib/client"
 import { postsQuery } from "@/sanity/lib/queries"
 import { urlFor } from "@/sanity/lib/image"
@@ -39,8 +38,8 @@ export default async function BlogIndexPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      <SiteBackground />
-      <SiteNav active="Resources" />
+      <PageRules />
+      <NavV3 active="research" />
 
       <main id="main" className="relative px-6 lg:px-12 py-16">
         <div className="max-w-7xl mx-auto">
@@ -109,7 +108,7 @@ export default async function BlogIndexPage() {
         </div>
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </div>
   )
 }

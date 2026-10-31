@@ -1,120 +1,130 @@
 import type { Metadata } from "next"
+import {
+  ChartLine,
+  Database,
+  TreeStructure,
+  BellRinging,
+  UserFocus,
+  Code,
+  MagnifyingGlass,
+  Wrench,
+  Pulse,
+  HandCoins,
+  ChartBar,
+  Stack,
+  ArrowRight,
+} from "@phosphor-icons/react/dist/ssr"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { RevealController } from "@/components/reveal-controller"
-import { EngagementTiers } from "@/components/engagement-tiers"
-
-const CAL = "https://calendly.com/datumlabss/30min"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 
 export const metadata: Metadata = {
-  title: "DeFi Analytics & Custom Dashboards | Datum Labs",
+  title: "Analytics, Datum Labs",
   description:
-    "Custom DeFi dashboards, onchain data pipelines, semantic models, alerts, and an embedded analyst — the analytics stack for lending, risk, and growth teams.",
+    "Live pages, monitoring and a named analyst, built on Atlas and kept current every hour.",
   alternates: { canonical: "/analytics" },
-  openGraph: { title: "DeFi Analytics & Custom Dashboards | Datum Labs", url: "/analytics", type: "website" },
+  openGraph: { title: "Analytics, Datum Labs", url: "/analytics", type: "website" },
 }
-
-const CAPS = [
-  { n: "/ 01", h: "Custom dashboards", p: "Bespoke dashboards on Dune, Grafana, or hosted. Authored, instrumented, and maintained by us, not handed off.", items: ["protocol-specific KPIs", "live + historical", "cross-chain joins"] },
-  { n: "/ 02", h: "Pipeline + warehouse", p: "From archive nodes to materialized views. We run the whole stack, you query the result.", items: ["archive nodes (14 chains)", "normalized indexer", "BigQuery / Clickhouse"] },
-  { n: "/ 03", h: "Semantic models", p: "Protocol-aware models. A user is a user; a position is a position. Not raw event tables.", items: ["users / cohorts", "positions / flows", "incentive attribution"] },
-  { n: "/ 04", h: "Alerts + monitoring", p: "The dashboard is half the job. The other half: pinging the team when something moves outside the band.", items: ["slack / pagerduty", "liquidation alerts", "governance triggers"] },
-  { n: "/ 05", h: "Embedded analyst", p: "A senior analyst lives in your standups. Closes the loop between question, data, and decision.", items: ["weekly performance read", "ad-hoc deep dives", "governance memos"] },
-  { n: "/ 06", h: "Data-integrated dApps", p: "When a chart isn't enough, we ship the smart contract, the indexer, and the dApp that uses both.", items: ["solidity / move", "react front-ends", "full handover"] },
-]
-
-const METHODS = [
-  { n: "/ 01", h: "Audit", p: "30-min call, free. We review your current data infrastructure and identify three immediate opportunities for competitive advantage.", d: ["Audit memo", "Opportunity list", "Engagement scope"] },
-  { n: "/ 02", h: "Instrument", p: "We stand up the pipeline, archive nodes, normalized indexer, warehouse partitions. Two-week sprint, fixed scope.", d: ["Live data pipeline", "Schema documentation", "First dashboard"] },
-  { n: "/ 03", h: "Model", p: "Raw events become protocol-aware semantic models. A user is a user, a position is a position, not 12 joined tables.", d: ["Semantic layer", "Cohort models", "Validated KPIs"] },
-  { n: "/ 04", h: "Operate", p: "Weekly reads, automated alerts, ad-hoc deep dives, on-call for launches. The analyst lives in your standups.", d: ["Weekly performance read", "Slack channel", "On-call rotation"] },
-  { n: "/ 05", h: "Hand-over (optional)", p: "When you're ready to staff in-house, we train your team and hand them the keys. Most clients don't take this step. Some do.", d: ["Runbook", "Training sessions", "90-day support"] },
-]
 
 export default function AnalyticsPage() {
   return (
     <>
-      <RevealController />
-      <SiteNav active="Analytics" />
+      <PageRules />
+      <NavV3 navDark />
 
-      <header className="page-header">
-        <div className="wrap">
-          <span className="kicker">Analytics · Method & Scope</span>
-          <h1>The analyst you should&apos;ve <span className="it">already hired.</span></h1>
-          <p>Web3 protocols don&apos;t need another consulting deck. They need someone who lives in their data, ships dashboards on Friday, and knows what changed by Monday. That&apos;s the job.</p>
-          <div className="meta-row">
-            <span><strong>3</strong> Engagement Tiers</span>
-            <span><strong>5</strong> Core Methods</span>
-            <span><strong>14</strong> Chains Covered</span>
-            <span>On-call · 24/5</span>
-          </div>
-        </div>
-      </header>
-
-      <main id="main" className="wrap">
-        <section className="section">
-          <div className="section-head" data-reveal>
-            <div className="meta">§ 01 · <span className="kicker">Capabilities</span></div>
-            <h2>Six things we do, well.</h2>
-            <p>We are deliberately narrow. Every line below is something we&apos;ve shipped to production for a paying protocol, repeatedly.</p>
-          </div>
-          <div className="lab-grid">
-            {CAPS.map((c) => (
-              <div key={c.h} className="lab-card" data-reveal>
-                <div className="lab-no">{c.n}</div>
-                <h3>{c.h}</h3>
-                <p>{c.p}</p>
-                <ul>{c.items.map((it) => <li key={it}>{it}</li>)}</ul>
-              </div>
-            ))}
+      <main id="main">
+        <section className="page-header ph-rel" data-nav-dark data-theme="dark">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
+          <div className="wrap ph-inner">
+            <h1>Analytics that <span className="it">closes the loop.</span></h1>
+            <p className="lede">Live pages, monitoring and a named analyst, built on Atlas and kept current every hour.</p>
+            <p className="support">Not another deck. Someone who lives in your data and answers the same working day.</p>
           </div>
         </section>
 
-        <section className="section">
-          <div className="section-head" data-reveal>
-            <div className="meta">§ 02 · <span className="kicker">Method</span></div>
-            <h2>How an engagement runs.</h2>
-            <p>Every project moves through the same five stages. The depth changes; the shape doesn&apos;t.</p>
+        <section className="section tint" id="what">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 className="spaced">Six things we do, well.</h2>
+              <p>Deliberately narrow. Everything below has shipped to production for a paying protocol.</p>
+            </div>
+            <div className="cells cells-6">
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><ChartLine weight="duotone" /></i></span><h3>Live pages</h3><p>Bespoke pages, built with you, hosted by us on Atlas.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><Database weight="duotone" /></i></span><h3>Pipeline</h3><p>Archive nodes to warehouse. We run the stack.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><TreeStructure weight="duotone" /></i></span><h3>Semantic models</h3><p>A user is a user, a position is a position.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><BellRinging weight="duotone" /></i></span><h3>Monitoring</h3><p>Alerts when something moves outside the band.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><UserFocus weight="duotone" /></i></span><h3>Embedded analyst</h3><p>Weekly reads, deep dives, governance memos.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><Code weight="duotone" /></i></span><h3>Data dApps</h3><p>Contract, indexer and front-end, shipped together.</p></div>
+            </div>
           </div>
-          <div className="methods">
-            {METHODS.map((m) => (
-              <div key={m.h} className="method" data-reveal>
-                <div className="num">{m.n}</div>
-                <h4>{m.h}</h4>
-                <p>{m.p}</p>
-                <div className="deliv">
-                  Deliverable<br />
-                  {m.d.map((x) => <span key={x}>· {x}<br /></span>)}
+        </section>
+
+        <section data-pin className="section" id="how">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 className="spaced">How an engagement runs.</h2>
+              <p>Five stages. The depth changes, the shape does not. Hover a stage to see what ships.</p>
+            </div>
+            <div className="pipeline" data-callout-default="You leave the audit with a memo and a scope whether you hire us or not.">
+              <div className="pipeline-grid">
+                <div className="pipeline-stage"><div className="stage-ic"><i aria-hidden="true"><MagnifyingGlass weight="duotone" /></i></div><div className="stage-name">Audit</div><div className="stage-sub">30 minutes, free</div><div className="stage-items"><span>memo</span><span>opportunities</span><span>scope</span></div></div>
+                <div className="pipeline-stage"><div className="stage-ic"><i aria-hidden="true"><Wrench weight="duotone" /></i></div><div className="stage-name">Instrument</div><div className="stage-sub">Two-week sprint</div><div className="stage-items"><span>pipeline</span><span>schema</span><span>first page</span></div></div>
+                <div className="pipeline-stage"><div className="stage-ic"><i aria-hidden="true"><TreeStructure weight="duotone" /></i></div><div className="stage-name">Model</div><div className="stage-sub">Protocol-aware</div><div className="stage-items"><span>semantic layer</span><span>cohorts</span><span>KPIs</span></div></div>
+                <div className="pipeline-stage"><div className="stage-ic"><i aria-hidden="true"><Pulse weight="duotone" /></i></div><div className="stage-name">Operate</div><div className="stage-sub">Weekly</div><div className="stage-items"><span>reads</span><span>alerts</span><span>on-call</span></div></div>
+                <div className="pipeline-stage"><div className="stage-ic"><i aria-hidden="true"><HandCoins weight="duotone" /></i></div><div className="stage-name">Hand over</div><div className="stage-sub">Optional</div><div className="stage-items"><span>runbook</span><span>training</span><span>90-day support</span></div></div>
+              </div>
+              <div className="pipeline-callout">You leave the audit with a memo and a scope whether you hire us or not.</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section dark-band" id="tiers" data-nav-dark data-theme="dark">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
+          <div className="wrap">
+            <div className="section-head">
+              <h2 className="spaced">Three ways to work together.</h2>
+              <p>The depth scales to your maturity. The right level of presence for what you are shipping.</p>
+            </div>
+            <div className="tcards">
+              <a className="tcard" href="/contact">
+                <span className="svc-ic"><i aria-hidden="true"><ChartBar weight="duotone" /></i></span>
+                <h3>Strategic Data Partnership<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
+                <p>Weekly performance reads, maintained pipelines and bi-weekly office hours. ROI on every initiative.</p>
+                <span className="split-meta">For scaling protocols</span>
+              </a>
+              <a className="tcard" href="/contact">
+                <span className="svc-ic"><i aria-hidden="true"><UserFocus weight="duotone" /></i></span>
+                <h3>Complete Growth Intelligence<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
+                <p>A dedicated analyst in your standups. Automated alerts, unlimited deep dives, on-call for launches.</p>
+                <span className="split-meta">Embedded analyst</span>
+              </a>
+              <a className="tcard" href="/contact">
+                <span className="svc-ic"><i aria-hidden="true"><Stack weight="duotone" /></i></span>
+                <h3>End-to-End Product Lab<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
+                <p>Smart contracts, data-integrated dApps and custom analytics infrastructure. Built, shipped, supported.</p>
+                <span className="split-meta">Complete technical arm</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="cta" data-light-plate>
+          <div className="split-outer">
+            <div className="ctaplate">
+              <div className="ctaplate-inner">
+                <div>
+                  <h2>Thirty minutes. Three opportunities.</h2>
+                  <p>We review your data infrastructure and name three things you could act on this quarter. You keep the memo either way.</p>
                 </div>
+                <a className="btn" href="https://calendly.com/datumlabss/30min" target="_blank" rel="noopener">Book the audit</a>
               </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section-head" data-reveal>
-            <div className="meta">§ 03 · <span className="kicker">Engagement Tiers</span></div>
-            <h2>Three ways to work together.</h2>
-            <p>The depth scales to your maturity. We don&apos;t sell upgrades, we sell the right level of presence for what you&apos;re trying to ship.</p>
-          </div>
-          <EngagementTiers />
-        </section>
-
-        <section className="section">
-          <div className="spotlight" data-reveal>
-            <div className="spotlight-inner">
-              <div>
-                <h2>Schedule a 30-minute analytics audit, free.</h2>
-                <p>We&apos;ll review your current data infrastructure and identify three immediate opportunities for competitive advantage. You leave with the brief whether you hire us or not.</p>
-              </div>
-              <a href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-flag">BOOK_AUDIT.CAL ↗</a>
             </div>
           </div>
         </section>
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </>
   )
 }

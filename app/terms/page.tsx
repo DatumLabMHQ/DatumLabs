@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { RevealController } from "@/components/reveal-controller"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 
 export const metadata: Metadata = {
   title: "Terms of Service | Datum Labs",
@@ -14,12 +12,14 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <RevealController />
-      <SiteNav />
+      <PageRules />
+      <NavV3 navDark />
 
-      <header className="page-header">
-        <div className="wrap">
-          <span className="kicker">Legal</span>
+      <header className="page-header ph-rel" data-nav-dark data-theme="dark">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
+        <div className="wrap ph-inner">
+          <span className="crumb">Legal</span>
           <h1>Terms of Service</h1>
           <p className="legal" style={{ padding: 0 }}><span className="updated">Last updated · July 2026</span></p>
         </div>
@@ -51,7 +51,7 @@ export default function TermsPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </>
   )
 }

@@ -1,0 +1,85 @@
+/* ============================================================
+   Datum Labs v3 tokens — the design-system layer the redesign
+   handoff consumed from its `_ds` export. Theme-scoped: pages
+   are light; individual bands opt into dark via data-theme.
+   Values match the v2 palette (Electric Sapphire / Platinum /
+   Prussian) the brand sheet defines.
+   ============================================================ */
+
+:root,
+[data-theme="light"] {
+  --bg-base: #F5F7FA;
+  --surface-default: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --surface-sunken: #EDF0F5;
+  --surface-hover: #F0F3F8;
+  --surface-inverse: #03072D;
+  --surface-brand-subtle: #EEF2FE;
+
+  --text-primary: #0E1526;
+  --text-secondary: #4E5868;
+  --text-tertiary: #67748B;
+  --text-brand: #2E4FE0;
+  --text-inverse: #FFFFFF;
+  --text-on-brand: #FFFFFF;
+
+  --border-subtle: #DDE2EB;
+  --border-default: #C8D1DE;
+  --border-strong: #97A3B6;
+  --border-brand: #4A6CF7;
+
+  --action-primary: #4A6CF7;
+  --action-primary-hover: #2E4FE0;
+  --action-secondary: #FFFFFF;
+  --action-secondary-hover: #F0F3F8;
+
+  --overlay-hover: rgba(10, 18, 34, 0.05);
+  --ring-focus: 0 0 0 3px rgba(74, 108, 247, 0.35);
+  --dash: #C8D1DE;
+  --pin-top: 96px;
+}
+
+[data-theme="dark"] {
+  --bg-base: #03072D;
+  --surface-default: #0A1034;
+  --surface-raised: #111740;
+  --surface-sunken: #020520;
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --surface-inverse: #FFFFFF;
+  --surface-brand-subtle: rgba(74, 108, 247, 0.16);
+
+  --text-primary: #F5F7FA;
+  --text-secondary: #C4CBDE;
+  --text-tertiary: #8D96B2;
+  --text-brand: #9FB2FA;
+  --text-inverse: #03072D;
+  --text-on-brand: #FFFFFF;
+
+  --border-subtle: rgba(255, 255, 255, 0.14);
+  --border-default: rgba(255, 255, 255, 0.22);
+  --border-strong: rgba(255, 255, 255, 0.36);
+  --border-brand: #7E97F9;
+
+  --action-primary: #4A6CF7;
+  --action-primary-hover: #6A86F8;
+  --action-secondary: transparent;
+  --action-secondary-hover: rgba(255, 255, 255, 0.08);
+
+  --overlay-hover: rgba(255, 255, 255, 0.06);
+  --ring-focus: 0 0 0 3px rgba(126, 151, 249, 0.5);
+  --dash: rgba(255, 255, 255, 0.22);
+}
+
+:root {
+  /* fixed values (theme-independent); color ramps live in globals.css */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(10, 18, 34, 0.06);
+  --shadow-md: 0 4px 16px rgba(10, 18, 34, 0.08);
+  --shadow-lg: 0 16px 48px rgba(10, 18, 34, 0.14);
+}

@@ -1,156 +1,100 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import { ArrowRight, Plus } from "@phosphor-icons/react/dist/ssr"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { RevealController } from "@/components/reveal-controller"
-
-const CAL = "https://calendly.com/datumlabss/30min"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 
 export const metadata: Metadata = {
-  title: "Live DeFi Protocol Dashboards — Aave, Morpho, NAVI | Datum Labs",
+  title: "Live Dashboards, Datum Labs",
   description:
-    "Custom-built, fully-operated DeFi dashboards — live onchain data, market metrics, and position-health analytics for Aave, Morpho, NAVI, SparkLend and more.",
+    "Custom-built, fully-owned dashboards we operate for protocol teams. Live data feeds, market metrics, and interactive analytics, instrumented end-to-end by Datum Labs.",
   alternates: { canonical: "/live-dashboards" },
-  openGraph: { title: "Live DeFi Protocol Dashboards — Aave, Morpho, NAVI | Datum Labs", url: "/live-dashboards", type: "website" },
+  openGraph: { title: "Live Dashboards, Datum Labs", url: "/live-dashboards", type: "website" },
 }
 
-type Card = { tag: string; name: string; sub: string; logo?: string; href: string; status: "LIVE" | "PENDING"; darkLogo?: boolean; external?: boolean }
-
-const LENDING: Card[] = [
-  { tag: "PROTOCOL · 01", name: "AAVE", sub: "Multi-chain lending markets", logo: "/images/aave-logo.png", href: "/aave-dashboard", status: "LIVE" },
-  { tag: "PROTOCOL · 02", name: "Morpho", sub: "Curated lending vaults", logo: "/images/logo-3.png", href: "/morpho-terminal", status: "LIVE" },
-  { tag: "PROTOCOL · 03", name: "NAVI", sub: "Sui-native money market", logo: "/images/navi-logo.png", href: "/navi", status: "LIVE", darkLogo: true },
-  { tag: "PROTOCOL · 04", name: "Lending Terminal · SUI", sub: "Sui lending, cross-protocol", logo: "/images/lending-terminal-sui-logo.png", href: "/lending-terminal-sui", status: "LIVE" },
-  { tag: "PROTOCOL · 05", name: "SparkLend", sub: "SparkLend markets", logo: "/images/sparklend-logo.png", href: "/sparklend", status: "LIVE" },
-  { tag: "PROTOCOL · 06", name: "INCENTIV", sub: "L1 incentive accounting", logo: "/images/incentiv-logo.png", href: "https://www.datumlab.xyz/Incentiv/dashboard/overview", status: "LIVE", external: true },
-  { tag: "PROTOCOL · 07", name: "Fluid", sub: "Lending + DEX liquidity layer", logo: "/images/fluid-logo.jpg", href: "/fluid-terminal", status: "LIVE", darkLogo: true },
-  { tag: "PROTOCOL · 08", name: "Euler", sub: "Modular EVK lending vaults", logo: "/images/euler-logo.jpg", href: "/euler-terminal", status: "LIVE", darkLogo: true },
-]
-
-const TERMINALS: Card[] = [
-  { tag: "PROTOCOL · 09", name: "Centrifuge RWA", sub: "Tokenized RWA pools", logo: "/images/centrifuge-logo.svg", href: "/centrifugerwa", status: "LIVE" },
-  { tag: "PROTOCOL · 10", name: "RWA Terminal", sub: "Aave Horizon tokenized RWA", logo: "/images/datum-logo.png", href: "/rwa-terminal", status: "LIVE" },
-  { tag: "PROTOCOL · 11", name: "Lending Terminal", sub: "Cross-protocol lending intel", logo: "/images/datum-logo.png", href: "/lending-terminal", status: "LIVE" },
-  { tag: "PROTOCOL · 12", name: "Liquidator Economy", sub: "Liquidator flows & incentives", logo: "/images/datum-logo.png", href: "/liquidator-economy", status: "LIVE" },
-  { tag: "PROTOCOL · 13", name: "YOUR PROTOCOL", sub: "Next onboarding slot open", href: CAL, status: "PENDING" },
-]
-
-const INSIDE = [
-  { n: "/ 01", h: "Live feeds", p: "Block-level data via dedicated archive nodes. No third-party API blackbox between us and the chain." },
-  { n: "/ 02", h: "Market metrics", p: "TVL, utilisation, supply/borrow rates, liquidations, fee revenue. Cross-chain joins where relevant." },
-  { n: "/ 03", h: "Position health", p: "Per-user health factors, risk bands, collateral composition. Streamed, not snapshotted." },
-  { n: "/ 04", h: "Alerts", p: "Slack / PagerDuty hooks for liquidation events, governance triggers, parameter drift." },
-  { n: "/ 05", h: "Embeddable", p: "iframe-ready or white-label. Drop directly into your protocol UI, your domain, our ops." },
-]
-
-function ProtoCard({ c }: { c: Card }) {
-  const inner = (
-    <>
-      <div className="proto-tag">{c.tag}</div>
-      <div className={`proto-logo-wrap${c.status === "PENDING" ? " empty" : ""}${c.darkLogo ? " dark" : ""}`}>
-        {c.status === "PENDING" ? "+" : c.logo ? <img src={c.logo} alt="" /> : null}
-      </div>
-      <div className="proto-body">
-        <div className="proto-name">{c.name}</div>
-        <div className="proto-sub">{c.sub}</div>
-      </div>
-      <div className="proto-foot">
-        <span className={`status${c.status === "PENDING" ? " pending" : ""}`}><span className="dot" />{c.status}</span>
-        <span className="open">{c.status === "PENDING" ? "REQUEST →" : "OPEN ↗"}</span>
-      </div>
-    </>
-  )
-  const cls = `proto-card${c.status === "PENDING" ? " pending" : ""}`
-  if (c.external || c.status === "PENDING") {
-    return <a className={cls} href={c.href} target="_blank" rel="noopener noreferrer" data-reveal>{inner}</a>
-  }
-  return <Link className={cls} href={c.href} data-reveal>{inner}</Link>
-}
-
-export default function LiveDashboardsPage() {
+export default function LiveDashboards() {
   return (
     <>
-      <RevealController />
-      <SiteNav active="Dashboards" />
+      <PageRules />
+      <NavV3 navDark active="dashboards" />
 
-      <header className="page-header">
-        <div className="wrap">
-          <span className="kicker">Live Dashboards · Telemetry</span>
-          <h1>Real-time protocol dashboards. <span className="it">Hosted by us.</span></h1>
-          <p>Custom-built, fully-owned dashboards we operate for protocol teams. Live data feeds, market metrics, and interactive analytics, instrumented end-to-end by Datum Labs and embedded directly inside their products.</p>
-          <div className="meta-row">
-            <span><strong>11</strong> Live Deployments</span>
-            <span><strong>14</strong> Chains Covered</span>
-            <span><strong>11</strong> Public Dashboards</span>
-            <span>Uptime · 99.97%</span>
-          </div>
-        </div>
-      </header>
-
-      <main id="main" className="wrap">
-        <section className="section">
-          <div className="cat-bar" data-reveal>
-            <span>Category · 01</span>
-            <span className="cat-title">Borrow & Lend</span>
-            <span className="cat-meta">7 Live</span>
-          </div>
-          <div className="proto-grid">
-            {LENDING.map((c) => <ProtoCard key={c.name} c={c} />)}
-          </div>
-
-          <div className="cat-bar" data-reveal style={{ marginTop: 32 }}>
-            <span>Category · 02</span>
-            <span className="cat-title">RWA & Terminals</span>
-            <span className="cat-meta">4 Live · 1 Pending</span>
-          </div>
-          <div className="proto-grid">
-            {TERMINALS.map((c) => <ProtoCard key={c.name} c={c} />)}
+      <main id="main">
+        <section className="page-header ph-rel" data-nav-dark data-theme="dark">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
+          <div className="wrap ph-inner">
+            <h1>Real-time protocol dashboards. <span className="it">Hosted by us.</span></h1>
+            <p className="lede">Custom-built, fully-owned dashboards we operate for protocol teams. Live data feeds, market metrics, and interactive analytics, instrumented end-to-end by Datum Labs and embedded directly inside their products.</p>
           </div>
         </section>
 
-        <section className="section">
-          <div className="section-head" data-reveal>
-            <div className="meta">§ 02 · <span className="kicker">What&apos;s Inside</span></div>
-            <h2>What every dashboard ships with.</h2>
-            <p>The deployments above are bespoke per protocol, but they all sit on the same instrumentation foundation. Five things are non-negotiable.</p>
-          </div>
-          <div className="lab-grid">
-            {INSIDE.map((c) => (
-              <div key={c.h} className="lab-card" data-reveal>
-                <div className="lab-no">{c.n}</div>
-                <h3>{c.h}</h3>
-                <p>{c.p}</p>
-              </div>
-            ))}
+        <section className="section" id="facts" data-pin-persist data-nav-light>
+          <div className="wrap">
+            <div className="cs-facts">
+              <div><span className="k">Active deployments</span><span className="v">3</span></div>
+              <div><span className="k">Chains covered</span><span className="v">14</span></div>
+              <div><span className="k">TVL observed</span><span className="v">$2.1B</span></div>
+              <div><span className="k">Uptime</span><span className="v">99.97%</span></div>
+            </div>
           </div>
         </section>
 
-        <section className="section">
-          <div className="section-head" data-reveal>
-            <div className="meta">§ 03 · <span className="kicker">Public Telemetry</span></div>
-            <h2>Also on Dune.</h2>
-            <p>For protocols that want public-facing analytics, we maintain 10 dashboards on dune.com. Different product, same instrumentation underneath.</p>
-          </div>
-          <Link href="/dune-dashboard" className="footer-cta-link">
-            <span>Browse Dune Index</span><span>→</span>
-          </Link>
-        </section>
-
-        <section className="section">
-          <div className="spotlight" data-reveal>
-            <div className="spotlight-inner">
-              <div>
-                <h2>Want a dashboard like these for your protocol?</h2>
-                <p>30-min audit with an analyst. We come back with a working scope and three opportunities you didn&apos;t know you had.</p>
-              </div>
-              <a href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-flag">BOOK_AUDIT.CAL ↗</a>
+        {/* BORROW & LEND CATEGORY */}
+        <section className="section" id="lend">
+          <div className="wrap">
+            <div className="section-head">
+              <h2>Borrow and lend.</h2>
+              <p style={{ color: "var(--dim)" }}>Three live, one onboarding. Each page is rebuilt from the chain every hour and carries the time of its last run.</p>
+            </div>
+            <div className="pc-grid pc-grid-2">
+              <a className="pc pc-case" href="/aave-dashboard" target="_blank" rel="noopener">
+                <div className="pc-top">
+                  <div>
+                    <h3>Aave<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
+                    <span className="pc-cat">Multi-chain lending markets</span>
+                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/aave-logo.png" alt="" />
+                </div>
+                <div className="pc-foot"><span className="pc-chains">Live &middot; hosted by us</span></div>
+              </a>
+              <a className="pc pc-case" href="/navi" target="_blank" rel="noopener">
+                <div className="pc-top">
+                  <div>
+                    <h3>NAVI<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
+                    <span className="pc-cat">Sui-native money market</span>
+                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/navi-logo.png" alt="" />
+                </div>
+                <div className="pc-foot"><span className="pc-chains">Live &middot; hosted by us</span></div>
+              </a>
+              <a className="pc pc-case" href="/Incentiv/dashboard/overview" target="_blank" rel="noopener">
+                <div className="pc-top">
+                  <div>
+                    <h3>Incentiv<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
+                    <span className="pc-cat">L1 incentive accounting</span>
+                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/incentiv-logo.png" alt="" />
+                </div>
+                <div className="pc-foot"><span className="pc-chains">Live &middot; hosted by us</span></div>
+              </a>
+              <a className="pc pc-case pc-pending" href="https://calendly.com/datumlabss/30min" target="_blank" rel="noopener">
+                <div className="pc-top">
+                  <div>
+                    <h3>Your protocol<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
+                    <span className="pc-cat">Onboarding &middot; Q1 2026</span>
+                  </div>
+                  <span className="pc-mark"><i aria-hidden="true"><Plus weight="duotone" /></i></span>
+                </div>
+                <div className="pc-foot"><span className="pc-chains">Request a build</span></div>
+              </a>
             </div>
           </div>
         </section>
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </>
   )
 }

@@ -1,115 +1,140 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import {
+  Coins,
+  HandCoins,
+  ChartLine,
+  UsersThree,
+  Database,
+  Funnel,
+  HardDrives,
+  Monitor,
+} from "@phosphor-icons/react/dist/ssr"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { RevealController } from "@/components/reveal-controller"
-
-const CAL = "https://calendly.com/datumlabss/30min"
-const DUNE = "https://dune.com/jorel/moonwell-oev-dashboard"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 
 export const metadata: Metadata = {
-  title: "Moonwell OEV Dashboard — Case Study | Datum Labs",
+  title: "Moonwell OEV Dashboard, Case Study, Datum Labs",
   description:
-    "How Datum Labs built the dashboard the Moonwell team uses to verify a governance upgrade is paying for itself — $14K+ captured and $300K+ routed to liquidators in two weeks on Base and Optimism.",
+    "The live page Moonwell uses to prove a governance upgrade is paying for itself, in real time, on Base and Optimism.",
   alternates: { canonical: "/case-studies/moonwell-oev" },
-  openGraph: { title: "Moonwell OEV Dashboard — Case Study | Datum Labs", url: "/case-studies/moonwell-oev", type: "article" },
-}
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "Capturing $300K in liquidator value in two weeks",
-  description: "How Datum Labs built the Moonwell OEV dashboard on Base and Optimism.",
-  datePublished: "2026-06-01",
-  dateModified: "2026-06-01",
-  image: "https://www.datumlab.xyz/images/footer-bg.png",
-  author: { "@type": "Organization", name: "Datum Labs" },
-  publisher: {
-    "@type": "Organization",
-    name: "Datum Labs",
-    logo: { "@type": "ImageObject", url: "https://www.datumlab.xyz/brand/logo-mark-blue.svg" },
+  openGraph: {
+    title: "Moonwell OEV Dashboard, Case Study, Datum Labs",
+    url: "/case-studies/moonwell-oev",
+    type: "website",
   },
-  mainEntityOfPage: "https://www.datumlab.xyz/case-studies/moonwell-oev",
 }
 
-export default function MoonwellOevPage() {
+export default function CaseStudyMoonwellOev() {
   return (
     <>
-      <RevealController />
-      <SiteNav active="Case Studies" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <PageRules />
+      <NavV3 navDark />
 
-      <header className="page-header">
-        <div className="wrap">
-          <span className="kicker">Moonwell · OEV Dashboard</span>
-          <h1>Capturing $300K in <span className="it">liquidator value</span> in two weeks.</h1>
-          <p>How we built the dashboard the Moonwell team uses to verify a governance upgrade is paying for itself, in real time, on Base and Optimism.</p>
-          <div className="meta-row">
-            <span>Protocol · <strong>Moonwell</strong></span>
-            <span>Chains · <strong>Base · Optimism</strong></span>
-            <span>Engagement · <strong>Strategic Data Partnership</strong></span>
-            <span>Status · <strong>Live</strong></span>
+      <main id="main">
+        <section className="page-header ph-rel" data-nav-dark data-theme="dark">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
+          <div className="wrap ph-inner">
+            <h1>Capturing $300K in liquidator value in two weeks.</h1>
+            <p className="lede">The live page Moonwell uses to prove a governance upgrade is paying for itself, in real time, on Base and Optimism.</p>
           </div>
-        </div>
-      </header>
+        </section>
 
-      <main id="main" className="wrap">
-        <div className="cs-grid">
-          <article className="cs-body">
-            <h2>The brief</h2>
-            <p>Moonwell shipped a governance upgrade that changed how the protocol captures and distributes <strong>OEV</strong>, the revenue surfaced when a position gets liquidated. The upgrade was already deployed when we joined: contracts on-chain, audit clean, ready to earn.</p>
-            <p>The team had no way to see if it was actually working.</p>
-            <blockquote>&quot;We can read the contracts, but we can&apos;t read the protocol. Build us the surface that proves the upgrade is paying for itself, or isn&apos;t.&quot;</blockquote>
-
-            <h2>What we built</h2>
-            <p>A purpose-built dashboard, hosted on Dune, that decomposes every liquidation event on Base and Optimism into the four flows that matter:</p>
-            <ul>
-              <li><strong>Revenue captured</strong> by the protocol</li>
-              <li><strong>Incentives paid out</strong> to liquidators</li>
-              <li><strong>Net OEV</strong> per market, per chain, per day</li>
-              <li><strong>Liquidator concentration</strong>, who&apos;s doing the work, who&apos;s getting paid</li>
-            </ul>
-            <p>Behind it: a pipeline of normalized liquidation events sourced from our archive nodes, a per-market revenue model, and an alerting layer that pings the team when concentration exceeds a healthy threshold.</p>
-
-            <h2>The numbers, first 14 days</h2>
-            <div className="cs-callouts">
-              <div className="cs-callout"><div className="lbl">Revenue Captured</div><div className="val">$14,000+</div><div className="cap">Routed to the Moonwell treasury via the upgraded liquidation contracts.</div></div>
-              <div className="cs-callout"><div className="lbl">Liquidator Incentives</div><div className="val">$300,000+</div><div className="cap">Paid out to liquidators, keeping the market healthy and well-served.</div></div>
-              <div className="cs-callout"><div className="lbl">Time to Insight</div><div className="val">2 weeks</div><div className="cap">From &quot;we shipped a contract&quot; to &quot;we can prove it works.&quot; Quantified, not anecdotal.</div></div>
+        <section className="section" id="facts" data-pin-persist data-nav-light>
+          <div className="wrap">
+            <div className="cs-facts">
+              <div><span className="k">Protocol</span><span className="v">Moonwell</span></div>
+              <div><span className="k">Chains</span><span className="v">Base · Optimism</span></div>
+              <div><span className="k">Engagement</span><span className="v">Strategic Data Partnership</span></div>
+              <div><span className="k">Status</span><span className="v">Live</span></div>
             </div>
+          </div>
+        </section>
 
-            <h2>Why it mattered</h2>
-            <p>Without a custom analytics surface, this would have been impossibly tedious to quantify, events span two chains, multiple markets, and a flow that splits at the contract level. The team would have known the upgrade <strong>shipped</strong>. They wouldn&apos;t have known if it was <strong>working</strong>.</p>
-            <p>The dashboard turns the upgrade into a continuous, public proof: every liquidation, every payout, on a single surface the team and the community check daily.</p>
-
-            <h2>Stack</h2>
-            <ul>
-              <li><strong>Source</strong>, Datum Labs archive nodes, Base + Optimism</li>
-              <li><strong>Indexer</strong>, liquidation event normalization, per-market</li>
-              <li><strong>Warehouse</strong>, Dune-native, materialized for sub-second loads</li>
-              <li><strong>Surface</strong>, public Dune dashboard + private slack alerts</li>
-            </ul>
-
-            <div className="hero-ctas" style={{ marginTop: 32 }}>
-              <a href={DUNE} target="_blank" rel="noopener noreferrer" className="btn btn-primary">View live on Dune ↗</a>
-              <Link href="/case-studies" className="btn btn-stack">← More cases</Link>
+        <section className="section tint" id="brief">
+          <div className="wrap">
+            <div className="lead-split">
+              <h2 className="spaced">The brief</h2>
+              <div className="prose">
+                <p>Moonwell shipped a governance upgrade that changed how the protocol captures and distributes <strong>OEV</strong>, the revenue surfaced when a position is liquidated. Contracts on-chain, audit clean, ready to earn.</p>
+                <p>The team had no way to see whether it was working.</p>
+                <blockquote className="cs-quote">&ldquo;We can read the contracts, but we can&rsquo;t read the protocol. Build us the surface that proves the upgrade is paying for itself, or isn&rsquo;t.&rdquo;</blockquote>
+              </div>
             </div>
-          </article>
+          </div>
+        </section>
 
-          <aside className="cs-aside">
-            <h4>At a Glance</h4>
-            <div className="stat"><div className="lbl">Revenue Captured</div><div className="val flag">$14K+</div></div>
-            <div className="stat"><div className="lbl">Incentives Paid</div><div className="val">$300K+</div></div>
-            <div className="stat"><div className="lbl">Chains</div><div className="val" style={{ fontSize: 20 }}>Base · Optimism</div></div>
-            <div className="stat"><div className="lbl">Deploy → Insight</div><div className="val">2 weeks</div></div>
-            <div className="stat"><div className="lbl">Engagement</div><div className="val mono" style={{ fontSize: 16 }}>STRATEGIC_INTEL</div></div>
-            <a href={CAL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ width: "100%", marginTop: 20 }}>Book a 30-min audit ↗</a>
-          </aside>
-        </div>
+        <section className="section" id="built">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 className="spaced">What we built</h2>
+              <p>A live page on Atlas that decomposes every liquidation on Base and Optimism into the four flows that matter.</p>
+            </div>
+            <div className="cells cells-4">
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><Coins weight="duotone" /></i></span><h3>Revenue captured</h3><p>What the protocol keeps from each liquidation.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><HandCoins weight="duotone" /></i></span><h3>Incentives paid</h3><p>What goes to the liquidators doing the work.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><ChartLine weight="duotone" /></i></span><h3>Net OEV</h3><p>Per market, per chain, per day.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><UsersThree weight="duotone" /></i></span><h3>Liquidator concentration</h3><p>Who is doing the work, and who is getting paid.</p></div>
+            </div>
+            <p className="smallprint">Behind it: normalised liquidation events from our archive nodes, a per-market revenue model, and alerts when concentration crosses a healthy threshold.</p>
+          </div>
+        </section>
+
+        <section data-pin className="section tint" id="numbers">
+          <div className="wrap">
+            <p className="stat-eyebrow">The numbers, first 14 days</p>
+            <div className="cs-nums">
+              <div className="cs-stat is-flag">
+                <span className="cs-stat-val">$14<span className="u">K+</span></span>
+                <span className="cs-stat-lbl">Revenue captured</span>
+                <p>Routed to the Moonwell treasury via the upgraded contracts.</p>
+              </div>
+              <div className="cs-stat">
+                <span className="cs-stat-val">$300<span className="u">K+</span></span>
+                <span className="cs-stat-lbl">Liquidator incentives</span>
+                <p>Paid out to liquidators, keeping the market healthy.</p>
+              </div>
+              <div className="cs-stat">
+                <span className="cs-stat-val">2<span className="u is-word">weeks</span></span>
+                <span className="cs-stat-lbl">Time to insight</span>
+                <p>From a shipped contract to proof it works.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="why">
+          <div className="wrap">
+            <div className="lead-split">
+              <h2 className="spaced">Why it mattered</h2>
+              <div className="prose">
+                <p>Events span two chains, several markets, and a flow that splits at the contract level. Without a purpose-built surface the team would have known the upgrade <strong>shipped</strong>. They would not have known if it was <strong>working</strong>.</p>
+                <p>The page turns the upgrade into continuous, public proof: every liquidation, every payout, on one surface the team and the community check daily.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section tint" id="stack">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 className="spaced">Stack</h2>
+            </div>
+            <div className="cells cells-4">
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><Database weight="duotone" /></i></span><h3>Source</h3><p>Datum Labs archive nodes, Base and Optimism.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><Funnel weight="duotone" /></i></span><h3>Indexer</h3><p>Liquidation events normalised per market.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><HardDrives weight="duotone" /></i></span><h3>Warehouse</h3><p>Materialised in Atlas for sub-second loads.</p></div>
+              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><Monitor weight="duotone" /></i></span><h3>Surface</h3><p>A public live page plus private Slack alerts.</p></div>
+            </div>
+            <div className="cs-actions">
+              <a className="btn" href="https://dune.com/jorel/moonwell-oev-dashboard" target="_blank" rel="noopener">View the live page</a>
+              <a className="btn" href="/case-studies">More cases</a>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </>
   )
 }

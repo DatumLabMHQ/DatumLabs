@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Analytics, Datum Labs</title>
+<!-- Datum Labs Design System v2 -->
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/colors.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/typography.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/charts.css">
+<link rel="stylesheet" href="css/site-v2.css">
+<link rel="stylesheet" href="css/site-brand.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+.brand .nav-logo-lockup{display:flex;align-items:center;gap:10px}
+.nav-logo-lockup img{height:26px;width:auto;display:block}
+.nav-logo-lockup .logo-white{display:none}
+.footer-logo img{height:30px;width:auto;display:block}
+.footer-logo .logo-white{display:none}
+</style>
+</head>
+<body>
+
+<div class="page-rules" aria-hidden="true"><i></i><i></i></div>
+
+<nav class="nav is-dark">
+  <a href="index-v2.html" class="brand" data-logo="lockup">
+    <span class="nav-logo-lockup">
+      <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+      <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+    </span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link-top" href="services.html">Services</a>
+    <div class="nav-drop">
+      <button type="button" aria-expanded="false" aria-haspopup="true">Resources <i class="ph-fill ph-caret-down caret" aria-hidden="true"></i></button>
+      <div class="nav-menu">
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Research</p>
+          <a href="research.html"><span class="t">Datum Reports</span><span class="d">Monthly State of Lending and published analysis.</span></a>
+          <a href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener"><span class="t">W3GM Podcast <span class="ext">↗</span></span><span class="d">Conversations with builders across web3.</span></a>
+        </div>
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Products</p>
+          <a href="https://onchainsuite.xyz" target="_blank" rel="noopener"><span class="t">OnchainSuite <span class="ext">↗</span></span><span class="d">Protocol analytics, owned and versioned.</span></a>
+          <a href="https://setnel.xyz" target="_blank" rel="noopener"><span class="t">Setnel <span class="ext">↗</span></span><span class="d">Onchain monitoring and alerting.</span></a>
+          <a href="platform.html"><span class="t">Atlas</span><span class="d">The pipeline behind every number we publish.</span></a>
+        </div>
+      </div>
+    </div>
+    <a class="nav-link-top" href="live-dashboards.html">Dashboards</a>
+    <a class="nav-link-top" href="about.html">About</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn btn-primary" href="contact.html">Contact us</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-progress"></div>
+</nav>
+
+<div class="nav-mobile" id="navMobile" hidden>
+  <div class="nav-mobile-group">
+    <a href="services.html">Services</a>
+    <a href="live-dashboards.html">Dashboards</a>
+    <a href="about.html">About</a>
+    <p class="nav-mobile-h">Research</p>
+    <a class="nav-mobile-sub" href="research.html">Datum Reports</a>
+    <a class="nav-mobile-sub" href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener">W3GM Podcast ↗</a>
+    <p class="nav-mobile-h">Products</p>
+    <a class="nav-mobile-sub" href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a>
+    <a class="nav-mobile-sub" href="https://setnel.xyz" target="_blank" rel="noopener">Setnel ↗</a>
+    <a class="nav-mobile-sub" href="platform.html">Atlas</a>
+  </div>
+  <a class="btn btn-primary nav-mobile-cta" href="contact.html">Contact us</a>
+</div>
+
+<main>
+<section class="page-header ph-rel" data-nav-dark data-theme="dark">
+  <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+  <div class="wrap ph-inner">
+    <h1>Analytics that <span class="it">closes the loop.</span></h1>
+    <p class="lede">Live pages, monitoring and a named analyst, built on Atlas and kept current every hour.</p>
+    <p class="support">Not another deck. Someone who lives in your data and answers the same working day.</p>
+  </div>
+</section>
+
+<section class="section tint" id="what">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="spaced">Six things we do, well.</h2>
+      <p>Deliberately narrow. Everything below has shipped to production for a paying protocol.</p>
+    </div>
+    <div class="cells cells-6">
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-chart-line" aria-hidden="true"></i></span><h3>Live pages</h3><p>Bespoke pages, built with you, hosted by us on Atlas.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-database" aria-hidden="true"></i></span><h3>Pipeline</h3><p>Archive nodes to warehouse. We run the stack.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-tree-structure" aria-hidden="true"></i></span><h3>Semantic models</h3><p>A user is a user, a position is a position.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-bell-ringing" aria-hidden="true"></i></span><h3>Monitoring</h3><p>Alerts when something moves outside the band.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-user-focus" aria-hidden="true"></i></span><h3>Embedded analyst</h3><p>Weekly reads, deep dives, governance memos.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-code" aria-hidden="true"></i></span><h3>Data dApps</h3><p>Contract, indexer and front-end, shipped together.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-pin class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="spaced">How an engagement runs.</h2>
+      <p>Five stages. The depth changes, the shape does not. Hover a stage to see what ships.</p>
+    </div>
+    <div class="pipeline" data-callout-default="You leave the audit with a memo and a scope whether you hire us or not.">
+      <div class="pipeline-grid">
+        <div class="pipeline-stage"><div class="stage-ic"><i class="ph-duotone ph-magnifying-glass" aria-hidden="true"></i></div><div class="stage-name">Audit</div><div class="stage-sub">30 minutes, free</div><div class="stage-items"><span>memo</span><span>opportunities</span><span>scope</span></div></div>
+        <div class="pipeline-stage"><div class="stage-ic"><i class="ph-duotone ph-wrench" aria-hidden="true"></i></div><div class="stage-name">Instrument</div><div class="stage-sub">Two-week sprint</div><div class="stage-items"><span>pipeline</span><span>schema</span><span>first page</span></div></div>
+        <div class="pipeline-stage"><div class="stage-ic"><i class="ph-duotone ph-tree-structure" aria-hidden="true"></i></div><div class="stage-name">Model</div><div class="stage-sub">Protocol-aware</div><div class="stage-items"><span>semantic layer</span><span>cohorts</span><span>KPIs</span></div></div>
+        <div class="pipeline-stage"><div class="stage-ic"><i class="ph-duotone ph-pulse" aria-hidden="true"></i></div><div class="stage-name">Operate</div><div class="stage-sub">Weekly</div><div class="stage-items"><span>reads</span><span>alerts</span><span>on-call</span></div></div>
+        <div class="pipeline-stage"><div class="stage-ic"><i class="ph-duotone ph-hand-coins" aria-hidden="true"></i></div><div class="stage-name">Hand over</div><div class="stage-sub">Optional</div><div class="stage-items"><span>runbook</span><span>training</span><span>90-day support</span></div></div>
+      </div>
+      <div class="pipeline-callout">You leave the audit with a memo and a scope whether you hire us or not.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark-band" id="tiers" data-nav-dark data-theme="dark">
+  <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="spaced">Three ways to work together.</h2>
+      <p>The depth scales to your maturity. The right level of presence for what you are shipping.</p>
+    </div>
+    <div class="tcards">
+      <a class="tcard" href="contact.html">
+        <span class="svc-ic"><i class="ph-duotone ph-chart-bar" aria-hidden="true"></i></span>
+        <h3>Strategic Data Partnership<i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+        <p>Weekly performance reads, maintained pipelines and bi-weekly office hours. ROI on every initiative.</p>
+        <span class="split-meta">For scaling protocols</span>
+      </a>
+      <a class="tcard" href="contact.html">
+        <span class="svc-ic"><i class="ph-duotone ph-user-focus" aria-hidden="true"></i></span>
+        <h3>Complete Growth Intelligence<i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+        <p>A dedicated analyst in your standups. Automated alerts, unlimited deep dives, on-call for launches.</p>
+        <span class="split-meta">Embedded analyst</span>
+      </a>
+      <a class="tcard" href="contact.html">
+        <span class="svc-ic"><i class="ph-duotone ph-stack" aria-hidden="true"></i></span>
+        <h3>End-to-End Product Lab<i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+        <p>Smart contracts, data-integrated dApps and custom analytics infrastructure. Built, shipped, supported.</p>
+        <span class="split-meta">Complete technical arm</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cta" data-light-plate>
+  <div class="split-outer">
+    <div class="ctaplate">
+      <div class="ctaplate-inner">
+        <div>
+          <h2>Thirty minutes. Three opportunities.</h2>
+          <p>We review your data infrastructure and name three things you could act on this quarter. You keep the memo either way.</p>
+        </div>
+        <a class="btn" href="https://calendly.com/datumlabss/30min" target="_blank" rel="noopener">Book the audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer dark-band" data-nav-dark data-theme="dark">
+  <div class="band-rules" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a href="index-v2.html" class="brand footer-logo" aria-label="Datum Labs">
+          <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+          <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+        </a>
+        <p class="blurb" style="color:var(--dim)">Datum Labs is a financial data and reporting service for blockchain protocols. Numbers you can defend in public.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/Datumlabs_" target="_blank" rel="noopener" aria-label="X"><i class="ph-duotone ph-x-logo" aria-hidden="true"></i><span>X</span></a>
+          <a href="https://www.linkedin.com/showcase/dat-umlab/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph-duotone ph-linkedin-logo" aria-hidden="true"></i><span>LinkedIn</span></a>
+          <a href="mailto:hello@datumlab.xyz" aria-label="Email"><i class="ph-duotone ph-envelope-simple" aria-hidden="true"></i><span>Email</span></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>WORK</h3>
+        <ul>
+          <li><a href="research.html">Research, all published work</a></li>
+          <li><a href="platform.html">Atlas</a></li>
+          <li><a href="live-dashboards.html">Dashboards</a></li>
+          <li><a href="case-study-moonwell-oev.html">Moonwell OEV</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>COMPANY</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DATUM LABS</span>
+      <span>FINANCIAL DATA AND REPORTING FOR BLOCKCHAIN PROTOCOLS</span>
+      <span>X @DATUMLABS_</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/nav-drop.js"></script>
+<script src="js/nav-theme.js"></script>
+<script src="js/dither.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#F5F7FA">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F7FA"/>
+    <text x="600" y="460" font-family="Georgia,'Source Serif 4',serif" font-size="320" font-weight="600" fill="#4A6CF7" text-anchor="middle">D</text>
+    <text x="600" y="650" font-family="monospace" font-size="34" letter-spacing="12" fill="#03072D" text-anchor="middle">DATUM LABS</text>
+  </svg>
+</template>
+
+</body>
+</html>

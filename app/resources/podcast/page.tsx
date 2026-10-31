@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { RevealController } from "@/components/reveal-controller"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 
 const SHOW_ID = "5ZZfeCsHFcZWXJ47FNeqJQ"
 const SPOTIFY_SHOW = `https://open.spotify.com/show/${SHOW_ID}`
@@ -93,14 +91,16 @@ export default async function PodcastPage() {
 
   return (
     <>
-      <RevealController />
-      <SiteNav active="Resources" />
+      <PageRules />
+      <NavV3 active="research" navDark />
 
-      <header className="page-header">
-        <div className="wrap">
-          <span className="kicker">Resources · Podcast</span>
+      <header className="page-header ph-rel" data-nav-dark data-theme="dark">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
+        <div className="wrap ph-inner">
+          <span className="crumb">Resources · Podcast</span>
           <h1>W3GM. Conversations from the <span className="it">onchain frontier.</span></h1>
-          <p>The Datum Labs podcast. We sit down with the operators, founders, and analysts building the onchain economy, the people actually shipping, not just posting.</p>
+          <p className="lede">The Datum Labs podcast. We sit down with the operators, founders, and analysts building the onchain economy, the people actually shipping, not just posting.</p>
           <div className="meta-row">
             <span>Hosted by <strong>Datum Labs</strong></span>
             <span>Show · <strong>W3GM</strong></span>
@@ -130,7 +130,7 @@ export default async function PodcastPage() {
         {episodes.length > 0 ? (
           <section className="section" style={{ paddingTop: 8 }}>
             <div className="section-head" data-reveal>
-              <span className="kicker">All episodes</span>
+              <span className="crumb">All episodes</span>
             </div>
             <div data-reveal>
               {episodes.map((ep, i) => (
@@ -181,7 +181,7 @@ export default async function PodcastPage() {
         ) : null}
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </>
   )
 }

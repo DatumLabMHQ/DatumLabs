@@ -16,20 +16,20 @@ const sourceSerif = Source_Serif_4({
 })
 
 export const metadata: Metadata = {
-  title: "Datum Labs — Onchain Data & Analytics for DeFi Protocols",
+  title: "Datum Labs — Financial Data & Reporting for Blockchain Protocols",
   description:
-    "Datum Labs builds and operates the onchain data pipelines, dashboards, and models behind DeFi lending, risk, and governance teams — custom analytics, Dune dashboards, and intelligence for web3 protocols.",
+    "Datum Labs is a financial data and reporting service for blockchain protocols. What your protocol earned, paid out, spent and kept last month — every figure traceable to the run behind it.",
   keywords: [
+    "protocol financial reporting",
+    "DeFi protocol P&L",
+    "blockchain financial data",
+    "protocol management accounts",
+    "DeFi FP&A",
+    "collateral risk file",
+    "protocol revenue attribution",
     "DeFi analytics",
-    "onchain data analytics",
-    "DeFi dashboards",
-    "Dune dashboard developer",
-    "lending protocol analytics",
-    "DeFi risk dashboard",
-    "web3 data agency",
-    "tokenized RWA analytics",
-    "protocol intelligence",
     "onchain data",
+    "lending protocol analytics",
   ],
   authors: [{ name: "Datum Labs" }],
   creator: "Datum Labs",
@@ -43,22 +43,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.datumlab.xyz",
     siteName: "Datum Labs",
-    title: "Datum Labs — Onchain Data & Analytics for DeFi Protocols",
+    title: "Datum Labs — Financial Data & Reporting for Blockchain Protocols",
     description:
-      "The onchain data pipelines, dashboards, and models behind DeFi lending, risk, and governance teams. Custom analytics, Dune dashboards, and intelligence for web3 protocols.",
+      "What your protocol earned, paid out, spent and kept last month — every figure traceable to the run behind it. Numbers you can defend in public.",
     images: [
       {
         url: "/images/footer-bg.png",
         width: 1500,
         height: 500,
-        alt: "Datum Labs - Web3 Intelligence Solutions",
+        alt: "Datum Labs — financial data and reporting for blockchain protocols",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Datum Labs — Onchain Data & Analytics for DeFi Protocols",
-    description: "Onchain data pipelines, dashboards, and models for DeFi lending, risk, and governance teams.",
+    title: "Datum Labs — Financial Data & Reporting for Blockchain Protocols",
+    description: "What your protocol earned, paid out, spent and kept last month. Numbers you can defend in public.",
     images: ["/images/footer-bg.png"],
     creator: "@Datumlabs_",
   },
@@ -73,7 +73,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  generator: "v0.app",
 }
 
 export const viewport: Viewport = {
@@ -111,6 +110,17 @@ export default function RootLayout({
       <body className="font-sans antialiased dl">
         <a href="#main" className="skip-link">Skip to content</a>
         {children}
+        {/* v3 behaviors, ported verbatim from the redesign handoff. Every
+            internal link is a plain <a> (full page load), so these re-run on
+            each page exactly like the static build they were written for.
+            Each script no-ops when its hooks are absent from the page. */}
+        <Script src="/v3/site.js" strategy="afterInteractive" />
+        <Script src="/v3/parallax.js" strategy="afterInteractive" />
+        <Script src="/v3/nav-drop.js" strategy="afterInteractive" />
+        <Script src="/v3/nav-theme.js" strategy="afterInteractive" />
+        <Script src="/v3/dither.js" strategy="afterInteractive" />
+        <Script src="/v3/faq.js" strategy="afterInteractive" />
+        <Script src="/v3/forms.js" strategy="afterInteractive" />
         <ConditionalAnalytics />
       </body>
     </html>

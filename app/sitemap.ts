@@ -11,6 +11,12 @@ export const revalidate = 3600
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     "",
+    "/services",
+    "/services/collateral-file",
+    "/services/management-accounts",
+    "/services/fpa-desk",
+    "/platform",
+    "/research",
     "/about",
     "/contact",
     "/products",
@@ -19,9 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/analytics",
     "/live-dashboards",
     "/dune-dashboard",
-    "/resources",
     "/resources/blog",
-    "/resources/reports",
     "/resources/podcast",
     "/privacy",
     "/terms",

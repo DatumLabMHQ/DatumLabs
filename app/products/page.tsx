@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { RevealController } from "@/components/reveal-controller"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 
 export const metadata: Metadata = {
   title: "OnchainSuite & Setnel — Datum Labs Products",
@@ -34,12 +32,14 @@ const PRODUCTS = [
 export default function ProductsPage() {
   return (
     <>
-      <RevealController />
-      <SiteNav active="Resources" />
+      <PageRules />
+      <NavV3 navDark />
 
-      <header className="page-header">
-        <div className="wrap">
-          <span className="kicker">Resources · Products</span>
+      <header className="page-header ph-rel" data-nav-dark data-theme="dark">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
+        <div className="wrap ph-inner">
+          <span className="crumb">Resources · Products</span>
           <h1>Products, not <span className="it">just services.</span></h1>
           <p>When a data problem recurs across protocols, we turn it into a product. These are the SaaS tools built out of the work we do for partners.</p>
         </div>
@@ -63,7 +63,7 @@ export default function ProductsPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </>
   )
 }

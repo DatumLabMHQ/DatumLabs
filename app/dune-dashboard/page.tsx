@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { RevealController } from "@/components/reveal-controller"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 import { DuneGrid } from "@/components/dune-grid"
 
 const CAL = "https://calendly.com/datumlabss/30min"
@@ -18,12 +16,14 @@ export const metadata: Metadata = {
 export default function DuneDashboardsPage() {
   return (
     <>
-      <RevealController />
-      <SiteNav active="Dashboards" />
+      <PageRules />
+      <NavV3 navDark />
 
-      <header className="page-header">
-        <div className="wrap">
-          <span className="kicker">Dune · Public Index</span>
+      <header className="page-header ph-rel" data-nav-dark data-theme="dark">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
+        <div className="wrap ph-inner">
+          <span className="crumb">Dune · Public Index</span>
           <h1>Live dashboards. <span className="it">Public receipts.</span></h1>
           <p>Every dashboard below is authored and maintained by Datum Labs. Click through to the live Dune surface, the same one the protocol team checks every morning.</p>
           <div className="meta-row">
@@ -51,7 +51,7 @@ export default function DuneDashboardsPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </>
   )
 }

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Moonwell OEV Dashboard, Case Study, Datum Labs</title>
+<!-- Datum Labs Design System v2 -->
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/colors.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/typography.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/charts.css">
+<link rel="stylesheet" href="css/site-v2.css">
+<link rel="stylesheet" href="css/site-brand.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+.brand .nav-logo-lockup{display:flex;align-items:center;gap:10px}
+.nav-logo-lockup img{height:26px;width:auto;display:block}
+.nav-logo-lockup .logo-white{display:none}
+.footer-logo img{height:30px;width:auto;display:block}
+.footer-logo .logo-white{display:none}
+</style>
+</head>
+<body>
+
+<div class="page-rules" aria-hidden="true"><i></i><i></i></div>
+
+<nav class="nav is-dark">
+  <a href="index-v2.html" class="brand" data-logo="lockup">
+    <span class="nav-logo-lockup">
+      <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+      <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+    </span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link-top" href="services.html">Services</a>
+    <div class="nav-drop">
+      <button type="button" aria-expanded="false" aria-haspopup="true">Resources <i class="ph-fill ph-caret-down caret" aria-hidden="true"></i></button>
+      <div class="nav-menu">
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Research</p>
+          <a href="research.html"><span class="t">Datum Reports</span><span class="d">Monthly State of Lending and published analysis.</span></a>
+          <a href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener"><span class="t">W3GM Podcast <span class="ext">↗</span></span><span class="d">Conversations with builders across web3.</span></a>
+        </div>
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Products</p>
+          <a href="https://onchainsuite.xyz" target="_blank" rel="noopener"><span class="t">OnchainSuite <span class="ext">↗</span></span><span class="d">Protocol analytics, owned and versioned.</span></a>
+          <a href="https://setnel.xyz" target="_blank" rel="noopener"><span class="t">Setnel <span class="ext">↗</span></span><span class="d">Onchain monitoring and alerting.</span></a>
+          <a href="platform.html"><span class="t">Atlas</span><span class="d">The pipeline behind every number we publish.</span></a>
+        </div>
+      </div>
+    </div>
+    <a class="nav-link-top" href="live-dashboards.html">Dashboards</a>
+    <a class="nav-link-top" href="about.html">About</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn btn-primary" href="contact.html">Contact us</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-progress"></div>
+</nav>
+
+<div class="nav-mobile" id="navMobile" hidden>
+  <div class="nav-mobile-group">
+    <a href="services.html">Services</a>
+    <a href="live-dashboards.html">Dashboards</a>
+    <a href="about.html">About</a>
+    <p class="nav-mobile-h">Research</p>
+    <a class="nav-mobile-sub" href="research.html">Datum Reports</a>
+    <a class="nav-mobile-sub" href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener">W3GM Podcast ↗</a>
+    <p class="nav-mobile-h">Products</p>
+    <a class="nav-mobile-sub" href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a>
+    <a class="nav-mobile-sub" href="https://setnel.xyz" target="_blank" rel="noopener">Setnel ↗</a>
+    <a class="nav-mobile-sub" href="platform.html">Atlas</a>
+  </div>
+  <a class="btn btn-primary nav-mobile-cta" href="contact.html">Contact us</a>
+</div>
+
+<main>
+<section class="page-header ph-rel" data-nav-dark data-theme="dark">
+  <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+  <div class="wrap ph-inner">
+    <h1>Capturing $300K in liquidator value in two weeks.</h1>
+    <p class="lede">The live page Moonwell uses to prove a governance upgrade is paying for itself, in real time, on Base and Optimism.</p>
+  </div>
+</section>
+
+<section class="section" id="facts" data-pin-persist data-nav-light>
+  <div class="wrap">
+    <div class="cs-facts">
+      <div><span class="k">Protocol</span><span class="v">Moonwell</span></div>
+      <div><span class="k">Chains</span><span class="v">Base · Optimism</span></div>
+      <div><span class="k">Engagement</span><span class="v">Strategic Data Partnership</span></div>
+      <div><span class="k">Status</span><span class="v">Live</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" id="brief">
+  <div class="wrap">
+    <div class="lead-split">
+      <h2 class="spaced">The brief</h2>
+      <div class="prose">
+        <p>Moonwell shipped a governance upgrade that changed how the protocol captures and distributes <strong>OEV</strong>, the revenue surfaced when a position is liquidated. Contracts on-chain, audit clean, ready to earn.</p>
+        <p>The team had no way to see whether it was working.</p>
+        <blockquote class="cs-quote">&ldquo;We can read the contracts, but we can&rsquo;t read the protocol. Build us the surface that proves the upgrade is paying for itself, or isn&rsquo;t.&rdquo;</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="built">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="spaced">What we built</h2>
+      <p>A live page on Atlas that decomposes every liquidation on Base and Optimism into the four flows that matter.</p>
+    </div>
+    <div class="cells cells-4">
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-coins" aria-hidden="true"></i></span><h3>Revenue captured</h3><p>What the protocol keeps from each liquidation.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-hand-coins" aria-hidden="true"></i></span><h3>Incentives paid</h3><p>What goes to the liquidators doing the work.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-chart-line" aria-hidden="true"></i></span><h3>Net OEV</h3><p>Per market, per chain, per day.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-users-three" aria-hidden="true"></i></span><h3>Liquidator concentration</h3><p>Who is doing the work, and who is getting paid.</p></div>
+    </div>
+    <p class="smallprint">Behind it: normalised liquidation events from our archive nodes, a per-market revenue model, and alerts when concentration crosses a healthy threshold.</p>
+  </div>
+</section>
+
+<section data-pin class="section tint" id="numbers">
+  <div class="wrap">
+    <p class="stat-eyebrow">The numbers, first 14 days</p>
+    <div class="cs-nums">
+      <div class="cs-stat is-flag">
+        <span class="cs-stat-val">$14<span class="u">K+</span></span>
+        <span class="cs-stat-lbl">Revenue captured</span>
+        <p>Routed to the Moonwell treasury via the upgraded contracts.</p>
+      </div>
+      <div class="cs-stat">
+        <span class="cs-stat-val">$300<span class="u">K+</span></span>
+        <span class="cs-stat-lbl">Liquidator incentives</span>
+        <p>Paid out to liquidators, keeping the market healthy.</p>
+      </div>
+      <div class="cs-stat">
+        <span class="cs-stat-val">2<span class="u is-word">weeks</span></span>
+        <span class="cs-stat-lbl">Time to insight</span>
+        <p>From a shipped contract to proof it works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="lead-split">
+      <h2 class="spaced">Why it mattered</h2>
+      <div class="prose">
+        <p>Events span two chains, several markets, and a flow that splits at the contract level. Without a purpose-built surface the team would have known the upgrade <strong>shipped</strong>. They would not have known if it was <strong>working</strong>.</p>
+        <p>The page turns the upgrade into continuous, public proof: every liquidation, every payout, on one surface the team and the community check daily.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" id="stack">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="spaced">Stack</h2>
+    </div>
+    <div class="cells cells-4">
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-database" aria-hidden="true"></i></span><h3>Source</h3><p>Datum Labs archive nodes, Base and Optimism.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-funnel" aria-hidden="true"></i></span><h3>Indexer</h3><p>Liquidation events normalised per market.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-hard-drives" aria-hidden="true"></i></span><h3>Warehouse</h3><p>Materialised in Atlas for sub-second loads.</p></div>
+      <div class="cell cell-stack"><span class="svc-ic"><i class="ph-duotone ph-monitor" aria-hidden="true"></i></span><h3>Surface</h3><p>A public live page plus private Slack alerts.</p></div>
+    </div>
+    <div class="cs-actions">
+      <a class="btn" href="https://dune.com/jorel/moonwell-oev-dashboard" target="_blank" rel="noopener">View the live page</a>
+      <a class="btn" href="case-studies.html">More cases</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer dark-band" data-nav-dark data-theme="dark">
+  <div class="band-rules" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a href="index-v2.html" class="brand footer-logo" aria-label="Datum Labs">
+          <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+          <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+        </a>
+        <p class="blurb" style="color:var(--dim)">Datum Labs is a financial data and reporting service for blockchain protocols. Numbers you can defend in public.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/Datumlabs_" target="_blank" rel="noopener" aria-label="X"><i class="ph-duotone ph-x-logo" aria-hidden="true"></i><span>X</span></a>
+          <a href="https://www.linkedin.com/showcase/dat-umlab/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph-duotone ph-linkedin-logo" aria-hidden="true"></i><span>LinkedIn</span></a>
+          <a href="mailto:hello@datumlab.xyz" aria-label="Email"><i class="ph-duotone ph-envelope-simple" aria-hidden="true"></i><span>Email</span></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>WORK</h3>
+        <ul>
+          <li><a href="research.html">Research, all published work</a></li>
+          <li><a href="platform.html">Atlas</a></li>
+          <li><a href="live-dashboards.html">Dashboards</a></li>
+          <li><a href="case-study-moonwell-oev.html">Moonwell OEV</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>COMPANY</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DATUM LABS</span>
+      <span>FINANCIAL DATA AND REPORTING FOR BLOCKCHAIN PROTOCOLS</span>
+      <span>X @DATUMLABS_</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/nav-drop.js"></script>
+<script src="js/nav-theme.js"></script>
+<script src="js/dither.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#F5F7FA">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F7FA"/>
+    <text x="600" y="460" font-family="Georgia,'Source Serif 4',serif" font-size="320" font-weight="600" fill="#4A6CF7" text-anchor="middle">D</text>
+    <text x="600" y="650" font-family="monospace" font-size="34" letter-spacing="12" fill="#03072D" text-anchor="middle">DATUM LABS</text>
+  </svg>
+</template>
+
+</body>
+</html>

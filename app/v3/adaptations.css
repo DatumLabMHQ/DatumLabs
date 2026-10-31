@@ -1,0 +1,38 @@
+/* v3 adaptations — the few places the Next.js port deviates from the static
+   handoff.
+
+   1. The handoff hero used brand/hero-loop.mp4, which never shipped with the
+      design export. Until a brand loop is produced, the hero mounts the
+      sapphire dither canvas (dither.js) in the same box. */
+.hero-bg canvas[data-dither] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.55;
+}
+
+/* 2. Phosphor icons render as inline SVG components instead of the unpkg
+      icon font. Port convention: keep the handoff's <i class="…"> wrapper and
+      nest the SVG inside it — class selectors (.svc-go, .caret…) and element
+      selectors (i { font-size }) keep working, and the SVG's default 1em size
+      follows the wrapper's font-size exactly like the font glyph did. */
+i > svg { display: inline-block; vertical-align: -0.125em; }
+svg.caret { width: 12px; height: 12px; }
+.footer-socials svg { width: 18px; height: 18px; }
+
+/* 3. Research cards: real covers come from report frontmatter / Sanity; when
+      a piece has no cover yet, a quiet sapphire-dot plate stands in. */
+.rcard-cover img, .rfeature-ratio img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rcard-ph { width: 100%; height: 100%; min-height: 150px; position: relative; background: linear-gradient(135deg, #0A1034, #03072D 55%, #13204F); }
+.rcard-ph::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(122,151,249,.35) 1px, transparent 1px); background-size: 14px 14px; -webkit-mask-image: linear-gradient(115deg, transparent 25%, #000 80%); mask-image: linear-gradient(115deg, transparent 25%, #000 80%); }
+
+/* 4. About-page team portraits (photos not supplied yet). */
+.img-slot-ph { width: 100%; height: 100%; min-height: 220px; background: linear-gradient(160deg, #EDF0F5, #DDE2EB); border-radius: inherit; }
+
+/* 5. Breadcrumb/eyebrow used on report + podcast headers (the brand layer
+      hides .kicker site-wide; .crumb is its visible replacement there). */
+.crumb { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-tertiary); }
+[data-theme="dark"] .crumb, .page-header.ph-rel .crumb { color: var(--sapphire-300); }
+a.crumb:hover { color: #fff; }

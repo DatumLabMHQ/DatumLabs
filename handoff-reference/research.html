@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research, Datum Labs</title>
+<meta name="description" content="Published research on lending markets, incentives and protocol revenue. Every figure shown against the public trackers.">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/colors.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/typography.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/charts.css">
+<link rel="stylesheet" href="css/site-v2.css">
+<link rel="stylesheet" href="css/site-brand.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+.brand .nav-logo-lockup{display:flex;align-items:center;gap:10px}
+.nav-logo-lockup img{height:26px;width:auto;display:block}
+.nav-logo-lockup .logo-white{display:none}
+.footer-logo img{height:30px;width:auto;display:block}
+.footer-logo .logo-white{display:none}
+</style>
+</head>
+<body>
+<div class="page-rules" aria-hidden="true"><i></i><i></i></div>
+
+<nav class="nav">
+  <a href="index-v2.html" class="brand" data-logo="lockup">
+    <span class="nav-logo-lockup">
+      <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+      <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+    </span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link-top" href="services.html">Services</a>
+    <div class="nav-drop">
+      <button type="button" aria-expanded="false" aria-haspopup="true">Resources <i class="ph-fill ph-caret-down caret" aria-hidden="true"></i></button>
+      <div class="nav-menu">
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Research</p>
+          <a href="research.html"><span class="t">Datum Reports</span><span class="d">Monthly State of Lending and published analysis.</span></a>
+          <a href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener"><span class="t">W3GM Podcast <span class="ext">↗</span></span><span class="d">Conversations with builders across web3.</span></a>
+        </div>
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Products</p>
+          <a href="https://onchainsuite.xyz" target="_blank" rel="noopener"><span class="t">OnchainSuite <span class="ext">↗</span></span><span class="d">Protocol analytics, owned and versioned.</span></a>
+          <a href="https://setnel.xyz" target="_blank" rel="noopener"><span class="t">Setnel <span class="ext">↗</span></span><span class="d">Onchain monitoring and alerting.</span></a>
+          <a href="platform.html"><span class="t">Atlas</span><span class="d">The pipeline behind every number we publish.</span></a>
+        </div>
+      </div>
+    </div>
+    <a class="nav-link-top" href="live-dashboards.html">Dashboards</a>
+    <a class="nav-link-top" href="about.html">About</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn btn-primary" href="contact.html">Contact us</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-progress"></div>
+</nav>
+
+<div class="nav-mobile" id="navMobile" hidden>
+  <div class="nav-mobile-group">
+    <a href="services.html">Services</a>
+    <a href="live-dashboards.html">Dashboards</a>
+    <a href="about.html">About</a>
+    <p class="nav-mobile-h">Research</p>
+    <a class="nav-mobile-sub" href="research.html">Datum Reports</a>
+    <a class="nav-mobile-sub" href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener">W3GM Podcast ↗</a>
+    <p class="nav-mobile-h">Products</p>
+    <a class="nav-mobile-sub" href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a>
+    <a class="nav-mobile-sub" href="https://setnel.xyz" target="_blank" rel="noopener">Setnel ↗</a>
+    <a class="nav-mobile-sub" href="platform.html">Atlas</a>
+  </div>
+  <a class="btn btn-primary nav-mobile-cta" href="contact.html">Contact us</a>
+</div>
+
+<main>
+<h1 class="sr-only">Research</h1>
+<section class="section" id="latest" data-nav-light>
+  <div class="wrap">
+
+    
+
+    <div class="rhero-row">
+      <article class="rfeature rhero" data-cat="r">
+        <div class="rfeature-cover"><div class="rfeature-ratio"><image-slot id="rep-featured" shape="rect" placeholder="Drop the featured cover"></image-slot></div></div>
+        <div class="rfeature-body">
+          <div class="rcard-meta"><span class="pill">Reports</span><span class="pill pill-quiet">August 2026</span><span class="rcard-date">Sep 7, 2026</span></div>
+          <h2><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">Euler in August 2026: the deposits grew, the book did not</a></h2>
+          <p>Monad ended August larger than Ethereum for the first time. Deposits rose 5.9% in dollars and fell 2.7% once collateral repricing is stripped out.</p>
+        </div>
+      </article>
+      <aside class="rsub2">
+        <span class="rsub2-ic"><i class="ph-duotone ph-mailbox" aria-hidden="true"></i></span>
+        <h2>Subscribe for protocol finance &amp; research updates</h2>
+        <p>Monthly State of Lending, protocol P&amp;L reads, and what the public trackers miss.</p>
+        <form class="rsub2-form" data-form data-subject="Subscribe to research" data-done="You are on the list.">
+          <input type="email" name="Email" placeholder="Enter your email" aria-label="Email" required autocomplete="email">
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="rsub2-fine">Monthly. No spam, unsubscribe any time.</p>
+      </aside>
+    </div>
+
+    <div class="rtabs" role="group" aria-label="Filter published work">
+      <button type="button" class="rtab is-on" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="rtab" data-filter="r" aria-pressed="false">Reports</button>
+      <button type="button" class="rtab" data-filter="a" aria-pressed="false">Articles</button>
+    </div>
+
+    <div class="rgrid">
+      <article class="rcard" data-cat="r">
+        <div class="rcard-cover"><image-slot id="rep-1" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Reports</span><span class="pill pill-quiet">August 2026</span><span class="rcard-date">Sep 2, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">Fluid in August 2026: everyone grew, so growth is the wrong question</a></h3>
+          <p>Deposits up 4.5%, sector median up 7.0%, and an efficiency decline that reverses once you strip out the incentive spend.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="r">
+        <div class="rcard-cover"><image-slot id="rep-2" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Reports</span><span class="pill pill-quiet">June + July 2026</span><span class="rcard-date">Sep 2, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">Spark in August 2026: every asset line grew, every earnings line fell</a></h3>
+          <p>Deposits up 10.9%, net revenue down 26.0%, and a spread that closed the month at six basis points.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="r">
+        <div class="rcard-cover"><image-slot id="rep-3" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Reports</span><span class="pill pill-quiet">July 2026</span><span class="rcard-date">Aug 17, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">The State of Composable Real-World Assets: June and July 2026</a></h3>
+          <p>Tokenising a real-world asset is easy. Using it is the test. Two months of on-chain data on whether it is being used.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="r">
+        <div class="rcard-cover"><image-slot id="rep-4" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Reports</span><span class="pill pill-quiet">June 2026</span><span class="rcard-date">Aug 5, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">The State of Lending on Ethereum, July 2026</a></h3>
+          <p>Aave V3 was the only major Ethereum lending protocol to grow in July. The other five netted an outflow.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="r">
+        <div class="rcard-cover"><image-slot id="rep-5" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Reports</span><span class="pill pill-quiet">May + June 2026</span><span class="rcard-date">Jul 6, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">The State of Lending on Ethereum, June 2026</a></h3>
+          <p>Aave V3 grew $845 million in June while its USDC book contracted. The paradox of consolidation under one roof.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="r">
+        <div class="rcard-cover"><image-slot id="rep-6" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Reports</span><span class="pill pill-quiet">May 2026</span><span class="rcard-date">Jul 2, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">The State of Lending on Sui, May and June 2026</a></h3>
+          <p>Borrowers left in May. Suppliers left in June. Two months of Sui lending data across five protocols.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="r">
+        <div class="rcard-cover"><image-slot id="rep-7" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Reports</span><span class="pill pill-quiet">April 2026</span><span class="rcard-date">Jun 7, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">The State of Lending on Ethereum, May 2026</a></h3>
+          <p>LRT collateral left, BTC collateral arrived, and Ethereum lending yields matched T-bills for the first time in eighteen months.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="r">
+        <div class="rcard-cover"><image-slot id="rep-8" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Reports</span><span class="rcard-date">May 7, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">The State of Lending on Ethereum, April 2026</a></h3>
+          <p>A bridge exploit, a $14.67B Aave outflow, and a bad debt question that April did not settle.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="a">
+        <div class="rcard-cover"><image-slot id="rep-9" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Articles</span><span class="rcard-date">Aug 14, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">Tokenising a real-world asset is easy. Using it is the hard part.</a></h3>
+          <p>A preview of our June and July on-chain data on whether tokenised assets are actually being used as collateral.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="a">
+        <div class="rcard-cover"><image-slot id="rep-10" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Articles</span><span class="rcard-date">Jun 16, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">How Centrifuge is making tokenised RWAs composable</a></h3>
+          <p>The tokenised RWA market has reached $30 billion in distributed asset value. Composability is the constraint.</p>
+        </div>
+      </article>
+      <article class="rcard" data-cat="a">
+        <div class="rcard-cover"><image-slot id="rep-11" shape="rect" placeholder="Drop cover"></image-slot></div>
+        <div class="rcard-body">
+          <div class="rcard-meta"><span class="pill">Articles</span><span class="rcard-date">Jun 16, 2026</span></div>
+          <h3><a class="rcard-link" href="https://www.datumlab.xyz/" target="_blank" rel="noopener">The four plumbing problems of tokenised finance</a></h3>
+          <p>Tokenised real-world assets have reached $29.3 billion in on-chain market cap. Four problems still sit in the pipes.</p>
+        </div>
+      </article>
+    </div>
+    <div class="rmore"><button type="button" class="btn btn-stack" id="rmore">Load more</button></div>
+
+  </div>
+</section></main>
+
+
+<footer class="footer dark-band" data-nav-dark data-theme="dark">
+  <div class="band-rules" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a href="index-v2.html" class="brand footer-logo" aria-label="Datum Labs">
+          <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+          <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+        </a>
+        <p class="blurb" style="color:var(--dim)">Datum Labs is a financial data and reporting service for blockchain protocols. Numbers you can defend in public.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/Datumlabs_" target="_blank" rel="noopener" aria-label="X"><i class="ph-duotone ph-x-logo" aria-hidden="true"></i><span>X</span></a>
+          <a href="https://www.linkedin.com/showcase/dat-umlab/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph-duotone ph-linkedin-logo" aria-hidden="true"></i><span>LinkedIn</span></a>
+          <a href="mailto:hello@datumlab.xyz" aria-label="Email"><i class="ph-duotone ph-envelope-simple" aria-hidden="true"></i><span>Email</span></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>WORK</h3>
+        <ul>
+          <li><a href="research.html">Research, all published work</a></li>
+          <li><a href="platform.html">Atlas</a></li>
+          <li><a href="live-dashboards.html">Dashboards</a></li>
+          <li><a href="case-study-moonwell-oev.html">Moonwell OEV</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>COMPANY</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DATUM LABS</span>
+      <span>FINANCIAL DATA AND REPORTING FOR BLOCKCHAIN PROTOCOLS</span>
+      <span>X @DATUMLABS_</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/image-slot.js"></script>
+<script src="js/site.js"></script>
+<script src="js/forms.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/nav-drop.js"></script>
+<script src="js/nav-theme.js"></script>
+<script src="js/dither.js"></script>
+<script id="reports-filter">
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.rtab'));
+  var cards=[].slice.call(document.querySelectorAll('.rgrid .rcard'));
+  var feature=document.querySelector('.rfeature');
+  var more=document.getElementById('rmore');
+  var PAGE=6, shown=PAGE, filter='all', loads=0, MAX_LOADS=1;
+  function render(){
+    var match=cards.filter(function(c){return filter==='all'||c.dataset.cat===filter});
+    cards.forEach(function(c){c.hidden=true});
+    match.slice(0,shown).forEach(function(c){c.hidden=false});
+    
+    more.parentNode.hidden = match.length<=shown || loads>=MAX_LOADS;
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){
+    filter=b.dataset.filter; shown=PAGE; loads=0;
+    tabs.forEach(function(x){var on=x===b;x.classList.toggle('is-on',on);x.setAttribute('aria-pressed',on?'true':'false')});
+    render();
+  })});
+  more.addEventListener('click',function(){shown+=PAGE;loads++;render()});
+  render();
+})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#F5F7FA">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F7FA"/>
+    <text x="600" y="460" font-family="Georgia,'Source Serif 4',serif" font-size="320" font-weight="600" fill="#4A6CF7" text-anchor="middle">D</text>
+    <text x="600" y="650" font-family="monospace" font-size="34" letter-spacing="12" fill="#03072D" text-anchor="middle">DATUM LABS</text>
+  </svg>
+</template>
+</body>
+</html>

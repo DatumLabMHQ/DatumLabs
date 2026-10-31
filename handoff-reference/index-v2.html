@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Datum Labs, financial data and reporting for blockchain protocols</title>
+<meta name="description" content="Datum Labs is a financial data and reporting service for blockchain protocols. We tell you what your protocol earned, paid out, spent and kept last month, and what it means.">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/colors.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/typography.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/datum-labs-design-system-v2-a58469e8-5deb-4a28-9a92-4bbc8310605d/tokens/charts.css">
+<link rel="stylesheet" href="css/site-v2.css">
+<link rel="stylesheet" href="css/site-brand.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<style>
+.brand .nav-logo-lockup{display:flex;align-items:center;gap:10px}
+.nav-logo-lockup img{height:26px;width:auto;display:block}
+.nav-logo-lockup .logo-white{display:none}
+.footer-logo img{height:30px;width:auto;display:block}
+.footer-logo .logo-white{display:none}
+</style>
+</head>
+<body class="home">
+<div class="page-rules" aria-hidden="true"><i></i><i></i></div>
+
+<nav class="nav is-dark">
+  <a href="index-v2.html" class="brand" data-logo="lockup">
+    <span class="nav-logo-lockup">
+      <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+      <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+    </span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link-top" href="services.html">Services</a>
+    <div class="nav-drop">
+      <button type="button" aria-expanded="false" aria-haspopup="true">Resources <i class="ph-fill ph-caret-down caret" aria-hidden="true"></i></button>
+      <div class="nav-menu">
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Research</p>
+          <a href="research.html"><span class="t">Datum Reports</span><span class="d">Monthly State of Lending and published analysis.</span></a>
+          <a href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener"><span class="t">W3GM Podcast <span class="ext">↗</span></span><span class="d">Conversations with builders across web3.</span></a>
+        </div>
+        <div class="nav-menu-col">
+          <p class="nav-menu-h">Products</p>
+          <a href="https://onchainsuite.xyz" target="_blank" rel="noopener"><span class="t">OnchainSuite <span class="ext">↗</span></span><span class="d">Protocol analytics, owned and versioned.</span></a>
+          <a href="https://setnel.xyz" target="_blank" rel="noopener"><span class="t">Setnel <span class="ext">↗</span></span><span class="d">Onchain monitoring and alerting.</span></a>
+          <a href="platform.html"><span class="t">Atlas</span><span class="d">The pipeline behind every number we publish.</span></a>
+        </div>
+      </div>
+    </div>
+    <a class="nav-link-top" href="live-dashboards.html">Dashboards</a>
+    <a class="nav-link-top" href="about.html">About</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn btn-primary" href="contact.html">Contact us</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-progress"></div>
+</nav>
+
+<div class="nav-mobile" id="navMobile" hidden>
+  <div class="nav-mobile-group">
+    <a href="services.html">Services</a>
+    <a href="live-dashboards.html">Dashboards</a>
+    <a href="about.html">About</a>
+    <p class="nav-mobile-h">Research</p>
+    <a class="nav-mobile-sub" href="research.html">Datum Reports</a>
+    <a class="nav-mobile-sub" href="https://creators.spotify.com/pod/profile/w3gm/" target="_blank" rel="noopener">W3GM Podcast ↗</a>
+    <p class="nav-mobile-h">Products</p>
+    <a class="nav-mobile-sub" href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a>
+    <a class="nav-mobile-sub" href="https://setnel.xyz" target="_blank" rel="noopener">Setnel ↗</a>
+    <a class="nav-mobile-sub" href="platform.html">Atlas</a>
+  </div>
+  <a class="btn btn-primary nav-mobile-cta" href="contact.html">Contact us</a>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" data-nav-dark data-theme="dark">
+  <div class="hero-bg">
+    <video class="hero-video" src="brand/hero-loop.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-split">
+      <h1 class="spaced" data-anim-words>Financial data and reporting for blockchain protocols.</h1>
+      <div class="hero-aside">
+        <p class="lede">What your protocol earned, paid out, spent and kept last month. Every figure traceable to the run behind it.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="contact.html">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROTOCOL ROSTER -->
+<section class="section" id="roster">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="spaced">Protocols we&rsquo;ve analysed.</h2>
+        <p>Eight modelled hourly in Atlas. The rest written up in public.</p>
+    </div>
+    <div class="cells cells-5">
+      <div class="logo-cell"><img src="assets/aave-logo.png" alt="Aave"><span>Aave</span></div>
+      <div class="logo-cell"><img src="assets/logo-6.png" alt="Moonwell"><span>Moonwell</span></div>
+      <div class="logo-cell"><img src="assets/logo-3.png" alt="Morpho"><span>Morpho</span></div>
+      <div class="logo-cell"><img src="assets/navi-logo.png" alt="NAVI"><span>NAVI</span></div>
+      <div class="logo-cell"><img src="assets/sparklend-logo.png" alt="SparkLend"><span>SparkLend</span></div>
+      <div class="logo-cell"><img src="assets/cow-logo.png" alt="CoW Protocol"><span>CoW Protocol</span></div>
+      <div class="logo-cell"><img src="assets/logo-5.png" alt="Seamless"><span>Seamless</span></div>
+      <div class="logo-cell"><img src="assets/logo-7.png" alt="Venus"><span>Venus</span></div>
+      <div class="logo-cell"><img src="assets/level-logo.png" alt="Level"><span>Level</span></div>
+      <div class="logo-cell"><img src="assets/logo-1.png" alt="Falcon Finance"><span>Falcon Finance</span></div>
+      <div class="logo-cell"><img src="assets/onchain-labs-logo.png" alt="Onchain Labs"><span>Onchain Labs</span></div>
+      <div class="logo-cell"><img src="assets/incentiv-logo.png" alt="Incentiv"><span>Incentiv</span></div>
+      <div class="logo-cell"><img src="assets/orbt-logo.svg" alt="ORBT"><span>ORBT</span></div>
+      <div class="logo-cell"><img src="assets/goldfish-logo.png" alt="Goldfish"><span>Goldfish</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE GAP -->
+<section class="section" id="net" data-pin data-pin-top data-nav-dark data-theme="dark">
+  <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+  <div class="wrap">
+    <div class="lead-split">
+      <h2 class="spaced">You know your TVL. You probably don&rsquo;t know your net.</h2>
+      <div class="prose">
+        <p>You earn interest, pay most of it to suppliers, and spend tokens to pull deposits in. Those numbers sit in three places and nobody reconciles them.</p>
+        <p>Ask whether you made money on Base last quarter and the honest answer is a guess. We add it up monthly, by chain and by market.</p>
+        <p>Then the part that matters: which markets carry you, which cost you money, and what last quarter&rsquo;s rewards actually bought.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF as bordered cells -->
+<section class="section tint" id="proof">
+  <div class="wrap">
+    <div class="proof-head">
+      <h2 class="spaced">Numbers you can defend in public.</h2>
+      <p>Five things you can hold us to, on the record, every month.</p>
+    </div>
+    <div class="pcards">
+      <div class="pcard">
+        <span class="svc-ic"><i class="ph-duotone ph-clock" aria-hidden="true"></i></span>
+        <h3>We model every hour</h3>
+        <p>Eight protocols, fourteen chains, rebuilt hourly in Atlas.</p>
+      </div>
+      <div class="pcard">
+        <span class="svc-ic"><i class="ph-duotone ph-path" aria-hidden="true"></i></span>
+        <h3>Every figure is traceable</h3>
+        <p>Every number resolves to the query, the run and the date it was true.</p>
+      </div>
+      <div class="pcard">
+        <span class="svc-ic"><i class="ph-duotone ph-newspaper" aria-hidden="true"></i></span>
+        <h3>We publish first</h3>
+        <p>State of Lending is free, monthly, shown against the public trackers.</p>
+      </div>
+      <div class="pcard">
+        <span class="svc-ic"><i class="ph-duotone ph-users-three" aria-hidden="true"></i></span>
+        <h3>You know who we are</h3>
+        <p>Named people, not an account team. Our delegate role is disclosed.</p>
+      </div>
+      <div class="pcard">
+        <span class="svc-ic"><i class="ph-duotone ph-seal-check" aria-hidden="true"></i></span>
+        <h3>We correct in public</h3>
+        <p>Wrong figures are fixed in one working day, wherever the original went.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services" data-nav-light>
+  <div class="wrap">
+    <div class="who-plate who-plate-centre" data-theme="dark">
+      <img class="band-bg" src="brand/faq-bg.jpg" alt="" aria-hidden="true">
+      <div class="who-plate-inner">
+        <h2>Three services.</h2>
+        <p>One gets your token accepted as collateral. One closes your books every month. One runs the whole finance function.</p>
+      </div>
+    </div>
+    <div class="cells cells-3 who-cells">
+      <a class="cell" href="collateral-file.html">
+        <h3><span class="ic"><i class="ph-duotone ph-shield-check" aria-hidden="true"></i></span><span class="cell-name">Collateral File</span><i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+        <p>The file a lending market&rsquo;s risk team wants to read before accepting your token as collateral, with the live asset page behind it.</p>
+      </a>
+      <a class="cell" href="management-accounts.html">
+        <h3><span class="ic"><i class="ph-duotone ph-receipt" aria-hidden="true"></i></span><span class="cell-name">Management Accounts</span><i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+        <p>Your accounts every month: earned, paid out, spent on incentives, kept, by chain and by market.</p>
+      </a>
+      <a class="cell" href="fpa-desk.html">
+        <h3><span class="ic"><i class="ph-duotone ph-compass" aria-hidden="true"></i></span><span class="cell-name">FP&amp;A Desk</span><i class="ph ph-arrow-right svc-go" aria-hidden="true"></i></h3>
+        <p>Everything in Management Accounts, plus targets, budget against actual, every campaign scored, and a weekly call.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ, dark -->
+<section class="section tint" id="faq" data-nav-light>
+  <div class="wrap" style="position:relative">
+    <div class="faq-split">
+      <h2 class="faq-label">FAQ</h2>
+      <div class="faq">
+        <div class="faq-item open">
+          <button class="faq-q" aria-expanded="true">What exactly do I get each month?<span class="faq-mark"><i class="ph ph-plus" aria-hidden="true"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>A one-page P&amp;L: earned, paid out, spent on incentives, kept, by chain and by market. Alongside it, two to four pages reading the movement.</p>
+            <p>Plus a live page, rebuilt hourly, and a named analyst on a monthly call.</p>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What happens when someone disputes a number?<span class="faq-mark"><i class="ph ph-plus" aria-hidden="true"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>A written answer the same working day, with both figures and the reason for the gap. Usually it is scope: what counts as revenue, whether incentives are netted, which chains are in.</p>
+            
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Why do your numbers differ from the public trackers?<span class="faq-mark"><i class="ph ph-plus" aria-hidden="true"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>We map every market, vault and reserve to the protocol that owns it before attributing revenue. Most trackers skip that step, so their splits disagree on multi-chain deployments and curated vaults.</p>
+            <p>We never hide the difference. Every published figure carries the tracker figure beside it.</p>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What happens to my page if I stop working with you?<span class="faq-mark"><i class="ph ph-plus" aria-hidden="true"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>It stays up, with your history in it, frozen at the last month we closed. The page is yours.</p>
+            <p>What you give up is us: the monthly close, the reading, and the numbers kept current.</p>
+          </div></div>
+        </div>
+        
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<footer class="footer dark-band" data-nav-dark data-theme="dark">
+  <div class="band-rules" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a href="index-v2.html" class="brand footer-logo" aria-label="Datum Labs">
+          <img class="logo-color" src="brand/logo-horizontal-color.svg" alt="Datum Labs">
+          <img class="logo-white" src="brand/logo-horizontal-white.svg" alt="Datum Labs">
+        </a>
+        <p class="blurb" style="color:var(--dim)">Datum Labs is a financial data and reporting service for blockchain protocols. Numbers you can defend in public.</p>
+        <div class="footer-socials">
+          <a href="https://x.com/Datumlabs_" target="_blank" rel="noopener" aria-label="X"><i class="ph-duotone ph-x-logo" aria-hidden="true"></i><span>X</span></a>
+          <a href="https://www.linkedin.com/showcase/dat-umlab/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph-duotone ph-linkedin-logo" aria-hidden="true"></i><span>LinkedIn</span></a>
+          <a href="mailto:hello@datumlab.xyz" aria-label="Email"><i class="ph-duotone ph-envelope-simple" aria-hidden="true"></i><span>Email</span></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>WORK</h3>
+        <ul>
+          <li><a href="research.html">Research, all published work</a></li>
+          <li><a href="platform.html">Atlas</a></li>
+          <li><a href="live-dashboards.html">Dashboards</a></li>
+          <li><a href="case-study-moonwell-oev.html">Moonwell OEV</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>COMPANY</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://onchainsuite.xyz" target="_blank" rel="noopener">OnchainSuite ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DATUM LABS</span>
+      <span>FINANCIAL DATA AND REPORTING FOR BLOCKCHAIN PROTOCOLS</span>
+      <span>X @DATUMLABS_</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/image-slot.js"></script>
+<script src="js/site.js"></script>
+<script src="js/parallax.js"></script>
+<script src="js/nav-drop.js"></script>
+<script src="js/nav-theme.js"></script>
+<script src="js/dither.js"></script>
+<script src="js/faq.js"></script>
+<script>
+/* Autoplay can be refused or suspended (backgrounded tab, iOS). Nudge it. */
+(function(){var v=document.querySelector('.hero-video');if(!v)return;
+function go(){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+v.addEventListener('canplay',go);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)go();});
+go();})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#F5F7FA">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F7FA"/>
+    <text x="600" y="460" font-family="Georgia,'Source Serif 4',serif" font-size="320" font-weight="600" fill="#4A6CF7" text-anchor="middle">D</text>
+    <text x="600" y="650" font-family="monospace" font-size="34" letter-spacing="12" fill="#03072D" text-anchor="middle">DATUM LABS</text>
+  </svg>
+</template>
+</body>
+</html>

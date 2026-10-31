@@ -4,7 +4,7 @@ import { Chart } from "@/components/mdx/report-components/chart"
 
 /**
  * Component map available inside report MDX. Standard markdown (h2, p, ul,
- * table, blockquote, code…) is styled by `.report-body` in ds-v2.css.
+ * table, blockquote, code…) is styled by `.report-body` in app/v3/report-body.css.
  *
  * ───────────────────────────────────────────────────────────────────────────
  * ADDING YOUR OWN COMPONENT (full autonomy — no one else needed):

@@ -1,10 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "./ds-v2.css";
+@import "./v3/tokens.css";
+@import "./v3/site-v2.css";
+@import "./v3/site-brand.css";
+@import "./v3/report-body.css";
+@import "./v3/adaptations.css";
 
 /* ============================================================
-   Datum Labs Design System v2 — tokens (light-mode only)
-   Primitive ramps → semantic aliases. Ported from _ds/tokens/*.
+   Datum Labs v3 — redesign layer order:
+   tokens.css      design-system tokens, theme-scoped (light/dark bands)
+   site-v2.css     component layer from the redesign handoff
+   site-brand.css  brand discipline layer (loads last, wins ties)
+   report-body.css MDX report article styles carried over from v2
+   Primitive color ramps + the shadcn bridge live below (the
+   Resources browser, report gate and newsletter use shadcn/ui).
    ============================================================ */
 :root {
   font-size: 16px;
@@ -27,63 +36,13 @@
 
   --green-500: #1FA463; --red-500: #E5484D; --amber-500: #F59E0B; --cyan-500: #0EA5E9;
 
-  /* Semantic — light */
-  --bg-base: var(--neutral-50);
-  --surface-default: var(--neutral-0);
-  --surface-raised: var(--neutral-0);
-  --surface-sunken: var(--neutral-50);
-  --surface-hover: var(--neutral-100);
   --surface-brand: var(--sapphire-500);
-  --surface-brand-subtle: var(--sapphire-50);
-  --surface-inverse: var(--neutral-900);
-
-  --text-primary: var(--neutral-900);
-  --text-secondary: var(--neutral-600);
-  --text-tertiary: var(--neutral-500);
-  --text-brand: var(--sapphire-700);
-  --text-on-brand: var(--neutral-0);
-  --text-inverse: var(--neutral-50);
-
-  --border-subtle: var(--neutral-200);
-  --border-default: var(--neutral-300);
-  --border-strong: var(--neutral-400);
-  --border-brand: var(--sapphire-500);
-
-  --action-primary: var(--sapphire-500);
-  --action-primary-hover: var(--sapphire-600);
-  --action-secondary: var(--neutral-0);
-  --action-secondary-hover: var(--neutral-100);
-
-  /* Radii */
-  --radius-none: 0px; --radius-xs: 4px; --radius-sm: 6px; --radius-md: 8px;
-  --radius-lg: 12px; --radius-xl: 16px; --radius-2xl: 24px; --radius-full: 9999px;
-
-  /* Shadows (light) */
-  --shadow-xs: 0 1px 2px rgba(11,14,22,0.06);
-  --shadow-sm: 0 1px 3px rgba(11,14,22,0.08), 0 1px 2px rgba(11,14,22,0.04);
-  --shadow-md: 0 4px 12px rgba(11,14,22,0.08), 0 2px 4px rgba(11,14,22,0.04);
-  --shadow-lg: 0 12px 28px rgba(11,14,22,0.12), 0 4px 8px rgba(11,14,22,0.05);
-  --shadow-xl: 0 24px 48px rgba(11,14,22,0.16), 0 8px 16px rgba(11,14,22,0.06);
-  --ring-focus: 0 0 0 3px rgba(74,108,247,0.35);
 
   /* Fonts (next/font vars set in layout.tsx) */
   --font-display: var(--font-serif), "Source Serif 4", Georgia, serif;
 
-  /* Legacy aliases used by the ported component CSS */
-  --bg: var(--bg-base);
-  --bg-2: var(--surface-default);
-  --bg-3: var(--sapphire-50);
-  --fg: var(--text-primary);
-  --dim: var(--text-tertiary);
-  --line: var(--border-subtle);
-  --hairline: var(--neutral-100);
-  --hover-bg: var(--neutral-100);
-  --flag: var(--sapphire-500);
-  --on-flag: #ffffff;
-  --ink: var(--text-primary);
-
-  /* ---- shadcn tokens, remapped to the v2 palette (keeps Resources/gate/
-     newsletter/Button components working with the new look) ---- */
+  /* ---- shadcn tokens, mapped to the brand palette (keeps Resources/gate/
+     newsletter/Button components working inside the new look) ---- */
   --background: var(--neutral-50);
   --foreground: var(--neutral-900);
   --card: var(--neutral-0);

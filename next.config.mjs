@@ -54,6 +54,10 @@ const nextConfig = {
         destination: 'https://www.datumlab.xyz/:path*',
         permanent: true,
       },
+      // v3 IA: the Resources hub and reports index merged into /research.
+      // Report and blog DETAIL urls are unchanged (inbound links keep working).
+      { source: '/resources', destination: '/research', permanent: true },
+      { source: '/resources/reports', destination: '/research', permanent: true },
     ];
   },
 }

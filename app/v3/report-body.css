@@ -1,0 +1,85 @@
+/* Report article styles (MDX report pages + gate) — carried over from ds-v2.css. */
+.report-body { font-size: 16px; line-height: 1.7; color: var(--text-secondary); }
+.report-body h2 { font-family: var(--font-display); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 14px; line-height: 1.15; color: var(--text-primary); }
+.report-body h3 { font-family: var(--font-sans); font-size: 20px; font-weight: 600; margin: 32px 0 10px; color: var(--text-primary); }
+.report-body p { margin: 0 0 16px; }
+.report-body ul, .report-body ol { padding-left: 20px; margin: 0 0 16px; }
+.report-body li { margin: 4px 0; }
+.report-body strong { color: var(--text-primary); font-weight: 600; }
+.report-body a { color: var(--text-brand); border-bottom: 1px solid transparent; transition: border-color 150ms; }
+.report-body a:hover { border-bottom-color: var(--text-brand); }
+.report-body blockquote { border-left: 3px solid var(--border-brand); padding: 8px 0 8px 20px; margin: 24px 0; font-style: italic; color: var(--text-secondary); }
+.report-body code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-sunken); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1px 5px; }
+.report-body pre { background: var(--surface-sunken); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; overflow: auto; margin: 0 0 20px; }
+.report-body pre code { background: none; border: 0; padding: 0; }
+.report-body table { width: 100%; border-collapse: collapse; margin: 0 0 24px; font-size: 14px; }
+.report-body th, .report-body td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border-subtle); }
+.report-body th { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); }
+.report-body img { max-width: 100%; height: auto; border-radius: var(--radius-md); }
+.rpt-callout { border: 1px solid var(--border-subtle); border-left: 3px solid var(--border-brand); border-radius: var(--radius-md); background: var(--surface-sunken); padding: 16px 18px; margin: 24px 0; font-size: 15px; }
+.rpt-callout-brand { border-left-color: var(--action-primary); background: var(--surface-brand-subtle); }
+.rpt-callout-warn { border-left-color: var(--amber-500); }
+.rpt-callout-t { font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+.rpt-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: 24px 0; }
+.rpt-kpi { border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); background: var(--surface-sunken); padding: 20px; }
+.rpt-kpi-v { font-family: var(--font-display); font-size: 32px; font-weight: 600; color: var(--text-brand); letter-spacing: -0.02em; }
+.rpt-kpi-l { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); margin-top: 6px; }
+.rpt-kpi-s { font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5; }
+.rpt-figure { margin: 24px 0; }
+.rpt-figure img { width: 100%; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+.rpt-figure figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 8px; text-align: center; }
+@media (max-width: 700px) { .rpt-kpis { grid-template-columns: 1fr; } }
+
+/* Legal / prose pages (privacy, terms) */
+/* ─── legal / prose pages ─── */
+.legal { max-width: 760px; padding: 8px 0 40px; }
+.legal h2 { font-family: var(--font-display); font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin: 40px 0 12px; color: var(--text-primary); }
+.legal h2:first-child { margin-top: 0; }
+.legal p, .legal li { font-size: 16px; line-height: 1.7; color: var(--text-secondary); }
+.legal p { margin: 0 0 16px; }
+.legal ul { padding-left: 20px; margin: 0 0 16px; }
+.legal a { color: var(--text-brand); border-bottom: 1px solid transparent; transition: border-color 150ms; }
+.legal a:hover { border-bottom-color: var(--text-brand); }
+.legal .updated { font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Skip link + visible focus */
+.skip-link {
+  position: absolute; left: -9999px; top: 8px; z-index: 100;
+  background: var(--action-primary); color: #fff;
+  padding: 10px 16px; border-radius: var(--radius-md);
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+}
+.skip-link:focus { left: 16px; }
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible, input:focus-visible {
+  outline: 2px solid var(--action-primary); outline-offset: 2px; border-radius: 4px;
+}
+
+/* Dune index page (public dashboards grid + spotlight CTA) — carried over from ds-v2.css. */
+/* ─── cta spotlight ─── */
+.spotlight { position: relative; overflow: hidden; border: none; padding: 64px 56px; border-radius: var(--radius-2xl); box-shadow: var(--shadow-lg); background: #00095c url('/brand/gradient-sapphire-to-navy.png') center/cover no-repeat; }
+.spotlight, .spotlight .spotlight-inner h2 { color: #ffffff !important; }
+.spotlight .spotlight-inner p { color: rgba(245,247,250,0.85) !important; }
+.spotlight .btn-flag { background: #ffffff; color: var(--navy-700); border-color: #ffffff; }
+.spotlight .btn-flag:hover { background: var(--sapphire-400); color: #ffffff; border-color: var(--sapphire-400); transform: translateY(-1px); }
+.spotlight-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: center; }
+.spotlight-inner h2 { font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.025em; font-weight: 600; margin: 0; text-wrap: balance; }
+.spotlight-inner p { font-size: 16px; margin: 16px 0 0; max-width: 560px; line-height: 1.6; }
+.spotlight-inner .btn { height: 52px; padding: 0 30px; font-size: 14px; }
+@media (max-width: 900px) { .spotlight { padding: 36px 28px; } .spotlight-inner { grid-template-columns: 1fr; gap: 28px; } }
+/* ─── filter bar + dune grid ─── */
+.filter-bar { display: flex; gap: 8px; flex-wrap: wrap; padding: 24px 0; border-bottom: 1px solid var(--border-subtle); }
+.filter-chip { padding: 7px 16px; border: 1px solid var(--border-default); border-radius: var(--radius-full); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-tertiary); background: var(--surface-default); cursor: pointer; transition: background 150ms, color 150ms, border-color 150ms; }
+.filter-chip:hover { color: var(--text-primary); border-color: var(--border-strong); }
+.filter-chip.active { background: var(--action-primary); color: #fff; border-color: var(--action-primary); }
+.dune-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.dune-card { display: flex; flex-direction: column; gap: 14px; padding: 24px; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); background: var(--surface-default); box-shadow: var(--shadow-sm); text-decoration: none; color: inherit; min-height: 220px; transition: box-shadow 150ms, border-color 150ms, transform 150ms; }
+.dune-card:hover { box-shadow: var(--shadow-md); border-color: var(--border-brand); transform: translateY(-2px); }
+.dune-card .row1 { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.04em; text-transform: uppercase; }
+.dune-card .row1 .flag { color: var(--text-brand); }
+.dune-card h3 { font-family: var(--font-sans); font-size: 20px; font-weight: 600; margin: 0; letter-spacing: -0.02em; line-height: 1.25; color: var(--text-primary); }
+.dune-card p { font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.55; }
+.dune-card .arrow { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: auto; border-top: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-tertiary); transition: color 150ms; }
+.dune-card:hover .arrow { color: var(--text-brand); }
+@media (max-width: 1024px) { .dune-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .dune-grid { grid-template-columns: 1fr; } }
+

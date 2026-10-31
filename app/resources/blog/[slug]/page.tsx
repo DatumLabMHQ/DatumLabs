@@ -4,8 +4,7 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteBackground, SiteFooter } from "@/components/site-background"
+import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
 import { RichText } from "@/components/portable-text"
 import { sanityFetch } from "@/sanity/lib/client"
 import { postBySlugQuery, postSlugsQuery } from "@/sanity/lib/queries"
@@ -86,8 +85,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      <SiteBackground />
-      <SiteNav active="Resources" />
+      <PageRules />
+      <NavV3 active="research" />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
@@ -146,7 +145,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </article>
       </main>
 
-      <SiteFooter />
+      <FooterV3 />
     </div>
   )
 }
