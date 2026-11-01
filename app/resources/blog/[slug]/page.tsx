@@ -1,10 +1,7 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import Image from "next/image"
 import { notFound } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
 
-import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
+import { Nav, Footer, PageHead, CloseCta } from "@/components/print/print-parts"
 import { RichText } from "@/components/portable-text"
 import { sanityFetch } from "@/sanity/lib/client"
 import { postBySlugQuery, postSlugsQuery } from "@/sanity/lib/queries"
@@ -84,68 +81,54 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      <PageRules />
-      <NavV3 active="research" />
+    <>
+      <Nav active="research" />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main id="main" className="relative px-6 lg:px-12 py-16">
-        <article className="max-w-3xl mx-auto">
-          <Link
-            href="/resources/blog"
-            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary mb-8"
-          >
-            <ArrowLeft className="h-4 w-4" /> Back to Blog
-          </Link>
+      <main id="main">
+        <PageHead
+          compact
+          crumb={{ href: "/research", label: "Research" }}
+          title={post.title}
+          meta={
+            <>
+              {post.categories?.map((c) => (
+                <span key={c.slug}>
+                  <b>{c.title}</b>
+                </span>
+              ))}
+              <span>Published <b>{formatDate(post.publishedAt)}</b></span>
+              {post.author ? (
+                <span>
+                  By <b>{post.author.name}</b>
+                  {post.author.role ? `, ${post.author.role}` : null}
+                </span>
+              ) : null}
+            </>
+          }
+        />
 
-          <div className="flex items-center gap-2 mb-4 flex-wrap">
-            {post.categories?.map((c) => (
-              <span key={c.slug} className="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                {c.title}
-              </span>
-            ))}
-            <span className="text-sm text-muted-foreground">{formatDate(post.publishedAt)}</span>
-          </div>
-
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 text-balance">{post.title}</h1>
-
-          {post.author ? (
-            <div className="flex items-center gap-3 mb-8 pb-8 border-b border-border">
-              {post.author.image ? (
-                <Image
-                  src={urlFor(post.author.image).width(80).height(80).fit("crop").url()}
-                  alt={post.author.name}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
+        <section className="sp-section sp-report">
+          <div className="sp-wrap">
+            <article className="sp-sheet sp-report-sheet">
+              {post.mainImage ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={urlFor(post.mainImage).width(1280).height(720).fit("crop").auto("format").url()}
+                  alt={post.title}
+                  className="sp-report-cover"
                 />
               ) : null}
-              <div>
-                <div className="text-sm font-medium">{post.author.name}</div>
-                {post.author.role ? <div className="text-xs text-muted-foreground">{post.author.role}</div> : null}
-              </div>
-            </div>
-          ) : null}
-
-          {post.mainImage ? (
-            <Image
-              src={urlFor(post.mainImage).width(1280).height(720).fit("crop").auto("format").url()}
-              alt={post.title}
-              width={1280}
-              height={720}
-              priority
-              className="rounded-2xl border border-border w-full h-auto mb-10"
-            />
-          ) : null}
-
-          <div className="text-lg">
-            <RichText value={post.body} />
+              <RichText value={post.body} />
+            </article>
           </div>
-        </article>
+        </section>
+
+        <CloseCta />
       </main>
 
-      <FooterV3 />
-    </div>
+      <Footer />
+    </>
   )
 }

@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
 import Script from "next/script"
-import { Mailbox } from "@phosphor-icons/react/dist/ssr"
 
-import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
+import { Nav, Footer, PageHead } from "@/components/print/print-parts"
 import { sanityFetch } from "@/sanity/lib/client"
 import { allResourcesQuery } from "@/sanity/lib/queries"
 import { urlFor } from "@/sanity/lib/image"
@@ -47,14 +46,21 @@ function fmtDate(d?: string) {
   return isNaN(t.getTime()) ? "" : t.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
 }
 
-function Cover({ e, ratio = false }: { e: Entry; ratio?: boolean }) {
-  const img = e.coverUrl ? (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={e.coverUrl} alt="" loading="lazy" />
-  ) : (
-    <div className="rcard-ph" aria-hidden="true" />
+function Cover({ e }: { e: Entry }) {
+  return (
+    <div className="sp-cover-img">
+      {e.coverUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={e.coverUrl} alt="" loading="lazy" />
+      ) : (
+        <div className="sp-cover-ph" aria-hidden="true" />
+      )}
+    </div>
   )
-  return ratio ? <div className="rfeature-ratio">{img}</div> : img
+}
+
+function kind(e: Entry) {
+  return e.cat === "r" ? "Report" : "Article"
 }
 
 export default async function ResearchPage() {
@@ -90,89 +96,96 @@ export default async function ResearchPage() {
 
   return (
     <>
-      <PageRules />
-      <NavV3 active="research" navDark={false} />
+      <Nav active="research" />
 
       <main id="main">
-        <h1 className="sr-only">Research</h1>
-        <section className="section" id="latest" data-nav-light>
-          <div className="wrap">
-            <div className="rhero-row">
-              {featured ? (
-                <article className="rfeature rhero" data-cat={featured.cat}>
-                  <div className="rfeature-cover"><Cover e={featured} ratio /></div>
-                  <div className="rfeature-body">
-                    <div className="rcard-meta">
-                      <span className="pill">{featured.cat === "r" ? "Reports" : "Articles"}</span>
-                      {featured.period ? <span className="pill pill-quiet">{featured.period}</span> : null}
-                      <span className="rcard-date">{fmtDate(featured.publishedAt)}</span>
-                    </div>
-                    <h2><a className="rcard-link" href={featured.href}>{featured.title}</a></h2>
-                    {featured.excerpt ? <p>{featured.excerpt}</p> : null}
+        <PageHead
+          title={
+            <>
+              Research, <em>in public.</em>
+            </>
+          }
+          lede="Monthly State of Lending, protocol P&L reads, and what the public trackers miss. Every figure traceable to the run behind it."
+        >
+          <form
+            className="sp-research-sub"
+            data-form
+            data-endpoint="/api/subscribe"
+            data-subject="Subscribe to research"
+            data-done="You are on the list."
+          >
+            <label className="sr-only" htmlFor="research-email">Email</label>
+            <input id="research-email" type="email" name="email" placeholder="Your email, for the monthly issue" required autoComplete="email" />
+            <button type="submit" className="sp-btn sp-btn-primary">Subscribe</button>
+          </form>
+          <p className="sp-small" style={{ marginTop: 10 }}>Monthly. No spam, unsubscribe any time.</p>
+        </PageHead>
+
+        {featured ? (
+          <section className="sp-section" id="latest">
+            <div className="sp-wrap">
+              <a className="sp-cover sp-cover-lead" href={featured.href}>
+                <Cover e={featured} />
+                <div>
+                  <div className="sp-cover-m">
+                    {kind(featured)}
+                    {featured.period ? `, ${featured.period}` : ""}
+                    {`, ${fmtDate(featured.publishedAt)}`}
                   </div>
-                </article>
-              ) : null}
-              <aside className="rsub2">
-                <span className="rsub2-ic"><i aria-hidden="true"><Mailbox weight="duotone" /></i></span>
-                <h2>Subscribe for protocol finance &amp; research updates</h2>
-                <p>Monthly State of Lending, protocol P&amp;L reads, and what the public trackers miss.</p>
-                <form
-                  className="rsub2-form"
-                  data-form
-                  data-endpoint="/api/subscribe"
-                  data-subject="Subscribe to research"
-                  data-done="You are on the list."
-                >
-                  <input type="email" name="email" placeholder="Enter your email" aria-label="Email" required autoComplete="email" />
-                  <button type="submit">Subscribe</button>
-                </form>
-                <p className="rsub2-fine">Monthly. No spam, unsubscribe any time.</p>
-              </aside>
+                  <h2 className="sp-h2">{featured.title}</h2>
+                  {featured.excerpt ? <p className="sp-lede">{featured.excerpt}</p> : null}
+                  <span className="sp-link">Read the report</span>
+                </div>
+              </a>
             </div>
+          </section>
+        ) : null}
 
-            <div className="rtabs" role="group" aria-label="Filter published work">
-              <button type="button" className="rtab is-on" data-filter="all" aria-pressed="true">All</button>
-              <button type="button" className="rtab" data-filter="r" aria-pressed="false">Reports</button>
-              <button type="button" className="rtab" data-filter="a" aria-pressed="false">Articles</button>
+        <section className="sp-section sp-tight" id="all">
+          <div className="sp-wrap">
+            <div className="sp-head">
+              <h2 className="sp-h2">All published work.</h2>
+              <div className="sp-tabs" role="group" aria-label="Filter published work">
+                <button type="button" className="sp-tab" data-filter="all" aria-pressed="true">All</button>
+                <button type="button" className="sp-tab" data-filter="r" aria-pressed="false">Reports</button>
+                <button type="button" className="sp-tab" data-filter="a" aria-pressed="false">Articles</button>
+              </div>
             </div>
-
             {grid.length === 0 ? (
-              <p style={{ color: "var(--text-secondary)" }}>Published work appears here.</p>
+              <p className="sp-small">Published work appears here.</p>
             ) : (
               <>
-                <div className="rgrid">
+                <div className="sp-cover-grid">
                   {grid.map((e) => (
-                    <article className="rcard" data-cat={e.cat} key={e.id}>
-                      <div className="rcard-cover"><Cover e={e} /></div>
-                      <div className="rcard-body">
-                        <div className="rcard-meta">
-                          <span className="pill">{e.cat === "r" ? "Reports" : "Articles"}</span>
-                          {e.period ? <span className="pill pill-quiet">{e.period}</span> : null}
-                          <span className="rcard-date">{fmtDate(e.publishedAt)}</span>
-                        </div>
-                        <h3><a className="rcard-link" href={e.href}>{e.title}</a></h3>
-                        {e.excerpt ? <p>{e.excerpt}</p> : null}
+                    <a className="sp-cover" data-cat={e.cat} key={e.id} href={e.href}>
+                      <Cover e={e} />
+                      <h3 className="sp-h3">{e.title}</h3>
+                      <div className="sp-cover-m">
+                        {kind(e)}
+                        {e.period ? `, ${e.period}` : ""}
+                        {`, ${fmtDate(e.publishedAt)}`}
                       </div>
-                    </article>
+                    </a>
                   ))}
                 </div>
-                <div className="rmore"><button type="button" className="btn btn-stack" id="rmore">Load more</button></div>
+                <div className="sp-more">
+                  <button type="button" className="sp-btn sp-btn-ink" id="sp-more">Load more</button>
+                </div>
               </>
             )}
           </div>
         </section>
       </main>
 
-      <FooterV3 />
+      <Footer />
 
-      {/* Filter + pagination, ported from the handoff's inline script. */}
-      <Script id="reports-filter" strategy="afterInteractive">{`
+      <Script id="research-filter" strategy="afterInteractive">{`
 (function(){
-  var tabs=[].slice.call(document.querySelectorAll('.rtab'));
-  var cards=[].slice.call(document.querySelectorAll('.rgrid .rcard'));
-  var more=document.getElementById('rmore');
+  var tabs=[].slice.call(document.querySelectorAll('.sp-tab'));
+  var cards=[].slice.call(document.querySelectorAll('.sp-cover-grid .sp-cover'));
+  var more=document.getElementById('sp-more');
   if(!more||!cards.length)return;
-  var PAGE=6, shown=PAGE, filter='all';
+  var PAGE=9, shown=PAGE, filter='all';
   function render(){
     var match=cards.filter(function(c){return filter==='all'||c.dataset.cat===filter});
     cards.forEach(function(c){c.hidden=true});
@@ -181,7 +194,7 @@ export default async function ResearchPage() {
   }
   tabs.forEach(function(b){b.addEventListener('click',function(){
     filter=b.dataset.filter; shown=PAGE;
-    tabs.forEach(function(x){var on=x===b;x.classList.toggle('is-on',on);x.setAttribute('aria-pressed',on?'true':'false')});
+    tabs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
     render();
   })});
   more.addEventListener('click',function(){shown+=PAGE;render()});

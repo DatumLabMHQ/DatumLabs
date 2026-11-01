@@ -1,17 +1,6 @@
 import type { Metadata } from "next"
-import {
-  CalendarCheck,
-  EnvelopeSimple,
-  PaperPlaneTilt,
-  FileText,
-  ChatsCircle,
-  ShieldCheck,
-  Receipt,
-  Compass,
-  ArrowRight,
-} from "@phosphor-icons/react/dist/ssr"
 
-import { NavV3, FooterV3, PageRules, LINKS } from "@/components/v3/site-chrome"
+import { Nav, Footer, PageHead, GuillocheBand, LINKS } from "@/components/print/print-parts"
 
 export const metadata: Metadata = {
   title: "Contact — Get a Free Protocol Snapshot | Datum Labs",
@@ -21,101 +10,144 @@ export const metadata: Metadata = {
   openGraph: { title: "Contact | Datum Labs", url: "/contact", type: "website" },
 }
 
+const STEPS = [
+  { step: "Step 1", t: "You send a protocol name", b: "Nothing else. We find the contracts ourselves." },
+  { step: "Step 2", t: "We send the one-page P&L", b: "Last month, modelled. Free, yours to keep, every figure traceable." },
+  { step: "Step 3", t: "A call, if it is useful", b: "Which service fits. If it is not useful, no follow-up." },
+]
+
+const SERVICES = [
+  {
+    name: "Collateral File",
+    href: "/services/collateral-file",
+    body: "Get your token accepted as collateral on a lending market.",
+    cadence: "Five working days",
+  },
+  {
+    name: "Management Accounts",
+    href: "/services/management-accounts",
+    body: "Your accounts closed every month, by chain and by market.",
+    cadence: "Monthly, working day five",
+  },
+  {
+    name: "FP&A Desk",
+    href: "/services/fpa-desk",
+    body: "The whole finance and planning function, without adding a seat.",
+    cadence: "Weekly call, monthly pack",
+  },
+]
+
 export default function ContactPage() {
   return (
     <>
-      <PageRules />
-      <NavV3 navDark />
+      <Nav />
 
       <main id="main">
-        <section className="page-header ph-rel" data-nav-dark data-theme="dark">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
-          <div className="wrap ph-inner">
-            <h1>Contact us</h1>
-            <p className="lede">Send a protocol name. We send back last month&rsquo;s one-page P&amp;L, free, inside 48 hours.</p>
-            <p className="support">That page is the sample. If it is useful, we talk about which service fits. If not, you keep the page.</p>
-          </div>
-        </section>
+        <PageHead
+          title="Contact us"
+          lede="Send a protocol name. We send back last month’s one-page P&L, free, inside 48 hours."
+          support="That page is the sample. If it is useful, we talk about which service fits. If not, you keep the page."
+        />
 
-        <section className="section" id="form">
-          <div className="wrap">
-            <div className="contact-split">
-              <div className="contact-form">
-                <h2 className="spaced">The free Snapshot</h2>
-                <p>One page, last month, any protocol. What you earned, paid out, spent on incentives and kept.</p>
-                <form
-                  className="ask-form"
-                  data-form
-                  data-endpoint="/api/snapshot"
-                  data-subject="Snapshot request"
-                  data-done="Sent. Your Snapshot comes back inside 48 hours."
-                >
-                  <input type="text" name="protocol" placeholder="Protocol name" aria-label="Protocol name" required autoComplete="organization" />
-                  <input type="email" name="email" placeholder="Email" aria-label="Email" required autoComplete="email" />
-                  <button type="submit" className="btn">Contact us</button>
-                </form>
-                <p className="ask-small">Back inside 48 hours. No call required, nothing gated.</p>
-              </div>
-              <div className="contact-alt">
-                <div className="contact-alt-item">
-                  <span className="svc-ic"><i aria-hidden="true"><CalendarCheck weight="duotone" /></i></span>
-                  <h3>Prefer to talk first?</h3>
-                  <p><a href={LINKS.calendly} target="_blank" rel="noopener">Book 30 minutes</a>. We will have looked at your protocol before the call.</p>
-                </div>
-                <div className="contact-alt-item">
-                  <span className="svc-ic"><i aria-hidden="true"><EnvelopeSimple weight="duotone" /></i></span>
-                  <h3>Or write</h3>
-                  <p><a href={LINKS.email.replace("mailto:", "mailto:")}>hello@datumlab.xyz</a>, or find us on <a href={LINKS.x} target="_blank" rel="noopener">X</a>.</p>
+        <section className="sp-section" id="form">
+          <div className="sp-wrap">
+            <div className="sp-split">
+              <div className="sp-instrument">
+                <GuillocheBand />
+                <div className="sp-inst-form">
+                  <h2 className="sp-h3">The free Snapshot</h2>
+                  <p>One page, last month, any protocol. What you earned, paid out, spent on incentives and kept.</p>
+                  <form
+                    className="sp-form"
+                    data-form
+                    data-endpoint="/api/snapshot"
+                    data-subject="Snapshot request"
+                    data-done="Sent. Your Snapshot comes back inside 48 hours."
+                  >
+                    <div className="sp-field">
+                      <label htmlFor="snap-protocol">Protocol name</label>
+                      <input id="snap-protocol" type="text" name="protocol" required autoComplete="organization" />
+                    </div>
+                    <div className="sp-field">
+                      <label htmlFor="snap-email">Email</label>
+                      <input id="snap-email" type="email" name="email" required autoComplete="email" />
+                    </div>
+                    <button type="submit" className="sp-btn sp-btn-primary">
+                      Contact us
+                    </button>
+                  </form>
+                  <p className="sp-small">Back inside 48 hours. No call required, nothing gated.</p>
                 </div>
               </div>
+
+              <ul className="sp-ledger sp-ledger-2">
+                <li>
+                  <h3 className="sp-h3">Prefer to talk first?</h3>
+                  <p>
+                    <a className="sp-link" href={LINKS.calendly} target="_blank" rel="noopener">
+                      Book 30 minutes
+                    </a>
+                    . We will have looked at your protocol before the call.
+                  </p>
+                </li>
+                <li>
+                  <h3 className="sp-h3">Or write</h3>
+                  <p>
+                    <a className="sp-link" href={LINKS.email}>
+                      hello@datumlab.xyz
+                    </a>
+                    , or find us on{" "}
+                    <a className="sp-link" href={LINKS.x} target="_blank" rel="noopener">
+                      X
+                    </a>
+                    .
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
 
-        <section className="section tint" id="next">
-          <div className="wrap">
-            <div className="section-head">
-              <h2 className="spaced">Three steps, no pipeline.</h2>
+        <section className="sp-section sp-tight" id="next">
+          <div className="sp-wrap">
+            <div className="sp-head">
+              <h2 className="sp-h2">Three steps, no pipeline.</h2>
             </div>
-            <div className="cells cells-3">
-              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><PaperPlaneTilt weight="duotone" /></i></span><h3>You send a protocol name</h3><p>Nothing else. We find the contracts ourselves.</p></div>
-              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><FileText weight="duotone" /></i></span><h3>We send the one-page P&amp;L</h3><p>Last month, modelled. Free, yours to keep, every figure traceable.</p></div>
-              <div className="cell cell-stack"><span className="svc-ic"><i aria-hidden="true"><ChatsCircle weight="duotone" /></i></span><h3>A call, if it is useful</h3><p>Which service fits. If it is not useful, no follow-up.</p></div>
-            </div>
+            <ul className="sp-ledger">
+              {STEPS.map((s) => (
+                <li key={s.t}>
+                  <h3 className="sp-h3">{s.t}</h3>
+                  <p>{s.b}</p>
+                  <span className="sp-l-meta">{s.step}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
-        <section className="section" id="which">
-          <div className="wrap">
-            <div className="section-head">
-              <h2 className="spaced">Already know what you need?</h2>
+        <section className="sp-section sp-tight" id="which">
+          <div className="sp-wrap">
+            <div className="sp-head">
+              <h2 className="sp-h2">Already know what you need?</h2>
             </div>
-            <div className="tcards">
-              <a className="tcard" href="/services/collateral-file">
-                <span className="svc-ic"><i aria-hidden="true"><ShieldCheck weight="duotone" /></i></span>
-                <h3>Collateral File<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
-                <p>Get your token accepted as collateral on a lending market.</p>
-                <span className="split-meta">Five working days</span>
-              </a>
-              <a className="tcard" href="/services/management-accounts">
-                <span className="svc-ic"><i aria-hidden="true"><Receipt weight="duotone" /></i></span>
-                <h3>Management Accounts<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
-                <p>Your accounts closed every month, by chain and by market.</p>
-                <span className="split-meta">Monthly, working day five</span>
-              </a>
-              <a className="tcard" href="/services/fpa-desk">
-                <span className="svc-ic"><i aria-hidden="true"><Compass weight="duotone" /></i></span>
-                <h3>FP&amp;A Desk<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
-                <p>The whole finance and planning function, without adding a seat.</p>
-                <span className="split-meta">Weekly call, monthly pack</span>
-              </a>
-            </div>
+            <ul className="sp-ledger">
+              {SERVICES.map((s) => (
+                <li key={s.name}>
+                  <h3 className="sp-h3">
+                    <a className="sp-link" href={s.href}>
+                      {s.name}
+                    </a>
+                  </h3>
+                  <p>{s.body}</p>
+                  <span className="sp-l-meta">{s.cadence}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       </main>
 
-      <FooterV3 />
+      <Footer />
     </>
   )
 }

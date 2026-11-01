@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
+import { Nav, Footer, PageHead, CloseCta } from "@/components/print/print-parts"
 
 export const metadata: Metadata = {
   title: "OnchainSuite & Setnel — Datum Labs Products",
@@ -32,38 +32,50 @@ const PRODUCTS = [
 export default function ProductsPage() {
   return (
     <>
-      <PageRules />
-      <NavV3 navDark />
+      <Nav />
 
-      <header className="page-header ph-rel" data-nav-dark data-theme="dark">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
-        <div className="wrap ph-inner">
-          <span className="crumb">Resources · Products</span>
-          <h1>Products, not <span className="it">just services.</span></h1>
-          <p>When a data problem recurs across protocols, we turn it into a product. These are the SaaS tools built out of the work we do for partners.</p>
-        </div>
-      </header>
+      <main id="main">
+        <PageHead
+          title={
+            <>
+              Products, not <em>just services.</em>
+            </>
+          }
+          lede="When a data problem recurs across protocols, we turn it into a product. These are the SaaS tools built out of the work we do for partners."
+        />
 
-      <main id="main" className="wrap">
-        <section className="section" style={{ paddingTop: 24 }}>
-          <div className="lab-grid" style={{ gridTemplateColumns: "repeat(2, 1fr)" }}>
-            {PRODUCTS.map((p) => (
-              <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" className="lab-card" data-reveal style={{ textDecoration: "none" }}>
-                <div className="lab-no">{p.tag}</div>
-                <h3>{p.name}</h3>
-                <p style={{ fontFamily: "var(--font-display)", fontSize: 17, color: "var(--text-primary)", fontStyle: "italic" }}>{p.tagline}</p>
-                <p>{p.desc}</p>
-                <div style={{ marginTop: "auto", paddingTop: 8, fontFamily: "var(--font-mono)", fontSize: 12, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-brand)" }}>
-                  {p.cta} ↗
-                </div>
-              </a>
-            ))}
+        <section className="sp-section" id="products">
+          <div className="sp-wrap">
+            <ul className="sp-ledger">
+              {PRODUCTS.map((p) => (
+                <li key={p.name}>
+                  <h3 className="sp-h3">
+                    <a className="sp-link" href={p.href} target="_blank" rel="noopener">
+                      {p.name}
+                    </a>
+                  </h3>
+                  <div>
+                    <p>
+                      <strong>{p.tagline}</strong>
+                    </p>
+                    <p style={{ marginTop: 8 }}>{p.desc}</p>
+                    <p style={{ marginTop: 12 }}>
+                      <a className="sp-link" href={p.href} target="_blank" rel="noopener">
+                        {p.cta} ↗
+                      </a>
+                    </p>
+                  </div>
+                  <span className="sp-l-meta">{p.tag}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
+
+        <CloseCta />
       </main>
 
-      <FooterV3 />
+      <Footer />
     </>
   )
 }

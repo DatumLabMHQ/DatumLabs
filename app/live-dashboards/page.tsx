@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
-import { ArrowRight, Plus } from "@phosphor-icons/react/dist/ssr"
 
-import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
+import { Nav, Footer, PageHead, CloseCta, LINKS } from "@/components/print/print-parts"
 
 export const metadata: Metadata = {
   title: "Live Dashboards, Datum Labs",
@@ -11,90 +10,68 @@ export const metadata: Metadata = {
   openGraph: { title: "Live Dashboards, Datum Labs", url: "/live-dashboards", type: "website" },
 }
 
+const DASHBOARDS = [
+  { name: "Aave", href: "/aave-dashboard", logo: "/images/aave-logo.png", body: "Multi-chain lending markets" },
+  { name: "NAVI", href: "/navi", logo: "/images/navi-logo.png", body: "Sui-native money market" },
+  { name: "Incentiv", href: "/Incentiv/dashboard/overview", logo: "/images/incentiv-logo.png", body: "L1 incentive accounting" },
+]
+
 export default function LiveDashboards() {
   return (
     <>
-      <PageRules />
-      <NavV3 navDark active="dashboards" />
+      <Nav active="dashboards" />
 
       <main id="main">
-        <section className="page-header ph-rel" data-nav-dark data-theme="dark">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
-          <div className="wrap ph-inner">
-            <h1>Real-time protocol dashboards. <span className="it">Hosted by us.</span></h1>
-            <p className="lede">Custom-built, fully-owned dashboards we operate for protocol teams. Live data feeds, market metrics, and interactive analytics, instrumented end-to-end by Datum Labs and embedded directly inside their products.</p>
+        <PageHead
+          title={
+            <>
+              Real-time protocol dashboards. <em>Hosted by us.</em>
+            </>
+          }
+          lede="Custom-built, fully-owned dashboards we operate for protocol teams. Live data feeds, market metrics, and interactive analytics, instrumented end-to-end by Datum Labs and embedded directly inside their products."
+          support="3 active deployments, 14 chains covered, 99.97% uptime."
+        />
+
+        <section className="sp-section" id="lend">
+          <div className="sp-wrap">
+            <div className="sp-head">
+              <h2 className="sp-h2">Borrow and lend.</h2>
+              <p>
+                Three live, one onboarding. Each page is rebuilt from the chain every hour and carries the time of its last
+                run.
+              </p>
+            </div>
+            <ul className="sp-ledger">
+              {DASHBOARDS.map((d) => (
+                <li key={d.name}>
+                  <h3 className="sp-h3 sp-l-logo">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={d.logo} alt="" />
+                    <a className="sp-link" href={d.href} target="_blank" rel="noopener">
+                      {d.name}
+                    </a>
+                  </h3>
+                  <p>{d.body}</p>
+                  <span className="sp-l-meta">Live &middot; hosted by us</span>
+                </li>
+              ))}
+              <li>
+                <h3 className="sp-h3">
+                  <a className="sp-link" href={LINKS.calendly} target="_blank" rel="noopener">
+                    Your protocol ↗
+                  </a>
+                </h3>
+                <p>Request a build</p>
+                <span className="sp-l-meta">Onboarding &middot; Q1 2026</span>
+              </li>
+            </ul>
           </div>
         </section>
 
-        <section className="section" id="facts" data-pin-persist data-nav-light>
-          <div className="wrap">
-            <div className="cs-facts">
-              <div><span className="k">Active deployments</span><span className="v">3</span></div>
-              <div><span className="k">Chains covered</span><span className="v">14</span></div>
-              <div><span className="k">TVL observed</span><span className="v">$2.1B</span></div>
-              <div><span className="k">Uptime</span><span className="v">99.97%</span></div>
-            </div>
-          </div>
-        </section>
-
-        {/* BORROW & LEND CATEGORY */}
-        <section className="section" id="lend">
-          <div className="wrap">
-            <div className="section-head">
-              <h2>Borrow and lend.</h2>
-              <p style={{ color: "var(--dim)" }}>Three live, one onboarding. Each page is rebuilt from the chain every hour and carries the time of its last run.</p>
-            </div>
-            <div className="pc-grid pc-grid-2">
-              <a className="pc pc-case" href="/aave-dashboard" target="_blank" rel="noopener">
-                <div className="pc-top">
-                  <div>
-                    <h3>Aave<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
-                    <span className="pc-cat">Multi-chain lending markets</span>
-                  </div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/aave-logo.png" alt="" />
-                </div>
-                <div className="pc-foot"><span className="pc-chains">Live &middot; hosted by us</span></div>
-              </a>
-              <a className="pc pc-case" href="/navi" target="_blank" rel="noopener">
-                <div className="pc-top">
-                  <div>
-                    <h3>NAVI<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
-                    <span className="pc-cat">Sui-native money market</span>
-                  </div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/navi-logo.png" alt="" />
-                </div>
-                <div className="pc-foot"><span className="pc-chains">Live &middot; hosted by us</span></div>
-              </a>
-              <a className="pc pc-case" href="/Incentiv/dashboard/overview" target="_blank" rel="noopener">
-                <div className="pc-top">
-                  <div>
-                    <h3>Incentiv<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
-                    <span className="pc-cat">L1 incentive accounting</span>
-                  </div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/incentiv-logo.png" alt="" />
-                </div>
-                <div className="pc-foot"><span className="pc-chains">Live &middot; hosted by us</span></div>
-              </a>
-              <a className="pc pc-case pc-pending" href="https://calendly.com/datumlabss/30min" target="_blank" rel="noopener">
-                <div className="pc-top">
-                  <div>
-                    <h3>Your protocol<i className="svc-go" aria-hidden="true"><ArrowRight /></i></h3>
-                    <span className="pc-cat">Onboarding &middot; Q1 2026</span>
-                  </div>
-                  <span className="pc-mark"><i aria-hidden="true"><Plus weight="duotone" /></i></span>
-                </div>
-                <div className="pc-foot"><span className="pc-chains">Request a build</span></div>
-              </a>
-            </div>
-          </div>
-        </section>
+        <CloseCta />
       </main>
 
-      <FooterV3 />
+      <Footer />
     </>
   )
 }

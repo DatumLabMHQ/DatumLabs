@@ -1,11 +1,9 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Download } from "lucide-react"
 import { compileMDX } from "next-mdx-remote/rsc"
 import remarkGfm from "remark-gfm"
 
-import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
+import { Nav, Footer, PageHead, CloseCta } from "@/components/print/print-parts"
 import { ReportGate } from "@/components/report-gate"
 import { mdxComponents } from "@/components/mdx/mdx-components"
 import { getReportMeta, getReportSlugs, getReportSource } from "@/lib/reports"
@@ -79,14 +77,12 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
   }
 
   const downloadCta = meta.pdf ? (
-    <div className="rpt-callout rpt-callout-brand" style={{ display: "flex", alignItems: "center", gap: 16, justifyContent: "space-between", flexWrap: "wrap" }}>
+    <div className="sp-download">
       <div>
-        <div className="rpt-callout-t">Download the full report</div>
-        <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>PDF</div>
+        <div className="sp-h3">Download the full report</div>
+        <div className="sp-small">PDF, with every chart and table.</div>
       </div>
-      <a href={meta.pdf} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-        <Download style={{ width: 16, height: 16, marginRight: 8 }} /> Download PDF
-      </a>
+      <a href={meta.pdf} target="_blank" rel="noopener noreferrer" className="sp-btn sp-btn-primary">Download PDF</a>
     </div>
   ) : null
 
@@ -99,35 +95,46 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
 
   return (
     <>
-      <PageRules />
-      <NavV3 active="research" navDark />
+      <Nav active="research" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <header className="page-header ph-rel" data-nav-dark data-theme="dark">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
-        <div className="wrap ph-inner" style={{ maxWidth: 820 }}>
-          <Link href="/research" className="crumb" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 16 }}>
-            <ArrowLeft style={{ width: 14, height: 14 }} /> Research
-          </Link>
-          {meta.period ? <div className="crumb" style={{ marginBottom: 8 }}>{meta.period}</div> : null}
-          <h1>{meta.title}</h1>
-          <p className="lede">{meta.summary}</p>
-          <div className="meta-row"><span>Published {formatDate(meta.publishedAt)}</span></div>
-        </div>
-      </header>
+      <main id="main">
+        <PageHead
+          compact
+          crumb={{ href: "/research", label: "Research" }}
+          title={meta.title}
+          lede={meta.summary}
+          meta={
+            <>
+              {meta.period ? <span>Period <b>{meta.period}</b></span> : null}
+              <span>Published <b>{formatDate(meta.publishedAt)}</b></span>
+              <span>By <b>Datum Labs</b></span>
+            </>
+          }
+        />
 
-      <main id="main" className="wrap">
-        <article style={{ maxWidth: 820, margin: "0 auto", paddingBottom: 40 }}>
-          {(meta.hero || meta.cover) ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={meta.hero || meta.cover} alt={meta.title} className="rpt-figure" style={{ width: "100%", borderRadius: 16, border: "1px solid var(--border-subtle)", margin: "8px 0 24px" }} />
-          ) : null}
-          {meta.gated ? <ReportGate>{body}</ReportGate> : body}
-        </article>
+        <section className="sp-section sp-report">
+          <div className="sp-wrap">
+            <article className="sp-sheet sp-report-sheet">
+              {meta.hero || meta.cover ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={meta.hero || meta.cover} alt={meta.title} className="sp-report-cover" />
+              ) : null}
+              {meta.gated ? <ReportGate>{body}</ReportGate> : body}
+            </article>
+          </div>
+        </section>
+
+        <CloseCta
+          title={
+            <>
+              Want this for <em>your protocol?</em>
+            </>
+          }
+        />
       </main>
 
-      <FooterV3 />
+      <Footer />
     </>
   )
 }

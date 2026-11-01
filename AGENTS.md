@@ -16,8 +16,8 @@ This is the **Datum Labs marketing site** (Next.js 15 App Router, React 19, Tail
 MDX reports do **not** appear in Sanity, and Sanity posts do **not** exist in this repo. They only merge on the website itself. After publishing, a report automatically appears in:
 
 - its own page: `/resources/reports/<slug>`
-- the Resources hub: `/resources` (tagged "Reports", merged with blog posts)
-- the homepage "Latest research" strip
+- the Research index: `/research` (filterable, merged with blog posts; `/resources` redirects there)
+- the homepage research section (reports that have a `cover` image)
 - `sitemap.xml`
 
 It does NOT appear in `/feed.xml` (RSS is Sanity posts only) or in the Studio.
@@ -134,7 +134,7 @@ git commit -m "Publish <report title>"
 git push origin main
 ```
 
-~90s later verify: `https://www.datumlab.xyz/resources/reports/<slug>` loads, and the report shows in `https://www.datumlab.xyz/resources`.
+~90s later verify: `https://www.datumlab.xyz/resources/reports/<slug>` loads, and the report shows in `https://www.datumlab.xyz/research`.
 
 To unpublish: `git rm` the file, commit, push.
 
@@ -180,11 +180,12 @@ components/mdx/
   report-components/chart.tsx    The recharts Chart
 lib/reports.ts                   Reads/parses report frontmatter
 app/resources/reports/[slug]/    Renders a report (compileMDX + gate + JSON-LD)
-app/resources/                   Resources hub (merges Sanity posts + MDX reports)
-app/api/latest-research/         Feeds the homepage research strip (also merged)
+app/research/                    Research index (merges Sanity posts + MDX reports)
 app/page.tsx                     Homepage
-app/globals.css, app/ds-v2.css   Design system (brand accent #4A6CF7)
-components/site-nav.tsx          Nav (mega-menu; "Research & Reports" → /resources)
+docs/DESIGN.md                   Design system contract ("Security Print") and its bans. Read before any UI work.
+app/print/print.css              The design system (all sp- classes, tokens)
+components/print/                Nav, Footer, PageHead, Band, Statement, ornament (rosette, lathe)
+docs/PRINT-PORT-RECIPE.md        How to build or rebuild a page in the system
 app/resources/podcast/           W3GM podcast (episodes from Spotify RSS, hourly revalidate)
 sanity/                          Sanity schemas + embedded Studio (blog only — NOT reports)
 public/images/, public/reports/  Static assets (report covers, PDFs)

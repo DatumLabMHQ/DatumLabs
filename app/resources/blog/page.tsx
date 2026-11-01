@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import Image from "next/image"
 
-import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
+import { Nav, Footer, PageHead } from "@/components/print/print-parts"
 import { sanityFetch } from "@/sanity/lib/client"
 import { postsQuery } from "@/sanity/lib/queries"
 import { urlFor } from "@/sanity/lib/image"
@@ -33,82 +31,104 @@ function formatDate(d?: string) {
   return new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
 }
 
+function postMeta(p: Post) {
+  return [p.categories?.[0]?.title, formatDate(p.publishedAt), p.author ? `By ${p.author.name}` : undefined]
+    .filter(Boolean)
+    .join(" · ")
+}
+
+function Cover({ p, lazy = false }: { p: Post; lazy?: boolean }) {
+  return (
+    <div className="sp-cover-img">
+      {p.mainImage ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={urlFor(p.mainImage).width(720).height(405).fit("crop").auto("format").url()}
+          alt={p.title}
+          width={720}
+          height={405}
+          loading={lazy ? "lazy" : undefined}
+        />
+      ) : (
+        <div className="sp-cover-ph" />
+      )}
+    </div>
+  )
+}
+
 export default async function BlogIndexPage() {
   const posts = await sanityFetch<Post[]>(postsQuery, {}, [])
+  const [feature, ...rest] = posts
+  const side = rest.slice(0, 2)
+  const more = rest.slice(2)
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      <PageRules />
-      <NavV3 active="research" />
+    <>
+      <Nav active="research" />
 
-      <main id="main" className="relative px-6 lg:px-12 py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-12">
-            <div className="flex items-center gap-2 mb-6">
-              <Link href="/resources" className="text-sm text-muted-foreground hover:text-primary">
-                Resources
-              </Link>
-              <span className="text-muted-foreground">/</span>
-              <span className="text-sm text-primary">Blog</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Blog</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Analysis and commentary on DeFi data, lending markets, and on-chain intelligence.
-            </p>
-          </div>
+      <main id="main">
+        <PageHead
+          crumb={{ href: "/research", label: "Research" }}
+          title="Blog"
+          lede="Analysis and commentary on DeFi data, lending markets, and on-chain intelligence."
+        />
 
-          {posts.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-border/60 bg-muted/20 p-12 text-center">
-              <p className="text-muted-foreground">
+        <section className="sp-section" id="posts">
+          <div className="sp-wrap">
+            {!feature ? (
+              <p className="sp-small">
                 No posts yet.{" "}
-                <Link href="/studio" className="text-primary hover:underline">
+                <a className="sp-link" href="/studio">
                   Open the Studio
-                </Link>{" "}
+                </a>{" "}
                 to publish the first one.
               </p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((p) => (
-                <Link
-                  key={p._id}
-                  href={`/resources/blog/${p.slug}`}
-                  className="group rounded-2xl border border-border overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all bg-card flex flex-col"
-                >
-                  {p.mainImage ? (
-                    <div className="aspect-[16/9] overflow-hidden bg-muted">
-                      <Image
-                        src={urlFor(p.mainImage).width(720).height(405).fit("crop").auto("format").url()}
-                        alt={p.title}
-                        width={720}
-                        height={405}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                      />
+            ) : (
+              <>
+                <div className="sp-covers">
+                  <a className="sp-cover sp-cover-feature" href={`/resources/blog/${feature.slug}`}>
+                    <Cover p={feature} />
+                    <h3 className="sp-h3">{feature.title}</h3>
+                    <div className="sp-cover-m">{postMeta(feature)}</div>
+                    {feature.excerpt ? <p>{feature.excerpt}</p> : null}
+                  </a>
+                  {side.length ? (
+                    <div className="sp-covers-side">
+                      {side.map((p) => (
+                        <a className="sp-cover" key={p._id} href={`/resources/blog/${p.slug}`}>
+                          <Cover p={p} lazy />
+                          <h3 className="sp-h3">{p.title}</h3>
+                          <div className="sp-cover-m">{postMeta(p)}</div>
+                        </a>
+                      ))}
                     </div>
                   ) : null}
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className="flex items-center gap-2 mb-3 flex-wrap">
-                      {p.categories?.slice(0, 1).map((c) => (
-                        <span key={c.slug} className="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                          {c.title}
+                </div>
+
+                {more.length ? (
+                  <ul className="sp-ledger" style={{ marginTop: 56 }}>
+                    {more.map((p) => (
+                      <li key={p._id}>
+                        <h3 className="sp-h3">
+                          <a className="sp-link" href={`/resources/blog/${p.slug}`}>
+                            {p.title}
+                          </a>
+                        </h3>
+                        <p>{p.excerpt}</p>
+                        <span className="sp-l-meta">
+                          {[formatDate(p.publishedAt), p.author ? `By ${p.author.name}` : undefined].filter(Boolean).join(" · ")}
                         </span>
-                      ))}
-                      <span className="text-xs text-muted-foreground">{formatDate(p.publishedAt)}</span>
-                    </div>
-                    <h2 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{p.title}</h2>
-                    {p.excerpt ? <p className="text-sm text-muted-foreground line-clamp-3 flex-1">{p.excerpt}</p> : null}
-                    {p.author ? (
-                      <div className="text-xs text-muted-foreground mt-4">By {p.author.name}</div>
-                    ) : null}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </>
+            )}
+          </div>
+        </section>
       </main>
 
-      <FooterV3 />
-    </div>
+      <Footer />
+    </>
   )
 }

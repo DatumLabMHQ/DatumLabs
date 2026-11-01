@@ -1,19 +1,17 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google"
+import { Archivo, Martian_Mono } from "next/font/google"
 import Script from "next/script"
 import { ConditionalAnalytics } from "@/components/conditional-analytics"
 import "./globals.css"
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" })
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" })
-const sourceSerif = Source_Serif_4({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["400", "600", "700"],
-  style: ["normal", "italic"],
+  variable: "--font-archivo",
+  axes: ["wdth"],
   display: "swap",
 })
+const martian = Martian_Mono({ subsets: ["latin"], variable: "--font-martian", display: "swap" })
 
 export const metadata: Metadata = {
   title: "Datum Labs — Financial Data & Reporting for Blockchain Protocols",
@@ -89,7 +87,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" data-theme="light" className={`${geist.variable} ${geistMono.variable} ${sourceSerif.variable}`}>
+    <html lang="en" data-theme="light" className={`${archivo.variable} ${martian.variable}`}>
       <head>
         {/* Google tag (gtag.js) — GA4, loaded on every page via the root layout. */}
         <Script
@@ -107,20 +105,10 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="font-sans antialiased dl">
+      <body className="sp antialiased">
         <a href="#main" className="skip-link">Skip to content</a>
         {children}
-        {/* v3 behaviors, ported verbatim from the redesign handoff. Every
-            internal link is a plain <a> (full page load), so these re-run on
-            each page exactly like the static build they were written for.
-            Each script no-ops when its hooks are absent from the page. */}
-        <Script src="/v3/site.js" strategy="afterInteractive" />
-        <Script src="/v3/parallax.js" strategy="afterInteractive" />
-        <Script src="/v3/nav-drop.js" strategy="afterInteractive" />
-        <Script src="/v3/nav-theme.js" strategy="afterInteractive" />
-        <Script src="/v3/dither.js" strategy="afterInteractive" />
-        <Script src="/v3/faq.js" strategy="afterInteractive" />
-        <Script src="/v3/forms.js" strategy="afterInteractive" />
+        <Script src="/js/forms.js" strategy="afterInteractive" />
         <ConditionalAnalytics />
       </body>
     </html>

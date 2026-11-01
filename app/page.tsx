@@ -1,13 +1,7 @@
 import type { Metadata } from "next"
-import {
-  ArrowRight,
-  Plus,
-} from "@phosphor-icons/react/dist/ssr"
 
-import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
-import { readFileSync } from "fs"
-import path from "path"
-
+import { Rosette } from "@/components/print/ornament"
+import { Nav, Footer, Band, Statement, GuillocheBand } from "@/components/print/print-parts"
 import { getAllReports } from "@/lib/reports"
 
 export const metadata: Metadata = {
@@ -34,6 +28,65 @@ const ROSTER = [
   { img: "/images/goldfish-logo.png", name: "Goldfish" },
 ]
 
+const SERVICES = [
+  {
+    name: "Collateral File",
+    href: "/services/collateral-file",
+    body: "The file a lending market’s risk team wants to read before accepting your token as collateral, with the live asset page behind it.",
+    cadence: "Five working days",
+  },
+  {
+    name: "Management Accounts",
+    href: "/services/management-accounts",
+    body: "Your accounts every month: earned, paid out, spent on incentives, kept, by chain and by market.",
+    cadence: "Monthly, working day five",
+  },
+  {
+    name: "FP&A Desk",
+    href: "/services/fpa-desk",
+    body: "Everything in Management Accounts, plus targets, budget against actual, every campaign scored, and a weekly call.",
+    cadence: "Weekly call, monthly pack",
+  },
+]
+
+const TERMS = [
+  { t: "We model every hour", b: "Eight protocols, fourteen chains, rebuilt hourly in Atlas." },
+  { t: "Every figure is traceable", b: "Every number resolves to the query, the run and the date it was true." },
+  { t: "We publish first", b: "State of Lending is free, monthly, shown against the public trackers." },
+  { t: "You know who we are", b: "Named people, not an account team. Our delegate role is disclosed." },
+  { t: "We correct in public", b: "Wrong figures are fixed in one working day, wherever the original went." },
+]
+
+const FAQ = [
+  {
+    q: "What exactly do I get each month?",
+    a: [
+      "A one-page P&L: earned, paid out, spent on incentives, kept, by chain and by market. Alongside it, two to four pages reading the movement.",
+      "Plus a live page, rebuilt hourly, and a named analyst on a monthly call.",
+    ],
+  },
+  {
+    q: "What happens when someone disputes a number?",
+    a: [
+      "A written answer the same working day, with both figures and the reason for the gap. Usually it is scope: what counts as revenue, whether incentives are netted, which chains are in.",
+    ],
+  },
+  {
+    q: "Why do your numbers differ from the public trackers?",
+    a: [
+      "We map every market, vault and reserve to the protocol that owns it before attributing revenue. Most trackers skip that step, so their splits disagree on multi-chain deployments and curated vaults.",
+      "We never hide the difference. Every published figure carries the tracker figure beside it.",
+    ],
+  },
+  {
+    q: "What happens to my page if I stop working with you?",
+    a: [
+      "It stays up, with your history in it, frozen at the last month we closed. The page is yours.",
+      "What you give up is us: the monthly close, the reading, and the numbers kept current.",
+    ],
+  },
+]
+
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -58,162 +111,89 @@ const orgJsonLd = {
   ],
 }
 
-const FAQ = [
-  {
-    q: "What exactly do I get each month?",
-    a: (
-      <>
-        <p>
-          A one-page P&amp;L: earned, paid out, spent on incentives, kept, by chain and by market. Alongside it, two to
-          four pages reading the movement.
-        </p>
-        <p>Plus a live page, rebuilt hourly, and a named analyst on a monthly call.</p>
-      </>
-    ),
-    open: true,
-  },
-  {
-    q: "What happens when someone disputes a number?",
-    a: (
-      <p>
-        A written answer the same working day, with both figures and the reason for the gap. Usually it is scope: what
-        counts as revenue, whether incentives are netted, which chains are in.
-      </p>
-    ),
-  },
-  {
-    q: "Why do your numbers differ from the public trackers?",
-    a: (
-      <>
-        <p>
-          We map every market, vault and reserve to the protocol that owns it before attributing revenue. Most trackers
-          skip that step, so their splits disagree on multi-chain deployments and curated vaults.
-        </p>
-        <p>We never hide the difference. Every published figure carries the tracker figure beside it.</p>
-      </>
-    ),
-  },
-  {
-    q: "What happens to my page if I stop working with you?",
-    a: (
-      <>
-        <p>It stays up, with your history in it, frozen at the last month we closed. The page is yours.</p>
-        <p>What you give up is us: the monthly close, the reading, and the numbers kept current.</p>
-      </>
-    ),
-  },
-]
-
-/** Daily sector TVL ($M) from our published read: The State of Lending on
- *  Sui, May and June 2026 (content/reports/state-of-lending-sui-may-june-2026.mdx).
- *  Parsed from the report itself so the chart and the report can never disagree. */
-function suiSectorSeries(): number[] {
-  try {
-    const src = readFileSync(
-      path.join(process.cwd(), "content", "reports", "state-of-lending-sui-may-june-2026.mdx"),
-      "utf8",
-    )
-    return (src.match(/Sector: ([0-9.]+)/g) || []).map((v) => parseFloat(v.slice(8)))
-  } catch {
-    return []
-  }
-}
-
-function Sparkline({ data }: { data: number[] }) {
-  if (data.length < 2) return null
-  const W = 760, H = 180, PAD = 6
-  const min = Math.min(...data), max = Math.max(...data)
-  const x = (i: number) => PAD + (i / (data.length - 1)) * (W - PAD * 2)
-  const y = (v: number) => PAD + (1 - (v - min) / (max - min)) * (H - PAD * 2 - 14)
-  const pts = data.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ")
-  const area = `${PAD},${H - 8} ${pts} ${(W - PAD).toFixed(1)},${H - 8}`
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Daily Sui lending sector TVL, May to June 2026">
-      <polygon points={area} fill="var(--sapphire-500)" opacity="0.08" />
-      <polyline points={pts} fill="none" stroke="var(--sapphire-500)" strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round" />
-      <circle cx={x(data.length - 1)} cy={y(data[data.length - 1])} r="4" fill="var(--sapphire-600)" />
-    </svg>
-  )
-}
-
 export default function Home() {
-  const reports = getAllReports()
-  const reportCount = reports.length
-  const latest = reports.filter((r) => r.cover).slice(0, 3)
-  const series = suiSectorSeries()
+  const reports = getAllReports().filter((r) => r.cover)
+  const [feature, ...rest] = reports
+  const side = rest.slice(0, 2)
+
   return (
     <>
-      <PageRules />
-      <NavV3 navDark />
+      <Nav />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
 
       <main id="main">
-        {/* HERO */}
-        <section className="hero" data-nav-dark data-theme="dark">
-          <div className="hero-bg">
-            {/* The handoff's brand video loop was never exported; the sapphire
-                dither field (dither.js) carries the motion until one exists. */}
-            <canvas data-dither aria-hidden="true" />
-          </div>
-          <div className="wrap hero-inner">
-            <div className="hero-split">
-              <h1 className="spaced" data-anim-words>
-                Financial data and reporting for blockchain protocols.
-              </h1>
-              <div className="hero-aside">
-                <p className="lede">
+        <section className="sp-hero">
+          <Rosette />
+          <div className="sp-wrap">
+            <div className="sp-hero-grid">
+              <div>
+                <h1 className="sp-h1">
+                  Financial data and reporting for <em>blockchain protocols.</em>
+                </h1>
+                <p className="sp-lede">
                   What your protocol earned, paid out, spent and kept last month. Every figure traceable to the run
                   behind it.
                 </p>
-                <div className="hero-ctas">
-                  <a className="btn btn-primary" href="/contact">Contact us</a>
-                </div>
-                <div className="hero-stats">
-                  <div><b>8</b><span>Protocols modelled hourly</span></div>
-                  <div><b>14</b><span>Chains</span></div>
-                  <div><b>{reportCount}</b><span>Public reports</span></div>
+                <div className="sp-act">
+                  <a className="sp-btn sp-btn-primary" href="/contact">Get your free Snapshot</a>
+                  <span className="sp-note">Back inside 48 hours, no call needed.</span>
                 </div>
               </div>
+
+              <Statement
+                title="Statement of net"
+                subtitle="Example Protocol, October 2026"
+                label="Specimen statement of net with illustrative figures"
+                lines={[
+                  { label: "Interest earned", value: "$4,210,000" },
+                  { label: "Paid to suppliers", value: "(3,120,000)", sub: true },
+                  { label: "Incentive spend", value: "(620,000)", sub: true },
+                  { label: "Liquidation and other revenue", value: "180,000" },
+                ]}
+                kept="$650,000"
+                micr={[
+                  { glyph: "⑆", text: "RUN 2026-10-31T06:00Z", tip: "The Atlas run that produced every figure on this page." },
+                  { glyph: "⑈", text: "Q 7F3A·21C9", tip: "The query behind the figures, so anyone can rerun it." },
+                  { glyph: "⑉", text: "14 CHAINS", tip: "Coverage: every chain the protocol is deployed on." },
+                ]}
+              />
             </div>
           </div>
         </section>
 
-        {/* STAT BAND — real figures from our published Sui read */}
-        <section className="proofband" data-nav-light>
-          <div className="wrap">
-            <div className="proofband-grid">
-              <div>
-                <div className="crumb">From our published read &middot; Sui lending &middot; May&ndash;June 2026</div>
-                <div className="proofband-num">$355.6M<sup>&minus;20.4%</sup></div>
-                <p className="proofband-sub">
-                  Sector TVL at the June close, tracked daily across five protocols. Borrowers left in May.
-                  Suppliers left in June. We published both months, with every figure traceable.
-                </p>
-                <a className="link-arrow" href="/resources/reports/state-of-lending-sui-may-june-2026">Read the report &rarr;</a>
-              </div>
-              <div className="proofband-chart">
-                <Sparkline data={series} />
-                <div className="proofband-cap">
-                  <span>May 01 &mdash; Jun 30 &middot; daily close</span>
-                  <span>61 observations &middot; five protocols</span>
-                </div>
-              </div>
+        <Band className="sp-after-hero">
+          <div className="sp-split">
+            <h2 className="sp-h2">
+              You know your TVL. <em>You probably don&rsquo;t know your net.</em>
+            </h2>
+            <div className="sp-prose">
+              <p>
+                You earn interest, pay most of it to suppliers, and spend tokens to pull deposits in. Those numbers sit
+                in three places and nobody reconciles them.
+              </p>
+              <p>
+                Ask whether you made money on Base last quarter and the honest answer is a guess. We add it up monthly,
+                by chain and by market.
+              </p>
+              <p>
+                Then the part that matters: which markets carry you, which cost you money, and what last quarter&rsquo;s
+                rewards actually bought.
+              </p>
             </div>
           </div>
-        </section>
+        </Band>
 
-        {/* PROTOCOL ROSTER */}
-        <section className="section" id="roster">
-          <div className="wrap">
-            <div className="section-head">
-              <h2 className="spaced">Protocols we&rsquo;ve analysed.</h2>
+        <section className="sp-section" id="roster">
+          <div className="sp-wrap">
+            <div className="sp-head">
+              <h2 className="sp-h2">Protocols we&rsquo;ve analysed.</h2>
               <p>Eight modelled hourly in Atlas. The rest written up in public.</p>
             </div>
-            <div className="cells cells-5">
+            <div className="sp-roster">
               {ROSTER.map((p) => (
-                <div className="logo-cell" key={p.name}>
+                <div key={p.name}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.img} alt={p.name} />
+                  <img src={p.img} alt="" />
                   <span>{p.name}</span>
                 </div>
               ))}
@@ -221,210 +201,127 @@ export default function Home() {
           </div>
         </section>
 
-        {/* THE GAP */}
-        <section className="section" id="net" data-pin data-pin-top data-nav-dark data-theme="dark">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
-          <div className="wrap">
-            <div className="lead-split">
-              <h2 className="spaced">You know your TVL. You probably don&rsquo;t know your net.</h2>
-              <div className="prose">
-                <p>
-                  You earn interest, pay most of it to suppliers, and spend tokens to pull deposits in. Those numbers
-                  sit in three places and nobody reconciles them.
-                </p>
-                <p>
-                  Ask whether you made money on Base last quarter and the honest answer is a guess. We add it up
-                  monthly, by chain and by market.
-                </p>
-                <p>
-                  Then the part that matters: which markets carry you, which cost you money, and what last
-                  quarter&rsquo;s rewards actually bought.
-                </p>
-              </div>
+        <section className="sp-section sp-tight" id="services">
+          <div className="sp-wrap">
+            <div className="sp-head">
+              <h2 className="sp-h2">Three services.</h2>
+              <p>
+                One gets your token accepted as collateral. One closes your books every month. One runs the whole
+                finance function.
+              </p>
             </div>
-          </div>
-        </section>
-
-        {/* SPECIMEN — the artifact itself */}
-        <section className="section" id="specimen" data-nav-light>
-          <div className="wrap">
-            <div className="section-head">
-              <h2 className="spaced">This is what the answer looks like.</h2>
-              <p>One page, every month: your whole protocol added up, with the working behind every line.</p>
-            </div>
-            <div className="spec-row">
-              <figure className="spec-doc" data-reveal aria-label="Specimen monthly close, illustrative figures">
-                <div className="spec-top">
-                  <div>
-                    <div className="spec-kicker">Datum Labs &middot; Monthly close</div>
-                    <div className="spec-title">Example Protocol &mdash; October 2026</div>
-                  </div>
-                  <span className="spec-badge">Specimen &middot; illustrative figures</span>
-                </div>
-                <table className="spec-lines">
-                  <tbody>
-                    <tr><td>Interest earned</td><td>$4.21M</td></tr>
-                    <tr className="indent"><td>Paid to suppliers</td><td>&minus;$3.12M</td></tr>
-                    <tr><td>Net interest margin</td><td>$1.09M</td></tr>
-                    <tr className="indent"><td>Incentive spend</td><td>&minus;$0.62M</td></tr>
-                    <tr><td>Liquidation &amp; other revenue</td><td>$0.18M</td></tr>
-                    <tr className="net"><td>Net kept</td><td>$0.65M</td></tr>
-                  </tbody>
-                </table>
-                <div className="spec-chains">
-                  <span className="spec-chain">Ethereum <b>$0.41M</b></span>
-                  <span className="spec-chain">Base <b>$0.19M</b></span>
-                  <span className="spec-chain">Arbitrum <b>$0.05M</b></span>
-                  <span className="spec-chain">+ by market, inside</span>
-                </div>
-                <figcaption className="spec-foot">
-                  <span>Every figure &rarr; query &middot; run &middot; date</span>
-                  <span>Rebuilt hourly in Atlas</span>
-                </figcaption>
-              </figure>
-              <div className="spec-notes" data-reveal>
-                <div className="spec-note">
-                  <span className="n">01</span>
-                  <div>
-                    <h3>The net, not the TVL</h3>
-                    <p>Interest earned, paid out, spent on incentives, kept &mdash; reconciled into one line nobody else closes, by chain and by market.</p>
-                  </div>
-                </div>
-                <div className="spec-note">
-                  <span className="n">02</span>
-                  <div>
-                    <h3>Every figure is traceable</h3>
-                    <p>Each line resolves to the query, the run and the date it was true. When someone disputes a number in your forum, you answer with the working.</p>
-                  </div>
-                </div>
-                <div className="spec-note">
-                  <span className="n">03</span>
-                  <div>
-                    <h3>Yours in 48 hours, free</h3>
-                    <p>Send a protocol name and we return last month&rsquo;s page &mdash; the real one, for your protocol, with your numbers. No call required.</p>
-                  </div>
-                </div>
-                <div className="spec-cta">
-                  <a className="link-arrow" href="/contact">Get your free Snapshot →</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* PROOF */}
-        <section className="section tint" id="proof">
-          <div className="wrap">
-            <div className="proof-head">
-              <h2 className="spaced">Numbers you can defend in public.</h2>
-              <p>Five things you can hold us to, on the record, every month.</p>
-            </div>
-            <ol className="ledger">
-              <li><span className="lg-n">01</span><h3>We model every hour</h3><p>Eight protocols, fourteen chains, rebuilt hourly in Atlas.</p></li>
-              <li><span className="lg-n">02</span><h3>Every figure is traceable</h3><p>Every number resolves to the query, the run and the date it was true.</p></li>
-              <li><span className="lg-n">03</span><h3>We publish first</h3><p>State of Lending is free, monthly, shown against the public trackers.</p></li>
-              <li><span className="lg-n">04</span><h3>You know who we are</h3><p>Named people, not an account team. Our delegate role is disclosed.</p></li>
-              <li><span className="lg-n">05</span><h3>We correct in public</h3><p>Wrong figures are fixed in one working day, wherever the original went.</p></li>
-            </ol>
-          </div>
-        </section>
-
-        {/* SERVICES */}
-        <section className="section" id="services" data-nav-light>
-          <div className="wrap">
-            <div className="who-plate who-plate-centre" data-theme="dark">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
-              <div className="who-plate-inner">
-                <h2>Three services.</h2>
-                <p>
-                  One gets your token accepted as collateral. One closes your books every month. One runs the whole
-                  finance function.
-                </p>
-              </div>
-            </div>
-            <div className="cells cells-3 who-cells">
-              <a className="cell" href="/services/collateral-file">
-                <h3>
-                  <span className="cell-name">Collateral File</span>
-                  <i className="svc-go" aria-hidden="true"><ArrowRight /></i>
-                </h3>
-                <p>
-                  The file a lending market&rsquo;s risk team wants to read before accepting your token as collateral,
-                  with the live asset page behind it.
-                </p>
-              </a>
-              <a className="cell" href="/services/management-accounts">
-                <h3>
-                  <span className="cell-name">Management Accounts</span>
-                  <i className="svc-go" aria-hidden="true"><ArrowRight /></i>
-                </h3>
-                <p>Your accounts every month: earned, paid out, spent on incentives, kept, by chain and by market.</p>
-              </a>
-              <a className="cell" href="/services/fpa-desk">
-                <h3>
-                  <span className="cell-name">FP&amp;A Desk</span>
-                  <i className="svc-go" aria-hidden="true"><ArrowRight /></i>
-                </h3>
-                <p>
-                  Everything in Management Accounts, plus targets, budget against actual, every campaign scored, and a
-                  weekly call.
-                </p>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* RESEARCH STRIP — real covers, latest three */}
-        <section className="section" id="latest-research" data-nav-light>
-          <div className="wrap">
-            <div className="section-head head-split">
-              <h2 className="spaced">Research shaping protocol finance.</h2>
-              <a className="link-arrow" href="/research">All research &rarr;</a>
-            </div>
-            <div className="home-rgrid">
-              {latest.map((r) => (
-                <article className="rcard" key={r.slug}>
-                  <div className="rcard-cover">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={r.cover} alt="" loading="lazy" />
-                  </div>
-                  <div className="rcard-body">
-                    <div className="rcard-meta">
-                      <span className="pill">Reports</span>
-                      {r.period ? <span className="pill pill-quiet">{r.period}</span> : null}
-                    </div>
-                    <h3><a className="rcard-link" href={`/resources/reports/${r.slug}`}>{r.title}</a></h3>
-                  </div>
-                </article>
+            <ul className="sp-ledger">
+              {SERVICES.map((s) => (
+                <li key={s.name}>
+                  <h3 className="sp-h3"><a className="sp-link" href={s.href}>{s.name}</a></h3>
+                  <p>{s.body}</p>
+                  <span className="sp-l-meta">{s.cadence}</span>
+                </li>
               ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="sp-section sp-tight" id="terms">
+          <div className="sp-wrap">
+            <div className="sp-cert">
+              <div className="sp-cert-in">
+                <GuillocheBand />
+                <div className="sp-cert-body">
+                  <h2 className="sp-h2">Numbers you can defend in public.</h2>
+                  <p>Five terms you can hold us to, on the record, every month.</p>
+                  <ul className="sp-ledger sp-ledger-2">
+                    {TERMS.map((t) => (
+                      <li key={t.t}>
+                        <h3 className="sp-h3">{t.t}</h3>
+                        <p>{t.b}</p>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="sp-cert-sign">
+                    <div><b>Aborode Olusegun</b><span>Co-founder, data analyst</span></div>
+                    <div><b>Joel Obafemi</b><span>Co-founder, data analyst</span></div>
+                    <div><b>Joshua Obafemi</b><span>Data engineer, Atlas</span></div>
+                  </div>
+                </div>
+                <GuillocheBand />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="section tint" id="faq" data-nav-light>
-          <div className="wrap" style={{ position: "relative" }}>
-            <div className="faq-split">
-              <h2 className="faq-label">FAQ</h2>
-              <div className="faq">
-                {FAQ.map((item) => (
-                  <div className={item.open ? "faq-item open" : "faq-item"} key={item.q}>
-                    <button className="faq-q" aria-expanded={item.open ? "true" : "false"}>
-                      {item.q}
-                      <span className="faq-mark"><i aria-hidden="true"><Plus /></i></span>
-                    </button>
-                    <div className="faq-a"><div className="faq-a-inner">{item.a}</div></div>
+        {feature ? (
+          <section className="sp-section sp-tight" id="research">
+            <div className="sp-wrap">
+              <div className="sp-head">
+                <h2 className="sp-h2">Research, in public.</h2>
+                <a className="sp-link" href="/research">All research</a>
+              </div>
+              <div className="sp-covers">
+                <a className="sp-cover sp-cover-feature" href={`/resources/reports/${feature.slug}`}>
+                  <div className="sp-cover-img">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={feature.cover} alt="" />
                   </div>
+                  <h3 className="sp-h3">{feature.title}</h3>
+                  {feature.period ? <div className="sp-cover-m">{feature.period}</div> : null}
+                  {feature.excerpt || feature.summary ? <p>{feature.excerpt || feature.summary}</p> : null}
+                </a>
+                <div className="sp-covers-side">
+                  {side.map((r) => (
+                    <a className="sp-cover" key={r.slug} href={`/resources/reports/${r.slug}`}>
+                      <div className="sp-cover-img">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={r.cover} alt="" loading="lazy" />
+                      </div>
+                      <h3 className="sp-h3">{r.title}</h3>
+                      {r.period ? <div className="sp-cover-m">{r.period}</div> : null}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        <section className="sp-section sp-tight" id="faq">
+          <div className="sp-wrap">
+            <div className="sp-split sp-split-wide">
+              <h2 className="sp-h2">Questions protocols ask first.</h2>
+              <div className="sp-faq">
+                {FAQ.map((f, i) => (
+                  <details key={f.q} open={i === 0}>
+                    <summary>{f.q}</summary>
+                    <div className="sp-faq-a">
+                      {f.a.map((p) => (
+                        <p key={p}>{p}</p>
+                      ))}
+                    </div>
+                  </details>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="sp-section sp-tight" id="start">
+          <div className="sp-wrap">
+            <div className="sp-close">
+              <h2 className="sp-h2">
+                Send a protocol name. <em>Get last month back.</em>
+              </h2>
+              <div>
+                <p className="sp-lede">One page, free, inside 48 hours. If it is useful, we talk. If not, you keep the page.</p>
+                <div className="sp-act">
+                  <a className="sp-btn sp-btn-primary" href="/contact">Get your free Snapshot</a>
+                </div>
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      <FooterV3 />
+      <Footer />
     </>
   )
 }

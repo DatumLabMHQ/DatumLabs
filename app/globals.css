@@ -1,19 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "./v3/tokens.css";
-@import "./v3/site-v2.css";
-@import "./v3/site-brand.css";
 @import "./v3/report-body.css";
-@import "./v3/adaptations.css";
+@import "./print/print.css";
 
 /* ============================================================
-   Datum Labs v3 — redesign layer order:
-   tokens.css      design-system tokens, theme-scoped (light/dark bands)
-   site-v2.css     component layer from the redesign handoff
-   site-brand.css  brand discipline layer (loads last, wins ties)
-   report-body.css MDX report article styles carried over from v2
-   Primitive color ramps + the shadcn bridge live below (the
-   Resources browser, report gate and newsletter use shadcn/ui).
+   Datum Labs — Security Print (docs/DESIGN.md).
+   report-body.css  MDX report, legal and Dune index article styles
+   print.css        the design system (sp- classes, tokens)
+   Primitive ramps and the shadcn bridge below serve the report
+   gate and other shadcn/ui pieces.
    ============================================================ */
 :root {
   font-size: 16px;
@@ -39,12 +34,12 @@
   --surface-brand: var(--sapphire-500);
 
   /* Fonts (next/font vars set in layout.tsx) */
-  --font-display: var(--font-serif), "Source Serif 4", Georgia, serif;
+  
 
   /* ---- shadcn tokens, mapped to the brand palette (keeps Resources/gate/
      newsletter/Button components working inside the new look) ---- */
-  --background: var(--neutral-50);
-  --foreground: var(--neutral-900);
+  --background: #F2F4FA;
+  --foreground: #060B33;
   --card: var(--neutral-0);
   --card-foreground: var(--neutral-900);
   --popover: var(--neutral-0);
@@ -79,8 +74,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist), "Geist", system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), "Geist Mono", ui-monospace, monospace;
+  --font-sans: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-mono: var(--font-martian), ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
+import { Nav, Footer, PageHead } from "@/components/print/print-parts"
 
 const SHOW_ID = "5ZZfeCsHFcZWXJ47FNeqJQ"
 const SPOTIFY_SHOW = `https://open.spotify.com/show/${SHOW_ID}`
@@ -91,97 +91,78 @@ export default async function PodcastPage() {
 
   return (
     <>
-      <PageRules />
-      <NavV3 active="research" navDark />
+      <Nav active="podcast" />
 
-      <header className="page-header ph-rel" data-nav-dark data-theme="dark">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="band-bg" src="/brand/faq-bg.jpg" alt="" aria-hidden="true" />
-        <div className="wrap ph-inner">
-          <span className="crumb">Resources · Podcast</span>
-          <h1>W3GM. Conversations from the <span className="it">onchain frontier.</span></h1>
-          <p className="lede">The Datum Labs podcast. We sit down with the operators, founders, and analysts building the onchain economy, the people actually shipping, not just posting.</p>
-          <div className="meta-row">
-            <span>Hosted by <strong>Datum Labs</strong></span>
-            <span>Show · <strong>W3GM</strong></span>
-            {episodes.length > 0 ? <span>Episodes · <strong>{episodes.length}</strong></span> : <span>On · <strong>Spotify</strong></span>}
-          </div>
-        </div>
-      </header>
+      <main id="main">
+        <PageHead
+          title={
+            <>
+              W3GM. Conversations from the <em>onchain frontier.</em>
+            </>
+          }
+          lede="The Datum Labs podcast. We sit down with the operators, founders, and analysts building the onchain economy, the people actually shipping, not just posting."
+          meta={
+            <>
+              <span>Hosted by <b>Datum Labs</b></span>
+              <span>Show <b>W3GM</b></span>
+              {episodes.length > 0 ? <span>Episodes <b>{episodes.length}</b></span> : <span>On <b>Spotify</b></span>}
+            </>
+          }
+        />
 
-      <main id="main" className="wrap">
-        <section className="section" style={{ paddingTop: 32 }}>
-          <div data-reveal style={{ borderRadius: 16, overflow: "hidden", boxShadow: "var(--shadow-md)", border: "1px solid var(--border-subtle)" }}>
-            <iframe
-              title="W3GM on Spotify"
-              src={SPOTIFY_EMBED}
-              width="100%"
-              height={352}
-              style={{ border: 0, display: "block" }}
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-            />
-          </div>
-          <div className="hero-ctas" style={{ marginTop: 24 }}>
-            <a href={SPOTIFY_SHOW} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Listen on Spotify ↗</a>
+        <section className="sp-section">
+          <div className="sp-wrap">
+            <div className="sp-split sp-split-wide">
+              <div>
+                <h2 className="sp-h2">Latest episode.</h2>
+                <div className="sp-act">
+                  <a href={SPOTIFY_SHOW} target="_blank" rel="noopener noreferrer" className="sp-btn sp-btn-ink">Listen on Spotify ↗</a>
+                </div>
+              </div>
+              <div className="sp-embed">
+                <iframe
+                  title="W3GM on Spotify"
+                  src={SPOTIFY_EMBED}
+                  width="100%"
+                  height={352}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
         {episodes.length > 0 ? (
-          <section className="section" style={{ paddingTop: 8 }}>
-            <div className="section-head" data-reveal>
-              <span className="crumb">All episodes</span>
-            </div>
-            <div data-reveal>
-              {episodes.map((ep, i) => (
-                <article
-                  key={`${ep.title}-${i}`}
-                  style={{
-                    borderTop: "1px solid var(--border-subtle)",
-                    padding: "24px 4px",
-                    display: "grid",
-                    gap: 10,
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 14, flexWrap: "wrap" }}>
-                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-tertiary)" }}>
-                      {String(episodes.length - i).padStart(2, "0")}
+          <section className="sp-section sp-tight" id="episodes">
+            <div className="sp-wrap">
+              <div className="sp-head">
+                <h2 className="sp-h2">Every episode.</h2>
+              </div>
+              <ul className="sp-ledger sp-episodes">
+                {episodes.map((ep, i) => (
+                  <li key={`${ep.title}-${i}`}>
+                    <h3 className="sp-h3">{ep.title}</h3>
+                    <div>
+                      {ep.description ? <p className="sp-ep-desc">{ep.description}</p> : null}
+                      {ep.audioUrl ? (
+                        // eslint-disable-next-line jsx-a11y/media-has-caption
+                        <audio controls preload="none" src={ep.audioUrl} />
+                      ) : null}
+                    </div>
+                    <span className="sp-l-meta">
+                      {formatDate(ep.pubDate)}
+                      {ep.duration ? `, ${formatDuration(ep.duration)}` : ""}
                     </span>
-                    <h3 style={{ fontFamily: "var(--font-sans)", fontSize: 18, fontWeight: 600, margin: 0, color: "var(--text-primary)" }}>
-                      {ep.title}
-                    </h3>
-                  </div>
-                  <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--text-tertiary)" }}>
-                    {formatDate(ep.pubDate)}{ep.duration ? ` · ${formatDuration(ep.duration)}` : ""}
-                  </div>
-                  {ep.description ? (
-                    <p
-                      style={{
-                        margin: 0,
-                        fontSize: 14,
-                        lineHeight: 1.6,
-                        color: "var(--text-secondary)",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {ep.description}
-                    </p>
-                  ) : null}
-                  {ep.audioUrl ? (
-                    // eslint-disable-next-line jsx-a11y/media-has-caption
-                    <audio controls preload="none" src={ep.audioUrl} style={{ width: "100%", maxWidth: 560, height: 36 }} />
-                  ) : null}
-                </article>
-              ))}
+                  </li>
+                ))}
+              </ul>
             </div>
           </section>
         ) : null}
       </main>
 
-      <FooterV3 />
+      <Footer />
     </>
   )
 }
