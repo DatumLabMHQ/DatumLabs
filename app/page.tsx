@@ -5,6 +5,9 @@ import {
 } from "@phosphor-icons/react/dist/ssr"
 
 import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
+import { readFileSync } from "fs"
+import path from "path"
+
 import { getAllReports } from "@/lib/reports"
 
 export const metadata: Metadata = {
@@ -101,8 +104,43 @@ const FAQ = [
   },
 ]
 
+/** Daily sector TVL ($M) from our published read: The State of Lending on
+ *  Sui, May and June 2026 (content/reports/state-of-lending-sui-may-june-2026.mdx).
+ *  Parsed from the report itself so the chart and the report can never disagree. */
+function suiSectorSeries(): number[] {
+  try {
+    const src = readFileSync(
+      path.join(process.cwd(), "content", "reports", "state-of-lending-sui-may-june-2026.mdx"),
+      "utf8",
+    )
+    return (src.match(/Sector: ([0-9.]+)/g) || []).map((v) => parseFloat(v.slice(8)))
+  } catch {
+    return []
+  }
+}
+
+function Sparkline({ data }: { data: number[] }) {
+  if (data.length < 2) return null
+  const W = 760, H = 180, PAD = 6
+  const min = Math.min(...data), max = Math.max(...data)
+  const x = (i: number) => PAD + (i / (data.length - 1)) * (W - PAD * 2)
+  const y = (v: number) => PAD + (1 - (v - min) / (max - min)) * (H - PAD * 2 - 14)
+  const pts = data.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ")
+  const area = `${PAD},${H - 8} ${pts} ${(W - PAD).toFixed(1)},${H - 8}`
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Daily Sui lending sector TVL, May to June 2026">
+      <polygon points={area} fill="var(--sapphire-500)" opacity="0.08" />
+      <polyline points={pts} fill="none" stroke="var(--sapphire-500)" strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round" />
+      <circle cx={x(data.length - 1)} cy={y(data[data.length - 1])} r="4" fill="var(--sapphire-600)" />
+    </svg>
+  )
+}
+
 export default function Home() {
-  const reportCount = getAllReports().length
+  const reports = getAllReports()
+  const reportCount = reports.length
+  const latest = reports.filter((r) => r.cover).slice(0, 3)
+  const series = suiSectorSeries()
   return (
     <>
       <PageRules />
@@ -134,6 +172,30 @@ export default function Home() {
                   <div><b>8</b><span>Protocols modelled hourly</span></div>
                   <div><b>14</b><span>Chains</span></div>
                   <div><b>{reportCount}</b><span>Public reports</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* STAT BAND — real figures from our published Sui read */}
+        <section className="proofband" data-nav-light>
+          <div className="wrap">
+            <div className="proofband-grid">
+              <div>
+                <div className="crumb">From our published read &middot; Sui lending &middot; May&ndash;June 2026</div>
+                <div className="proofband-num">$355.6M<sup>&minus;20.4%</sup></div>
+                <p className="proofband-sub">
+                  Sector TVL at the June close, tracked daily across five protocols. Borrowers left in May.
+                  Suppliers left in June. We published both months, with every figure traceable.
+                </p>
+                <a className="link-arrow" href="/resources/reports/state-of-lending-sui-may-june-2026">Read the report &rarr;</a>
+              </div>
+              <div className="proofband-chart">
+                <Sparkline data={series} />
+                <div className="proofband-cap">
+                  <span>May 01 &mdash; Jun 30 &middot; daily close</span>
+                  <span>61 observations &middot; five protocols</span>
                 </div>
               </div>
             </div>
@@ -310,6 +372,33 @@ export default function Home() {
                   weekly call.
                 </p>
               </a>
+            </div>
+          </div>
+        </section>
+
+        {/* RESEARCH STRIP — real covers, latest three */}
+        <section className="section" id="latest-research" data-nav-light>
+          <div className="wrap">
+            <div className="section-head head-split">
+              <h2 className="spaced">Research shaping protocol finance.</h2>
+              <a className="link-arrow" href="/research">All research &rarr;</a>
+            </div>
+            <div className="home-rgrid">
+              {latest.map((r) => (
+                <article className="rcard" key={r.slug}>
+                  <div className="rcard-cover">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={r.cover} alt="" loading="lazy" />
+                  </div>
+                  <div className="rcard-body">
+                    <div className="rcard-meta">
+                      <span className="pill">Reports</span>
+                      {r.period ? <span className="pill pill-quiet">{r.period}</span> : null}
+                    </div>
+                    <h3><a className="rcard-link" href={`/resources/reports/${r.slug}`}>{r.title}</a></h3>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>

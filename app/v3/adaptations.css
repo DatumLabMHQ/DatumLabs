@@ -165,3 +165,23 @@ section[id], [id^="faq"], h2[id] { scroll-margin-top: calc(var(--nav-h, 96px) + 
   text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px;
 }
 .spec-cta .link-arrow:hover { color: var(--sapphire-500); }
+
+/* 10. Modeled sections (owner: "model the best styles from the sites we
+       looked at"). Stat band = Steakhouse's proof-number + sparkline,
+       built from OUR published Sui series. Research strip = karpatkey's
+       bottom cards, built from Joel's real covers. */
+.proofband { background: var(--surface-default); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); padding: 72px 0 !important; }
+.proofband-grid { display: grid; grid-template-columns: minmax(300px, 0.9fr) 1.1fr; gap: 64px; align-items: end; }
+@media (max-width: 960px) { .proofband-grid { grid-template-columns: 1fr; gap: 32px; } }
+.proofband-num { font-family: var(--font-display); font-size: clamp(56px, 7vw, 92px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; color: var(--text-primary); margin: 14px 0 12px; }
+.proofband-num sup { font-size: 0.38em; font-weight: 600; color: var(--red-500); letter-spacing: 0; vertical-align: 18px; margin-left: 10px; font-family: var(--font-mono); }
+.proofband-sub { font-size: 15.5px; line-height: 1.6; color: var(--text-secondary); max-width: 44ch; margin: 0 0 18px; }
+.proofband .crumb { color: var(--text-tertiary); }
+.proofband-chart svg { width: 100%; height: auto; display: block; }
+.proofband-cap { display: flex; justify-content: space-between; margin-top: 10px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); }
+.link-arrow { font-family: var(--font-sans); font-size: 15px; font-weight: 600; color: var(--text-brand); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.link-arrow:hover { color: var(--sapphire-500); }
+
+.home-rgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 960px) { .home-rgrid { grid-template-columns: 1fr; } }
+.head-split { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; }
