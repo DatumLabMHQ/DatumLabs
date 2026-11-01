@@ -74,3 +74,49 @@ section[id], [id^="faq"], h2[id] { scroll-margin-top: calc(var(--nav-h, 96px) + 
 }
 .footer-sub button:hover { background: var(--sapphire-400); }
 .footer-sub .form-done { color: rgba(255,255,255,.75); font-size: 13px; margin-top: 8px; }
+
+/* 7. Specimen — the one-page monthly close, shown as a document (home).
+      Pattern the whole field validates: Token Terminal floats a financial
+      statement in its hero; Steakhouse/Gauntlet/KPK lead with proof stats.
+      This is Datum's version: the artifact itself, annotated. */
+.spec-row { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 56px; align-items: start; }
+@media (max-width: 960px) { .spec-row { grid-template-columns: 1fr; gap: 36px; } }
+
+.spec-doc {
+  margin: 0; background: var(--surface-default); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 34px 36px 26px;
+  position: relative;
+}
+.spec-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; border-bottom: 2px solid var(--text-primary); padding-bottom: 14px; }
+.spec-kicker { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); }
+.spec-title { font-family: var(--font-display); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); margin-top: 4px; }
+.spec-badge {
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-tertiary); border: 1px dashed var(--border-strong); border-radius: var(--radius-sm);
+  padding: 5px 9px; white-space: nowrap;
+}
+.spec-lines { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.spec-lines td { padding: 11px 0; border-bottom: 1px solid var(--border-subtle); font-size: 14.5px; color: var(--text-secondary); }
+.spec-lines td:last-child { text-align: right; font-family: var(--font-mono); font-size: 14px; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+.spec-lines .indent td:first-child { padding-left: 18px; }
+.spec-lines .net td { border-bottom: 0; border-top: 2px solid var(--text-primary); padding-top: 13px; font-weight: 600; color: var(--text-primary); }
+.spec-lines .net td:last-child { color: var(--sapphire-600); font-weight: 600; }
+.spec-chains { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+.spec-chain { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-full); padding: 5px 11px; background: var(--surface-sunken); }
+.spec-chain b { color: var(--text-primary); font-weight: 600; }
+.spec-foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); }
+
+.spec-notes { display: flex; flex-direction: column; gap: 26px; padding-top: 8px; }
+.spec-note { display: grid; grid-template-columns: 34px 1fr; gap: 14px; }
+.spec-note .n { font-family: var(--font-mono); font-size: 12px; color: var(--text-brand); padding-top: 3px; }
+.spec-note h3 { font-family: var(--font-sans); font-size: 17px; font-weight: 600; margin: 0 0 6px; color: var(--text-primary); }
+.spec-note p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--text-secondary); }
+.spec-cta { margin-top: 6px; padding-left: 48px; }
+
+/* 8. Hero stat strip — truthful proof under the hero copy (Gauntlet/
+      Steakhouse/KPK pattern). Report count is computed from the repo. */
+.hero-stats { display: flex; gap: 36px; margin-top: 34px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.16); }
+.hero-stats > div { display: flex; flex-direction: column; gap: 4px; }
+.hero-stats b { font-family: var(--font-display); font-size: 30px; font-weight: 600; color: #fff; line-height: 1; }
+.hero-stats span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+@media (max-width: 720px) { .hero-stats { gap: 24px; } .hero-stats b { font-size: 24px; } }

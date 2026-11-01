@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr"
 
 import { NavV3, FooterV3, PageRules } from "@/components/v3/site-chrome"
+import { getAllReports } from "@/lib/reports"
 
 export const metadata: Metadata = {
   title: "Datum Labs — Financial Data & Reporting for Blockchain Protocols",
@@ -109,6 +110,7 @@ const FAQ = [
 ]
 
 export default function Home() {
+  const reportCount = getAllReports().length
   return (
     <>
       <PageRules />
@@ -135,6 +137,11 @@ export default function Home() {
                 </p>
                 <div className="hero-ctas">
                   <a className="btn btn-primary" href="/contact">Contact us</a>
+                </div>
+                <div className="hero-stats">
+                  <div><b>8</b><span>Protocols modelled hourly</span></div>
+                  <div><b>14</b><span>Chains</span></div>
+                  <div><b>{reportCount}</b><span>Public reports</span></div>
                 </div>
               </div>
             </div>
@@ -180,6 +187,73 @@ export default function Home() {
                   Then the part that matters: which markets carry you, which cost you money, and what last
                   quarter&rsquo;s rewards actually bought.
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SPECIMEN — the artifact itself */}
+        <section className="section" id="specimen" data-nav-light>
+          <div className="wrap">
+            <div className="section-head">
+              <h2 className="spaced">This is what the answer looks like.</h2>
+              <p>One page, every month: your whole protocol added up, with the working behind every line.</p>
+            </div>
+            <div className="spec-row">
+              <figure className="spec-doc" data-reveal aria-label="Specimen monthly close, illustrative figures">
+                <div className="spec-top">
+                  <div>
+                    <div className="spec-kicker">Datum Labs &middot; Monthly close</div>
+                    <div className="spec-title">Example Protocol &mdash; October 2026</div>
+                  </div>
+                  <span className="spec-badge">Specimen &middot; illustrative figures</span>
+                </div>
+                <table className="spec-lines">
+                  <tbody>
+                    <tr><td>Interest earned</td><td>$4.21M</td></tr>
+                    <tr className="indent"><td>Paid to suppliers</td><td>&minus;$3.12M</td></tr>
+                    <tr><td>Net interest margin</td><td>$1.09M</td></tr>
+                    <tr className="indent"><td>Incentive spend</td><td>&minus;$0.62M</td></tr>
+                    <tr><td>Liquidation &amp; other revenue</td><td>$0.18M</td></tr>
+                    <tr className="net"><td>Net kept</td><td>$0.65M</td></tr>
+                  </tbody>
+                </table>
+                <div className="spec-chains">
+                  <span className="spec-chain">Ethereum <b>$0.41M</b></span>
+                  <span className="spec-chain">Base <b>$0.19M</b></span>
+                  <span className="spec-chain">Arbitrum <b>$0.05M</b></span>
+                  <span className="spec-chain">+ by market, inside</span>
+                </div>
+                <figcaption className="spec-foot">
+                  <span>Every figure &rarr; query &middot; run &middot; date</span>
+                  <span>Rebuilt hourly in Atlas</span>
+                </figcaption>
+              </figure>
+              <div className="spec-notes" data-reveal>
+                <div className="spec-note">
+                  <span className="n">01</span>
+                  <div>
+                    <h3>The net, not the TVL</h3>
+                    <p>Interest earned, paid out, spent on incentives, kept &mdash; reconciled into one line nobody else closes, by chain and by market.</p>
+                  </div>
+                </div>
+                <div className="spec-note">
+                  <span className="n">02</span>
+                  <div>
+                    <h3>Every figure is traceable</h3>
+                    <p>Each line resolves to the query, the run and the date it was true. When someone disputes a number in your forum, you answer with the working.</p>
+                  </div>
+                </div>
+                <div className="spec-note">
+                  <span className="n">03</span>
+                  <div>
+                    <h3>Yours in 48 hours, free</h3>
+                    <p>Send a protocol name and we return last month&rsquo;s page &mdash; the real one, for your protocol, with your numbers. No call required.</p>
+                  </div>
+                </div>
+                <div className="spec-cta">
+                  <a className="btn btn-primary" href="/contact">Get your Snapshot</a>
+                </div>
               </div>
             </div>
           </div>
