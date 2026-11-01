@@ -113,6 +113,13 @@ export function FooterV3() {
               <a href={LINKS.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn"><LinkedinLogo weight="duotone" aria-hidden="true" /><span>LinkedIn</span></a>
               <a href={LINKS.email} aria-label="Email"><EnvelopeSimple weight="duotone" aria-hidden="true" /><span>Email</span></a>
             </div>
+            <div className="footer-sub">
+              <p>Protocol finance &amp; research, monthly</p>
+              <form data-form data-endpoint="/api/subscribe" data-subject="Footer subscribe" data-done="You are on the list.">
+                <input type="email" name="email" placeholder="Enter your email" aria-label="Email" required autoComplete="email" />
+                <button type="submit">Subscribe</button>
+              </form>
+            </div>
           </div>
 
           <div className="footer-col">

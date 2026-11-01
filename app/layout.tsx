@@ -48,9 +48,9 @@ export const metadata: Metadata = {
       "What your protocol earned, paid out, spent and kept last month — every figure traceable to the run behind it. Numbers you can defend in public.",
     images: [
       {
-        url: "/images/footer-bg.png",
-        width: 1500,
-        height: 500,
+        url: "/brand/og-card.png",
+        width: 1200,
+        height: 630,
         alt: "Datum Labs — financial data and reporting for blockchain protocols",
       },
     ],
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Datum Labs — Financial Data & Reporting for Blockchain Protocols",
     description: "What your protocol earned, paid out, spent and kept last month. Numbers you can defend in public.",
-    images: ["/images/footer-bg.png"],
+    images: ["/brand/og-card.png"],
     creator: "@Datumlabs_",
   },
   robots: {

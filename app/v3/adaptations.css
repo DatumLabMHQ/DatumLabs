@@ -36,3 +36,41 @@ svg.caret { width: 12px; height: 12px; }
 .crumb { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-tertiary); }
 [data-theme="dark"] .crumb, .page-header.ph-rel .crumb { color: var(--sapphire-300); }
 a.crumb:hover { color: #fff; }
+
+/* 6. Polish pass (2026-11-01).
+      a) The handoff's cover hover-zoom targeted <image-slot>; the port renders
+         <img> / .rcard-ph — carry the same motion over. */
+.rcard-cover img, .rcard-cover .rcard-ph,
+.rfeature-ratio img, .rfeature-ratio .rcard-ph {
+  position: absolute; inset: 0;
+  transform: scale(1);
+  transition: transform 640ms cubic-bezier(.22, .61, .36, 1);
+}
+.rcard:hover .rcard-cover img, .rcard:hover .rcard-cover .rcard-ph { transform: scale(1.06); }
+.rfeature:hover .rfeature-ratio img, .rfeature:hover .rfeature-ratio .rcard-ph { transform: scale(1.05); }
+@media (prefers-reduced-motion: reduce) {
+  .rcard-cover img, .rcard-cover .rcard-ph, .rfeature-ratio img, .rfeature-ratio .rcard-ph { transition: none; }
+}
+
+/*    b) In-page anchors land clear of the fixed nav. */
+section[id], [id^="faq"], h2[id] { scroll-margin-top: calc(var(--nav-h, 96px) + 16px); }
+
+/*    c) Footer newsletter — the v2 footer captured email; the v3 design
+         dropped it. Restored, wired to /api/subscribe via forms.js. */
+.footer-sub { margin-top: 22px; max-width: 420px; }
+.footer-sub p { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); margin: 0 0 10px; }
+.footer-sub form { display: flex; gap: 8px; }
+.footer-sub input {
+  flex: 1; min-width: 0; height: 44px; padding: 0 14px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--radius-md); color: #fff; font-family: var(--font-sans); font-size: 14px;
+}
+.footer-sub input::placeholder { color: rgba(255,255,255,.4); }
+.footer-sub input:focus { outline: none; border-color: var(--sapphire-400); box-shadow: 0 0 0 3px rgba(126,151,249,.25); }
+.footer-sub button {
+  height: 44px; padding: 0 18px; border: 0; border-radius: var(--radius-md);
+  background: var(--sapphire-500); color: #fff; font-family: var(--font-sans);
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: background 150ms;
+}
+.footer-sub button:hover { background: var(--sapphire-400); }
+.footer-sub .form-done { color: rgba(255,255,255,.75); font-size: 13px; margin-top: 8px; }
