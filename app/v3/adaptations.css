@@ -120,3 +120,48 @@ section[id], [id^="faq"], h2[id] { scroll-margin-top: calc(var(--nav-h, 96px) + 
 .hero-stats b { font-family: var(--font-display); font-size: 30px; font-weight: 600; color: #fff; line-height: 1; }
 .hero-stats span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,.55); }
 @media (max-width: 720px) { .hero-stats { gap: 24px; } .hero-stats b { font-size: 24px; } }
+
+/* 9. De-AI pass (owner verdict 2026-11-01: "reeks of AI — only the roster
+      looks great"). The roster's law becomes the system's law: hairline-ruled
+      cells, mono labels, real artifacts. Kill the icon-chip card grammar.
+      a) Tighter radii everywhere — printed-document corners, not app bubbles. */
+:root {
+  --radius-sm: 3px; --radius-md: 5px; --radius-lg: 8px;
+  --radius-xl: 10px; --radius-2xl: 14px;
+}
+
+/*    b) Icon chips → plain small marks. No tinted rounded squares. */
+.svc-ic, .svc-col-ic, .rsub2-ic, .cells .cell .ic {
+  background: transparent !important; border: 0 !important; box-shadow: none !important;
+  width: auto !important; height: auto !important; border-radius: 0 !important;
+  padding: 0 !important; display: inline-flex;
+}
+.svc-ic i, .svc-col-ic i, .rsub2-ic i { font-size: 20px; color: var(--sapphire-600); }
+
+/*    c) Cards that float → rows that rule. Flatten shadows on light sections. */
+.pcard, .tcard, .cell-stack { box-shadow: none !important; }
+
+/*    d) The proof ledger (home) — numbered ruled rows, roster discipline. */
+.ledger { list-style: none; margin: 0; padding: 0; counter-reset: lg; }
+.ledger li {
+  display: grid; grid-template-columns: 72px minmax(220px, 300px) 1fr;
+  gap: 24px; align-items: baseline;
+  padding: 26px 4px; border-top: 1px solid var(--border-subtle);
+}
+.ledger li:last-child { border-bottom: 1px solid var(--border-subtle); }
+.ledger .lg-n { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--text-brand); }
+.ledger h3 { font-family: var(--font-sans); font-size: 18px; font-weight: 600; margin: 0; letter-spacing: -0.01em; color: var(--text-primary); }
+.ledger p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text-secondary); }
+@media (max-width: 860px) {
+  .ledger li { grid-template-columns: 48px 1fr; }
+  .ledger p { grid-column: 2; margin-top: 6px; }
+}
+
+/*    e) Specimen: printed-statement corners, quieter presence. */
+.spec-doc { border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+.spec-cta { padding-left: 48px; }
+.spec-cta .link-arrow {
+  font-family: var(--font-sans); font-size: 15px; font-weight: 600; color: var(--text-brand);
+  text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px;
+}
+.spec-cta .link-arrow:hover { color: var(--sapphire-500); }

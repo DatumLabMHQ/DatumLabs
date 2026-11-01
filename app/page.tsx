@@ -1,13 +1,5 @@
 import type { Metadata } from "next"
 import {
-  Clock,
-  Path,
-  Newspaper,
-  UsersThree,
-  SealCheck,
-  ShieldCheck,
-  Receipt,
-  Compass,
   ArrowRight,
   Plus,
 } from "@phosphor-icons/react/dist/ssr"
@@ -252,7 +244,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="spec-cta">
-                  <a className="btn btn-primary" href="/contact">Get your Snapshot</a>
+                  <a className="link-arrow" href="/contact">Get your free Snapshot →</a>
                 </div>
               </div>
             </div>
@@ -266,33 +258,13 @@ export default function Home() {
               <h2 className="spaced">Numbers you can defend in public.</h2>
               <p>Five things you can hold us to, on the record, every month.</p>
             </div>
-            <div className="pcards">
-              <div className="pcard">
-                <span className="svc-ic"><i aria-hidden="true"><Clock weight="duotone" /></i></span>
-                <h3>We model every hour</h3>
-                <p>Eight protocols, fourteen chains, rebuilt hourly in Atlas.</p>
-              </div>
-              <div className="pcard">
-                <span className="svc-ic"><i aria-hidden="true"><Path weight="duotone" /></i></span>
-                <h3>Every figure is traceable</h3>
-                <p>Every number resolves to the query, the run and the date it was true.</p>
-              </div>
-              <div className="pcard">
-                <span className="svc-ic"><i aria-hidden="true"><Newspaper weight="duotone" /></i></span>
-                <h3>We publish first</h3>
-                <p>State of Lending is free, monthly, shown against the public trackers.</p>
-              </div>
-              <div className="pcard">
-                <span className="svc-ic"><i aria-hidden="true"><UsersThree weight="duotone" /></i></span>
-                <h3>You know who we are</h3>
-                <p>Named people, not an account team. Our delegate role is disclosed.</p>
-              </div>
-              <div className="pcard">
-                <span className="svc-ic"><i aria-hidden="true"><SealCheck weight="duotone" /></i></span>
-                <h3>We correct in public</h3>
-                <p>Wrong figures are fixed in one working day, wherever the original went.</p>
-              </div>
-            </div>
+            <ol className="ledger">
+              <li><span className="lg-n">01</span><h3>We model every hour</h3><p>Eight protocols, fourteen chains, rebuilt hourly in Atlas.</p></li>
+              <li><span className="lg-n">02</span><h3>Every figure is traceable</h3><p>Every number resolves to the query, the run and the date it was true.</p></li>
+              <li><span className="lg-n">03</span><h3>We publish first</h3><p>State of Lending is free, monthly, shown against the public trackers.</p></li>
+              <li><span className="lg-n">04</span><h3>You know who we are</h3><p>Named people, not an account team. Our delegate role is disclosed.</p></li>
+              <li><span className="lg-n">05</span><h3>We correct in public</h3><p>Wrong figures are fixed in one working day, wherever the original went.</p></li>
+            </ol>
           </div>
         </section>
 
@@ -313,7 +285,6 @@ export default function Home() {
             <div className="cells cells-3 who-cells">
               <a className="cell" href="/services/collateral-file">
                 <h3>
-                  <span className="ic"><i aria-hidden="true"><ShieldCheck weight="duotone" /></i></span>
                   <span className="cell-name">Collateral File</span>
                   <i className="svc-go" aria-hidden="true"><ArrowRight /></i>
                 </h3>
@@ -324,7 +295,6 @@ export default function Home() {
               </a>
               <a className="cell" href="/services/management-accounts">
                 <h3>
-                  <span className="ic"><i aria-hidden="true"><Receipt weight="duotone" /></i></span>
                   <span className="cell-name">Management Accounts</span>
                   <i className="svc-go" aria-hidden="true"><ArrowRight /></i>
                 </h3>
@@ -332,7 +302,6 @@ export default function Home() {
               </a>
               <a className="cell" href="/services/fpa-desk">
                 <h3>
-                  <span className="ic"><i aria-hidden="true"><Compass weight="duotone" /></i></span>
                   <span className="cell-name">FP&amp;A Desk</span>
                   <i className="svc-go" aria-hidden="true"><ArrowRight /></i>
                 </h3>
