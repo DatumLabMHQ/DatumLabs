@@ -5,9 +5,9 @@ import { OpNav } from "@/components/onepager/op-nav"
 import { opFonts } from "@/components/onepager/fonts"
 import "@/components/onepager/onepager.css"
 
-/* Reading pages (reports and articles): the sky band from the one-pager for
-   the title, fading into a light paper surface built for long reading,
-   charts and tables. */
+/* Reading pages (reports and articles), in the same sky as the rest of the
+   site: the live sky fixed behind, a veil deepening it for long reading,
+   white type. Charts keep white cards so their palette reads. */
 
 export type MoreItem = { title: string; href: string; date: string; kind: string; cover?: string }
 
@@ -31,10 +31,11 @@ export function ArticleShell({
   children: ReactNode
 }) {
   return (
-    <div className={`art-root ${opFonts}`}>
+    <div className={`art-root sx-root ${opFonts}`}>
+      <Sky className="sx-sky" />
+      <div className="sx-veil" aria-hidden="true" />
+      <OpNav active="research" />
       <header className="art-hero">
-        <Sky className="pod-sky" />
-        <OpNav active="research" />
         <div className="art-hero-in">
           <a className="art-back" href="/research">
             <span aria-hidden="true">←</span> Research
@@ -83,7 +84,7 @@ export function ArticleShell({
         </section>
       ) : null}
 
-      <footer className="pod-foot art-foot">
+      <footer className="pod-foot art-foot pp-foot">
         <span>&copy; 2026 Datum Labs</span>
         <a href="/">Financial data and reporting for blockchain protocols</a>
         <a href="mailto:hello@datumlab.xyz">hello@datumlab.xyz</a>

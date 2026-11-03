@@ -185,7 +185,7 @@ app/api/latest-research/         Feeds the homepage research strip (also merged)
 app/page.tsx                     Homepage
 app/globals.css, app/ds-v2.css   Design system (brand accent #4A6CF7)
 components/site-nav.tsx          Nav (mega-menu; "Research & Reports" → /resources)
-app/resources/podcast/           W3GM podcast (episodes from Spotify RSS, hourly revalidate)
+app/resources/podcast/           Beyond the Protocol podcast + one page per episode ([slug]); feed parsed in lib/podcast.ts (Spotify RSS, hourly)
 sanity/                          Sanity schemas + embedded Studio (blog only — NOT reports)
 public/images/, public/reports/  Static assets (report covers, PDFs)
 docs/HANDBOOK.md                 Human-facing team handbook (superset of this file)

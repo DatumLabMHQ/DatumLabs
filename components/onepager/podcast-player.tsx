@@ -3,7 +3,10 @@
 import { useEffect, useRef, useState } from "react"
 
 export type PodEpisode = {
+  slug: string
+  number: number
   title: string
+  tag?: string
   date: string
   duration: string
   description: string
@@ -16,18 +19,6 @@ function clock(s: number) {
   const m = Math.floor((s % 3600) / 60)
   const sec = Math.floor(s % 60)
   return h > 0 ? `${h}:${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}` : `${m}:${String(sec).padStart(2, "0")}`
-}
-
-// Feed titles carry format tags and old show branding; split those off so
-// the title can be set large on its own.
-function parseTitle(raw: string) {
-  let t = raw.replace(/\s*\|\s*Found3s on W3GM\s*$/i, "")
-  let tag: string | undefined
-  t = t.replace(/\s*[[{(]\s*(roundtable)\s*[\]})]\s*/i, (_m, g: string) => {
-    tag = g[0].toUpperCase() + g.slice(1).toLowerCase()
-    return " "
-  })
-  return { title: t.replace(/\s+/g, " ").trim().replace(/[.]$/, ""), tag }
 }
 
 function sizeFor(title: string) {
@@ -99,7 +90,6 @@ export function PodcastPlayer({ episodes }: { episodes: PodEpisode[] }) {
     if (a) a.currentTime = Math.max(0, Math.min(len || a.duration || 0, a.currentTime + d))
   }
 
-  const n = episodes.length
   const latest = episodes.slice(0, 3)
   const rest = episodes.slice(3)
   const on = (i: number) => current === i && playing
@@ -110,22 +100,29 @@ export function PodcastPlayer({ episodes }: { episodes: PodEpisode[] }) {
       <audio ref={audio} preload="none" />
 
       {latest.map((ep, i) => {
-        const { title, tag } = parseTitle(ep.title)
+        const { title, tag } = ep
         return (
           <section key={`${ep.title}-${i}`} className={i % 2 ? "pc-panel pc-panel-flip" : "pc-panel"} aria-label={title}>
-            <p className="pc-ep-no" aria-hidden="true">{String(n - i).padStart(2, "0")}</p>
+            <p className="pc-ep-no" aria-hidden="true">{String(ep.number).padStart(2, "0")}</p>
             <div className="pc-ep-body">
               <p className="pc-ep-meta">
-                {i === 0 ? "Latest episode" : `Episode ${n - i}`}
+                {i === 0 ? "Latest episode" : `Episode ${ep.number}`}
                 {tag ? ` · ${tag}` : ""} · {ep.date}
                 {ep.duration ? ` · ${ep.duration}` : ""}
               </p>
-              <h2 className={`pc-ep-t ${sizeFor(title)}`}>{title}</h2>
+              <h2 className={`pc-ep-t ${sizeFor(title)}`}>
+                <a href={`/resources/podcast/${ep.slug}`}>{title}</a>
+              </h2>
               {ep.description ? <p className="pc-ep-d">{clean(ep.description)}</p> : null}
-              <button type="button" className="op-btn op-btn-primary pc-listen" onClick={() => toggle(i)} aria-label={on(i) ? `Pause ${title}` : `Play ${title}`}>
-                <PlayIcon playing={on(i)} />
-                {on(i) ? "Pause" : current === i ? "Resume" : "Listen now"}
-              </button>
+              <div className="pc-ep-cta">
+                <button type="button" className="op-btn op-btn-primary pc-listen" onClick={() => toggle(i)} aria-label={on(i) ? `Pause ${title}` : `Play ${title}`}>
+                  <PlayIcon playing={on(i)} />
+                  {on(i) ? "Pause" : current === i ? "Resume" : "Listen now"}
+                </button>
+                <a className="pc-more" href={`/resources/podcast/${ep.slug}`}>
+                  Episode page <span aria-hidden="true">→</span>
+                </a>
+              </div>
             </div>
           </section>
         )
@@ -140,28 +137,26 @@ export function PodcastPlayer({ episodes }: { episodes: PodEpisode[] }) {
           <ul className="pc-grid">
             {rest.map((ep, j) => {
               const i = j + 3
-              const { title, tag } = parseTitle(ep.title)
+              const { title, tag } = ep
               return (
-                <li key={`${ep.title}-${i}`}>
-                  <button
-                    type="button"
-                    className={current === i ? "pc-tile is-current" : "pc-tile"}
-                    onClick={() => toggle(i)}
-                    aria-label={on(i) ? `Pause ${title}` : `Play ${title}`}
-                  >
-                    <span className="pc-tile-top">
-                      <span className="pc-tile-no">{String(n - i).padStart(2, "0")}</span>
-                      <span className={on(i) ? "pc-play is-on" : "pc-play"} aria-hidden="true">
-                        <PlayIcon playing={on(i)} />
-                      </span>
-                    </span>
-                    <span className="pc-tile-t">{title}</span>
-                    <span className="pc-tile-m">
-                      {ep.date}
-                      {ep.duration ? ` · ${ep.duration}` : ""}
-                      {tag ? ` · ${tag}` : ""}
-                    </span>
-                  </button>
+                <li key={`${ep.slug}`} className={current === i ? "pc-tile is-current" : "pc-tile"}>
+                  <span className="pc-tile-top">
+                    <span className="pc-tile-no">{String(ep.number).padStart(2, "0")}</span>
+                    <button
+                      type="button"
+                      className={on(i) ? "pc-play is-on" : "pc-play"}
+                      onClick={() => toggle(i)}
+                      aria-label={on(i) ? `Pause ${title}` : `Play ${title}`}
+                    >
+                      <PlayIcon playing={on(i)} />
+                    </button>
+                  </span>
+                  <a className="pc-tile-t" href={`/resources/podcast/${ep.slug}`}>{title}</a>
+                  <span className="pc-tile-m">
+                    {ep.date}
+                    {ep.duration ? ` · ${ep.duration}` : ""}
+                    {tag ? ` · ${tag}` : ""}
+                  </span>
                 </li>
               )
             })}
@@ -178,7 +173,7 @@ export function PodcastPlayer({ episodes }: { episodes: PodEpisode[] }) {
             <button type="button" className="pc-skip" onClick={() => skip(-15)} aria-label="Back 15 seconds">−15</button>
             <button type="button" className="pc-skip" onClick={() => skip(15)} aria-label="Forward 15 seconds">+15</button>
             <div className="pc-bar-main">
-              <p className="pc-bar-t">{parseTitle(episodes[current].title).title}</p>
+              <p className="pc-bar-t">{episodes[current].title}</p>
               <div className="pc-track" onClick={seek} role="presentation">
                 <div className="pc-fill" style={{ width: len ? `${(time / len) * 100}%` : "0%" }} />
               </div>

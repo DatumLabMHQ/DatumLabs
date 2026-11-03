@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next"
 import { sanityFetch } from "@/sanity/lib/client"
 import { postsQuery } from "@/sanity/lib/queries"
 import { getAllReports } from "@/lib/reports"
+import { getEpisodes } from "@/lib/podcast"
 
 const BASE = "https://www.datumlab.xyz"
 
@@ -43,5 +44,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  return [...staticRoutes, ...postRoutes, ...reportRoutes]
+  const episodeRoutes: MetadataRoute.Sitemap = (await getEpisodes()).map((e) => ({
+    url: `${BASE}/resources/podcast/${e.slug}`,
+    lastModified: e.isoDate ? new Date(e.isoDate) : new Date(),
+    changeFrequency: "yearly",
+    priority: 0.5,
+  }))
+
+  return [...staticRoutes, ...postRoutes, ...reportRoutes, ...episodeRoutes]
 }
