@@ -1,17 +1,8 @@
 import type { Metadata } from "next"
-import { Instrument_Serif } from "next/font/google"
-
 import { Sky } from "@/components/onepager/sky"
 import { OpNav } from "@/components/onepager/op-nav"
+import { opFonts } from "@/components/onepager/fonts"
 import "@/components/onepager/onepager.css"
-
-const instrument = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
-  display: "swap",
-})
 
 export const metadata: Metadata = {
   title: "Datum Labs — Financial Data & Reporting for Blockchain Protocols",
@@ -77,7 +68,7 @@ function MarkRow({ hidden = false }: { hidden?: boolean }) {
 
 export default function Home() {
   return (
-    <div className={`op-root ${instrument.variable}`}>
+    <div className={`op-root ${opFonts}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       <Sky className="op-sky" />
       <OpNav />
@@ -93,7 +84,7 @@ export default function Home() {
           <a className="op-btn op-btn-primary" href={CAL} target="_blank" rel="noopener">
             Talk to us <span aria-hidden="true">→</span>
           </a>
-          <a className="op-btn op-btn-ghost" href="/resources">
+          <a className="op-btn op-btn-ghost" href="/research">
             See the research
           </a>
         </div>

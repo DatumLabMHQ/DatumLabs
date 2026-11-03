@@ -16,7 +16,7 @@ This is the **Datum Labs marketing site** (Next.js 15 App Router, React 19, Tail
 MDX reports do **not** appear in Sanity, and Sanity posts do **not** exist in this repo. They only merge on the website itself. After publishing, a report automatically appears in:
 
 - its own page: `/resources/reports/<slug>`
-- the Resources hub: `/resources` (tagged "Reports", merged with blog posts)
+- the Research index: `/research` (tagged "Report", merged with blog posts; `/resources` redirects there)
 - the homepage "Latest research" strip
 - `sitemap.xml`
 
@@ -134,7 +134,7 @@ git commit -m "Publish <report title>"
 git push origin main
 ```
 
-~90s later verify: `https://www.datumlab.xyz/resources/reports/<slug>` loads, and the report shows in `https://www.datumlab.xyz/resources`.
+~90s later verify: `https://www.datumlab.xyz/resources/reports/<slug>` loads, and the report shows in `https://www.datumlab.xyz/research`.
 
 To unpublish: `git rm` the file, commit, push.
 
@@ -180,7 +180,8 @@ components/mdx/
   report-components/chart.tsx    The recharts Chart
 lib/reports.ts                   Reads/parses report frontmatter
 app/resources/reports/[slug]/    Renders a report (compileMDX + gate + JSON-LD)
-app/resources/                   Resources hub (merges Sanity posts + MDX reports)
+app/research/                    Research index (merges Sanity posts + MDX reports)
+app/page.tsx + components/onepager/  One-pager homepage, nav, podcast + research styling
 app/api/latest-research/         Feeds the homepage research strip (also merged)
 app/page.tsx                     Homepage
 app/globals.css, app/ds-v2.css   Design system (brand accent #4A6CF7)

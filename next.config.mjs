@@ -54,6 +54,9 @@ const nextConfig = {
         destination: 'https://www.datumlab.xyz/:path*',
         permanent: true,
       },
+      // The research index moved to /research; article and report URLs
+      // under /resources/* are unchanged.
+      { source: '/resources', destination: '/research', permanent: false },
     ];
   },
 }

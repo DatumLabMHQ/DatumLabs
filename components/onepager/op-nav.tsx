@@ -6,20 +6,12 @@ const CAL = "https://calendly.com/datumlabss/30min"
 
 type LabItem = { label: string; href: string; note: string; ext?: boolean }
 
+// Research and Podcast are pages of their own; the Lab menu holds what we
+// build: the live dashboards and the products.
 const LAB: { heading: string; items: LabItem[] }[] = [
   {
-    heading: "Research",
-    items: [
-      { label: "Research & Reports", href: "/resources", note: "Monthly State of Lending and protocol reads" },
-      { label: "All reports", href: "/resources/reports", note: "Every published report" },
-    ],
-  },
-  {
     heading: "Dashboards",
-    items: [
-      { label: "Live dashboards", href: "/live-dashboards", note: "Protocol terminals, rebuilt from the chain" },
-      { label: "Dune dashboards", href: "/dune-dashboard", note: "Our public Dune index" },
-    ],
+    items: [{ label: "Live dashboards", href: "/live-dashboards", note: "Protocol terminals, rebuilt from the chain" }],
   },
   {
     heading: "Products",
@@ -30,7 +22,15 @@ const LAB: { heading: string; items: LabItem[] }[] = [
   },
 ]
 
-export function OpNav() {
+function Chevron() {
+  return (
+    <svg className="op-chev" viewBox="0 0 12 12" aria-hidden="true">
+      <path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function OpNav({ active }: { active?: "research" | "podcast" }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -48,6 +48,8 @@ export function OpNav() {
     }
   }, [open])
 
+  const cur = (k: "research" | "podcast") => (active === k ? { "aria-current": "page" as const } : {})
+
   return (
     <header className="op-nav">
       <a href="/" className="op-brand" aria-label="Datum Labs, home">
@@ -55,43 +57,45 @@ export function OpNav() {
         <img src="/brand/logo-horizontal-white.svg" alt="Datum Labs" />
       </a>
 
-      <div className="op-nav-mid" ref={ref}>
-        <button
-          type="button"
-          className={open ? "op-pill is-open" : "op-pill"}
-          aria-expanded={open}
-          aria-controls="op-lab"
-          onClick={() => setOpen((v) => !v)}
-        >
-          Lab <span aria-hidden="true" className="op-plus">+</span>
-        </button>
-        <a className="op-pill" href="/resources/podcast">Podcast</a>
-
-        <div id="op-lab" className={open ? "op-panel is-open" : "op-panel"} role="region" aria-label="Lab">
-          {LAB.map((col) => (
-            <div key={col.heading} className="op-col">
-              <p className="op-col-h">{col.heading}</p>
-              {col.items.map((it) => (
-                <a
-                  key={it.label}
-                  href={it.href}
-                  {...(it.ext ? { target: "_blank", rel: "noopener" } : {})}
-                  className="op-link"
-                >
-                  <span className="op-link-t">
-                    {it.label}
-                    {it.ext ? <span aria-hidden="true"> ↗</span> : null}
-                  </span>
-                  <span className="op-link-d">{it.note}</span>
-                </a>
-              ))}
-            </div>
-          ))}
+      <nav className="op-nav-mid" aria-label="Main">
+        <a className="op-nl" href="/research" {...cur("research")}>Research</a>
+        <div className="op-lab" ref={ref}>
+          <button
+            type="button"
+            className={open ? "op-nl is-open" : "op-nl"}
+            aria-expanded={open}
+            aria-controls="op-lab"
+            onClick={() => setOpen((v) => !v)}
+          >
+            Lab <Chevron />
+          </button>
+          <div id="op-lab" className={open ? "op-panel is-open" : "op-panel"} role="region" aria-label="Lab">
+            {LAB.map((g) => (
+              <div key={g.heading} className="op-group">
+                <p className="op-group-h">{g.heading}</p>
+                {g.items.map((it) => (
+                  <a
+                    key={it.label}
+                    href={it.href}
+                    {...(it.ext ? { target: "_blank", rel: "noopener" } : {})}
+                    className="op-link"
+                  >
+                    <span className="op-link-t">
+                      {it.label}
+                      {it.ext ? <span aria-hidden="true" className="op-ext">↗</span> : null}
+                    </span>
+                    <span className="op-link-d">{it.note}</span>
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+        <a className="op-nl" href="/resources/podcast" {...cur("podcast")}>Podcast</a>
+      </nav>
 
       <a className="op-cta" href={CAL} target="_blank" rel="noopener">
-        Book a call <span aria-hidden="true">→</span>
+        Book a call
       </a>
     </header>
   )

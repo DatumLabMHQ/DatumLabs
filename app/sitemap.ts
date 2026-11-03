@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/case-studies/moonwell-oev",
     "/analytics",
     "/live-dashboards",
-    "/dune-dashboard",
+    "/research",
     "/resources",
     "/resources/blog",
     "/resources/reports",

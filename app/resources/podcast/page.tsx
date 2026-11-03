@@ -1,19 +1,10 @@
 import type { Metadata } from "next"
 
-import { Instrument_Serif } from "next/font/google"
-
 import { Sky } from "@/components/onepager/sky"
 import { OpNav } from "@/components/onepager/op-nav"
 import { PodcastPlayer, type PodEpisode } from "@/components/onepager/podcast-player"
+import { opFonts } from "@/components/onepager/fonts"
 import "@/components/onepager/onepager.css"
-
-const instrument = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
-  display: "swap",
-})
 
 const SHOW_ID = "5ZZfeCsHFcZWXJ47FNeqJQ"
 const SPOTIFY_SHOW = `https://open.spotify.com/show/${SHOW_ID}`
@@ -110,10 +101,10 @@ export default async function PodcastPage() {
   }))
 
   return (
-    <div className={`pod-root ${instrument.variable}`}>
+    <div className={`pod-root ${opFonts}`}>
       <header className="pod-hero">
         <Sky className="pod-sky" />
-        <OpNav />
+        <OpNav active="podcast" />
         <div className="pod-hero-in">
           <p className="pod-kick">The Datum Labs podcast &middot; formerly W3GM</p>
           <h1 className="pod-h1">
