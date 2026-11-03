@@ -18,6 +18,22 @@ function clock(s: number) {
   return h > 0 ? `${h}:${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}` : `${m}:${String(sec).padStart(2, "0")}`
 }
 
+// Feed titles carry format tags and old show branding; split those off so
+// the title can be set large on its own.
+function parseTitle(raw: string) {
+  let t = raw.replace(/\s*\|\s*Found3s on W3GM\s*$/i, "")
+  let tag: string | undefined
+  t = t.replace(/\s*[[{(]\s*(roundtable)\s*[\]})]\s*/i, (_m, g: string) => {
+    tag = g[0].toUpperCase() + g.slice(1).toLowerCase()
+    return " "
+  })
+  return { title: t.replace(/\s+/g, " ").trim().replace(/[.]$/, ""), tag }
+}
+
+function sizeFor(title: string) {
+  return title.length <= 26 ? "pc-xl" : title.length <= 46 ? "pc-l" : "pc-m"
+}
+
 function PlayIcon({ playing }: { playing: boolean }) {
   return playing ? (
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="5" width="3.6" height="14" rx="1" /><rect x="13.9" y="5" width="3.6" height="14" rx="1" /></svg>
@@ -25,6 +41,8 @@ function PlayIcon({ playing }: { playing: boolean }) {
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.6v12.8c0 .8.9 1.3 1.6.9l10-6.4c.6-.4.6-1.4 0-1.8l-10-6.4C8.9 4.3 8 4.8 8 5.6z" /></svg>
   )
 }
+
+const PANEL_TONES = ["pc-panel-ink", "pc-panel-grey", "pc-panel-paper"]
 
 export function PodcastPlayer({ episodes }: { episodes: PodEpisode[] }) {
   const audio = useRef<HTMLAudioElement>(null)
@@ -80,78 +98,86 @@ export function PodcastPlayer({ episodes }: { episodes: PodEpisode[] }) {
     if (a) a.currentTime = Math.max(0, Math.min(len || a.duration || 0, a.currentTime + d))
   }
 
-  const lead = episodes[0]
-  const rest = episodes.slice(1)
   const n = episodes.length
+  const latest = episodes.slice(0, 3)
+  const rest = episodes.slice(3)
+  const on = (i: number) => current === i && playing
 
   return (
     <>
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audio} preload="none" />
 
-      {lead ? (
-        <article className="pod-lead">
-          <div>
-            <p className="pod-meta">Latest episode &middot; {lead.date}{lead.duration ? ` · ${lead.duration}` : ""}</p>
-            <h2 className="pod-lead-t">{lead.title}</h2>
-            {lead.description ? <p className="pod-lead-d">{lead.description}</p> : null}
-          </div>
-          <button
-            type="button"
-            className={current === 0 && playing ? "pod-play pod-play-lg is-on" : "pod-play pod-play-lg"}
-            onClick={() => toggle(0)}
-            aria-label={current === 0 && playing ? `Pause ${lead.title}` : `Play ${lead.title}`}
-          >
-            <PlayIcon playing={current === 0 && playing} />
-          </button>
-        </article>
-      ) : null}
+      {latest.map((ep, i) => {
+        const { title, tag } = parseTitle(ep.title)
+        return (
+          <section key={`${ep.title}-${i}`} className={`pc-panel ${PANEL_TONES[i]}`} aria-label={title}>
+            <h2 className={`pc-ep-t ${sizeFor(title)}`}>{title}</h2>
+            <div className="pc-ep-side">
+              <p className="pc-ep-meta">
+                {i === 0 ? "Latest · " : ""}Episode {n - i}
+                {tag ? ` · ${tag}` : ""}
+              </p>
+              <p className="pc-ep-meta pc-ep-when">
+                {ep.date}
+                {ep.duration ? ` · ${ep.duration}` : ""}
+              </p>
+              {ep.description ? <p className="pc-ep-d">{ep.description.split(/\s*Chapters\s*\d/)[0]}</p> : null}
+              <button type="button" className="pc-btn" onClick={() => toggle(i)} aria-label={on(i) ? `Pause ${title}` : `Play ${title}`}>
+                <PlayIcon playing={on(i)} />
+                {on(i) ? "Pause" : current === i ? "Resume" : "Listen now"}
+              </button>
+            </div>
+          </section>
+        )
+      })}
 
       {rest.length ? (
-        <ol className="pod-list" aria-label="All episodes">
-          {rest.map((ep, j) => {
-            const i = j + 1
-            const on = current === i && playing
-            return (
-              <li key={`${ep.title}-${i}`} className={current === i ? "pod-row is-current" : "pod-row"}>
-                <span className="pod-n">{String(n - i).padStart(2, "0")}</span>
-                <div className="pod-row-main">
-                  <h3 className="pod-row-t">{ep.title}</h3>
-                  {ep.description ? <p className="pod-row-d">{ep.description}</p> : null}
-                </div>
-                <span className="pod-row-m">
-                  {ep.date}
-                  {ep.duration ? <><br />{ep.duration}</> : null}
-                </span>
-                <button
-                  type="button"
-                  className={on ? "pod-play is-on" : "pod-play"}
-                  onClick={() => toggle(i)}
-                  aria-label={on ? `Pause ${ep.title}` : `Play ${ep.title}`}
-                >
-                  <PlayIcon playing={on} />
-                </button>
-              </li>
-            )
-          })}
-        </ol>
+        <section className="pc-all" aria-labelledby="pc-all-h">
+          <h2 id="pc-all-h" className="pc-all-h">All episodes</h2>
+          <ol className="pc-list">
+            {rest.map((ep, j) => {
+              const i = j + 3
+              const { title, tag } = parseTitle(ep.title)
+              return (
+                <li key={`${ep.title}-${i}`} className={current === i ? "pc-row is-current" : "pc-row"}>
+                  <span className="pc-n">{String(n - i).padStart(2, "0")}</span>
+                  <span className="pc-row-t">
+                    {title}
+                    {tag ? <span className="pc-tag">{tag}</span> : null}
+                  </span>
+                  <span className="pc-row-m">{ep.date}</span>
+                  <span className="pc-row-m">{ep.duration}</span>
+                  <button
+                    type="button"
+                    className={on(i) ? "pc-play is-on" : "pc-play"}
+                    onClick={() => toggle(i)}
+                    aria-label={on(i) ? `Pause ${title}` : `Play ${title}`}
+                  >
+                    <PlayIcon playing={on(i)} />
+                  </button>
+                </li>
+              )
+            })}
+          </ol>
+        </section>
       ) : null}
 
-      <div className={current === null ? "pod-bar" : "pod-bar is-on"} aria-hidden={current === null}>
+      <div className={current === null ? "pc-bar" : "pc-bar is-on"} aria-hidden={current === null}>
         {current !== null ? (
           <>
-            <button type="button" className="pod-play" onClick={() => toggle(current)} aria-label={playing ? "Pause" : "Play"}>
+            <button type="button" className="pc-play is-on" onClick={() => toggle(current)} aria-label={playing ? "Pause" : "Play"}>
               <PlayIcon playing={playing} />
             </button>
-            <button type="button" className="pod-skip" onClick={() => skip(-15)} aria-label="Back 15 seconds">−15</button>
-            <button type="button" className="pod-skip" onClick={() => skip(15)} aria-label="Forward 15 seconds">+15</button>
-            <div className="pod-bar-main">
-              <p className="pod-bar-t">{episodes[current].title}</p>
-              <div className="pod-track" onClick={seek} role="presentation">
-                <div className="pod-fill" style={{ width: len ? `${(time / len) * 100}%` : "0%" }} />
+            <button type="button" className="pc-skip" onClick={() => skip(-15)} aria-label="Back 15 seconds">−15</button>
+            <button type="button" className="pc-skip" onClick={() => skip(15)} aria-label="Forward 15 seconds">+15</button>
+            <div className="pc-bar-main">
+              <p className="pc-bar-t">{parseTitle(episodes[current].title).title}</p>
+              <div className="pc-track" onClick={seek} role="presentation">
+                <div className="pc-fill" style={{ width: len ? `${(time / len) * 100}%` : "0%" }} />
               </div>
             </div>
-            <span className="pod-time">{clock(time)} / {clock(len)}</span>
+            <span className="pc-time">{clock(time)} / {clock(len)}</span>
           </>
         ) : null}
       </div>

@@ -42,7 +42,6 @@ summary: One or two sentences.                   # REQUIRED. Shown under the H1 
 excerpt: Short teaser.                           # optional; card teaser. Falls back to summary.
 cover: /images/my-cover.png                      # optional; put the file in public/images/ first.
 pdf: /reports/my-report.pdf                      # optional download button; file goes in public/reports/.
-gated: true                                      # optional; DEFAULT true = lead-gate the body. false = fully open.
 ---
 ```
 
@@ -179,7 +178,7 @@ components/mdx/
   mdx-components.tsx             MDX component registry (Callout, KPIGrid, KPI, Figure, Chart)
   report-components/chart.tsx    The recharts Chart
 lib/reports.ts                   Reads/parses report frontmatter
-app/resources/reports/[slug]/    Renders a report (compileMDX + gate + JSON-LD)
+app/resources/reports/[slug]/    Renders a report (compileMDX + JSON-LD)
 app/research/                    Research index (merges Sanity posts + MDX reports)
 app/page.tsx + components/onepager/  One-pager homepage, nav, podcast + research styling
 app/api/latest-research/         Feeds the homepage research strip (also merged)

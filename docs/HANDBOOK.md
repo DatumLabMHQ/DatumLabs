@@ -74,7 +74,6 @@ summary: One-line summary — shown as the open preview + meta description.
 excerpt: Short teaser for the cards.        # optional; falls back to summary
 cover: /images/your-cover.png               # optional — put the file in /public/images
 pdf: /reports/your-report.pdf               # optional download — put the file in /public/reports
-gated: true                                 # true = lead-gate the body (default)
 ---
 
 ## Your heading
@@ -130,11 +129,11 @@ Commit → it ships. It's your repo — no review, no waiting on anyone.
 
 ---
 
-## 6. The lead-gate & newsletter (Beehiiv)
+## 6. Newsletter (Beehiiv)
 
-- **Report gate:** a gated report (`gated: true`) shows the summary openly, then a "Unlock full access" form (name / email / occupation) over the rest + the PDF. Submitting adds the person to **Beehiiv** (tagged `utm_source=report-gate`, with Name + Occupation custom fields).
+- **No report gate:** reports are fully open. Newsletter sign-ups come from the form on `/research` and the podcast page.
 - **Footer newsletter:** email signup → same Beehiiv list.
-- Both hit the shared Datum Labs Beehiiv publication. To turn the gate OFF on a report, set `gated: false`.
+- Sign-ups hit the shared Datum Labs Beehiiv publication.
 
 ---
 
@@ -184,7 +183,7 @@ app/
   products/ about/ contact/ privacy/ terms/     Standalone pages
   resources/                   Resources hub, blog (Sanity), reports (MDX), podcast
   resources/reports/[slug]/    Renders MDX reports
-  api/{subscribe,gate,latest-research}          Beehiiv + homepage strip
+  api/{subscribe,latest-research}               Beehiiv + homepage strip
   globals.css  ds-v2.css       Design system
 content/reports/*.mdx          ← REPORTS (author here)
 components/

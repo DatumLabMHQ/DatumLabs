@@ -20,7 +20,6 @@ export type ReportMeta = {
    *  portrait/mockup crop while the article opens on a wide banner. */
   hero?: string
   pdf?: string
-  gated?: boolean
   publishedAt: string
 }
 
@@ -72,7 +71,24 @@ function normalize(slug: string, data: any): ReportMeta {
     cover: data.cover,
     hero: data.hero,
     pdf: data.pdf,
-    gated: data.gated !== false, // default gated
     publishedAt: data.publishedAt || data.date || new Date(0).toISOString(),
   }
+}
+
+export type ReportKpi = { value: string; label: string }
+
+/** The first `n` <KPI label value /> figures in a report's body, in order, so
+ *  the research index can show each report's headline numbers. */
+export function getReportKpis(slug: string, n = 3): ReportKpi[] {
+  const src = getReportSource(slug)
+  if (!src) return []
+  const out: ReportKpi[] = []
+  for (const m of src.content.matchAll(/<KPI\b([^>]*?)\/?>/g)) {
+    const attr = (k: string) => m[1].match(new RegExp(`\\b${k}=(?:"([^"]*)"|'([^']*)')`))
+    const v = attr("value")
+    const l = attr("label")
+    if (v && l) out.push({ value: v[1] ?? v[2], label: l[1] ?? l[2] })
+    if (out.length >= n) break
+  }
+  return out
 }

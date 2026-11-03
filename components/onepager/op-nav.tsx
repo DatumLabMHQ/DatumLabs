@@ -7,19 +7,11 @@ const CAL = "https://calendly.com/datumlabss/30min"
 type LabItem = { label: string; href: string; note: string; ext?: boolean }
 
 // Research and Podcast are pages of their own; the Lab menu holds what we
-// build: the live dashboards and the products.
-const LAB: { heading: string; items: LabItem[] }[] = [
-  {
-    heading: "Dashboards",
-    items: [{ label: "Live dashboards", href: "/live-dashboards", note: "Protocol terminals, rebuilt from the chain" }],
-  },
-  {
-    heading: "Products",
-    items: [
-      { label: "OnchainSuite", href: "https://onchainsuite.com", note: "Retention for onchain businesses", ext: true },
-      { label: "Setnel", href: "https://setnel.datumlab.xyz", note: "Onchain risk monitoring", ext: true },
-    ],
-  },
+// build, laid out side by side: the live dashboards and the products.
+const LAB: (LabItem & { group: string })[] = [
+  { group: "Dashboards", label: "Live dashboards", href: "/live-dashboards", note: "Protocol terminals, rebuilt from the chain" },
+  { group: "Product", label: "OnchainSuite", href: "https://onchainsuite.com", note: "Retention for onchain businesses", ext: true },
+  { group: "Product", label: "Setnel", href: "https://setnel.datumlab.xyz", note: "Onchain risk monitoring", ext: true },
 ]
 
 function Chevron() {
@@ -30,7 +22,7 @@ function Chevron() {
   )
 }
 
-export function OpNav({ active }: { active?: "research" | "podcast" }) {
+export function OpNav({ active, tone = "sky" }: { active?: "research" | "podcast" | "lab"; tone?: "sky" | "paper" }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -51,10 +43,10 @@ export function OpNav({ active }: { active?: "research" | "podcast" }) {
   const cur = (k: "research" | "podcast") => (active === k ? { "aria-current": "page" as const } : {})
 
   return (
-    <header className="op-nav">
+    <header className={tone === "paper" ? "op-nav op-nav-paper" : "op-nav"}>
       <a href="/" className="op-brand" aria-label="Datum Labs, home">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/logo-horizontal-white.svg" alt="Datum Labs" />
+        <img src={tone === "paper" ? "/brand/logo-horizontal-color.svg" : "/brand/logo-horizontal-white.svg"} alt="Datum Labs" />
       </a>
 
       <nav className="op-nav-mid" aria-label="Main">
@@ -63,6 +55,7 @@ export function OpNav({ active }: { active?: "research" | "podcast" }) {
           <button
             type="button"
             className={open ? "op-nl is-open" : "op-nl"}
+            {...(active === "lab" ? { "data-current": "" } : {})}
             aria-expanded={open}
             aria-controls="op-lab"
             onClick={() => setOpen((v) => !v)}
@@ -70,24 +63,20 @@ export function OpNav({ active }: { active?: "research" | "podcast" }) {
             Lab <Chevron />
           </button>
           <div id="op-lab" className={open ? "op-panel is-open" : "op-panel"} role="region" aria-label="Lab">
-            {LAB.map((g) => (
-              <div key={g.heading} className="op-group">
-                <p className="op-group-h">{g.heading}</p>
-                {g.items.map((it) => (
-                  <a
-                    key={it.label}
-                    href={it.href}
-                    {...(it.ext ? { target: "_blank", rel: "noopener" } : {})}
-                    className="op-link"
-                  >
-                    <span className="op-link-t">
-                      {it.label}
-                      {it.ext ? <span aria-hidden="true" className="op-ext">↗</span> : null}
-                    </span>
-                    <span className="op-link-d">{it.note}</span>
-                  </a>
-                ))}
-              </div>
+            {LAB.map((it) => (
+              <a
+                key={it.label}
+                href={it.href}
+                {...(it.ext ? { target: "_blank", rel: "noopener" } : {})}
+                className="op-link"
+              >
+                <span className="op-group-h">{it.group}</span>
+                <span className="op-link-t">
+                  {it.label}
+                  {it.ext ? <span aria-hidden="true" className="op-ext">↗</span> : null}
+                </span>
+                <span className="op-link-d">{it.note}</span>
+              </a>
             ))}
           </div>
         </div>

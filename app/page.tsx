@@ -11,8 +11,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 }
 
-const CAL = "https://calendly.com/datumlabss/30min"
-
 type Mark = { name: string; img?: string; tag?: string }
 
 const MARKS: Mark[] = [
@@ -81,11 +79,8 @@ export default function Home() {
           A data lab for onchain businesses. Research, live dashboards, and the products we build from them.
         </p>
         <div className="op-actions op-rise op-d3">
-          <a className="op-btn op-btn-primary" href={CAL} target="_blank" rel="noopener">
-            Talk to us <span aria-hidden="true">→</span>
-          </a>
-          <a className="op-btn op-btn-ghost" href="/research">
-            See the research
+          <a className="op-btn op-btn-primary" href="/research">
+            See the research <span aria-hidden="true">→</span>
           </a>
         </div>
       </main>

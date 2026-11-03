@@ -4,7 +4,6 @@ import { compileMDX } from "next-mdx-remote/rsc"
 import remarkGfm from "remark-gfm"
 
 import { ArticleShell } from "@/components/onepager/article-shell"
-import { ReportGate } from "@/components/report-gate"
 import { mdxComponents } from "@/components/mdx/mdx-components"
 import { getAllReports, getReportMeta, getReportSlugs, getReportSource } from "@/lib/reports"
 
@@ -76,7 +75,6 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
     mainEntityOfPage: `https://www.datumlab.xyz/resources/reports/${meta.slug}`,
   }
 
-  // The PDF sits inside the gated body, so it unlocks with the rest.
   const downloadCta = meta.pdf ? (
     <div className="art-pdf">
       <div>
@@ -116,7 +114,7 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
       more={more}
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      {meta.gated ? <ReportGate>{body}</ReportGate> : body}
+      {body}
     </ArticleShell>
   )
 }

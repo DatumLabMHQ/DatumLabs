@@ -63,16 +63,15 @@ export function ArticleShell({
         <section className="art-more" aria-labelledby="art-more-h">
           <div className="art-more-in">
             <h2 id="art-more-h" className="art-more-h">More research</h2>
-            <ol className="rs-list">
+            <ol className="rx-rows">
               {more.map((it) => (
                 <li key={it.href}>
-                  <a className="rs-row" href={it.href}>
-                    <span className="rs-date">{it.date}</span>
-                    <span className="rs-row-main">
-                      <span className="rs-row-t">{it.title}</span>
+                  <a className="rx-row rx-row-plain" href={it.href}>
+                    <span className="rx-date">{it.date}</span>
+                    <span className="rx-main">
+                      <span className="rx-t">{it.title}</span>
                     </span>
-                    <span className="rs-kind">{it.kind}</span>
-                    <span className="rs-arrow" aria-hidden="true">→</span>
+                    <span className="rx-go" aria-hidden="true">→</span>
                   </a>
                 </li>
               ))}

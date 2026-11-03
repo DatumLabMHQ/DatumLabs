@@ -19,7 +19,6 @@ summary: One-line summary — shown as the open preview + used as the meta descr
 excerpt: Short teaser for the cards.        # optional; falls back to summary
 cover: /images/your-cover.png               # optional hero image (put file in /public/images)
 pdf: /reports/your-report.pdf               # optional download button (put file in /public/reports)
-gated: true                                 # true = lead-gate the body (default true)
 ---
 
 ## Your heading
@@ -27,7 +26,7 @@ gated: true                                 # true = lead-gate the body (default
 Markdown works: **bold**, _italic_, lists, tables, `code`, blockquotes, images.
 ```
 
-Set `gated: false` for an open report (no lead form).
+Reports are always fully open; there is no lead gate (an old `gated:` line in frontmatter is ignored).
 
 ## 2. Built-in components
 

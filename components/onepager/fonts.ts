@@ -20,3 +20,14 @@ const sans = localFont({
 })
 
 export const opFonts = `${display.variable} ${sans.variable}`
+
+/* Beyond the Protocol's own voice: a heavy condensed grotesk for the show's
+   wordmark and episode titles (Anton, SIL OFL, latin). Podcast page only. */
+const anton = localFont({
+  src: "./type/anton.woff2",
+  weight: "400",
+  variable: "--font-pod-display",
+  display: "swap",
+})
+
+export const podFont = anton.variable

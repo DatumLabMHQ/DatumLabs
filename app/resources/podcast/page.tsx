@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 
-import { Sky } from "@/components/onepager/sky"
 import { OpNav } from "@/components/onepager/op-nav"
 import { PodcastPlayer, type PodEpisode } from "@/components/onepager/podcast-player"
-import { opFonts } from "@/components/onepager/fonts"
+import { NewsletterForm } from "@/components/onepager/newsletter-form"
+import { opFonts, podFont } from "@/components/onepager/fonts"
 import "@/components/onepager/onepager.css"
 
 const SHOW_ID = "5ZZfeCsHFcZWXJ47FNeqJQ"
@@ -101,40 +101,45 @@ export default async function PodcastPage() {
   }))
 
   return (
-    <div className={`pod-root ${opFonts}`}>
-      <header className="pod-hero">
-        <Sky className="pod-sky" />
-        <OpNav active="podcast" />
-        <div className="pod-hero-in">
-          <p className="pod-kick">The Datum Labs podcast &middot; formerly W3GM</p>
-          <h1 className="pod-h1">
-            Beyond <em>the</em> Protocol
-          </h1>
-          <p className="pod-sub">
+    <div className={`pc-root ${opFonts} ${podFont}`}>
+      <OpNav tone="paper" active="podcast" />
+
+      <header className="pc-hero">
+        <p className="pc-kick">The Datum Labs podcast &middot; formerly W3GM</p>
+        <h1 className="pc-word">Beyond the Protocol</h1>
+        <div className="pc-hero-row">
+          <p className="pc-hero-d">
             Conversations with the founders building lending markets, stablecoins, exchanges, prediction markets and
             fintechs. What they are building, and what the numbers underneath it say.
           </p>
-          <div className="pod-listen">
-            <a className="op-btn op-btn-primary" href={SPOTIFY_SHOW} target="_blank" rel="noopener">
-              Listen on Spotify <span aria-hidden="true">↗</span>
+          <div className="pc-hero-cta">
+            <p>Available on Spotify{episodes.length ? ` · ${episodes.length} episodes` : ""}</p>
+            <a className="pc-btn pc-btn-ink" href={SPOTIFY_SHOW} target="_blank" rel="noopener">
+              Subscribe now
             </a>
-            {episodes.length ? <span className="pod-count">{episodes.length} episodes</span> : null}
           </div>
         </div>
       </header>
 
-      <main id="main" className="pod-main">
+      <main id="main">
         {episodes.length ? (
           <PodcastPlayer episodes={episodes} />
         ) : (
-          <div className="pod-empty">
+          <div className="pc-empty">
             <p>Episodes are loading from the feed. Meanwhile, the show is on Spotify.</p>
             <iframe title="Beyond the Protocol on Spotify" src={SPOTIFY_EMBED} width="100%" height={352} loading="lazy" />
           </div>
         )}
       </main>
 
-      <footer className="pod-foot">
+      <section className="pc-deliver" aria-labelledby="pc-deliver-h">
+        <p className="pc-deliver-k">Beyond the Protocol</p>
+        <h2 id="pc-deliver-h" className="pc-deliver-h">Delivered</h2>
+        <p className="pc-deliver-d">New episodes and new Datum Labs reports, in your inbox when they are published.</p>
+        <NewsletterForm tone="ink" />
+      </section>
+
+      <footer className="pod-foot art-foot pc-foot">
         <span>&copy; 2026 Datum Labs</span>
         <a href="/">Financial data and reporting for blockchain protocols</a>
         <a href="mailto:hello@datumlab.xyz">hello@datumlab.xyz</a>
