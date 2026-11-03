@@ -10,7 +10,11 @@ const nextConfig = {
     // Vercel image optimization (WebP/AVIF + resize) — was disabled in the
     // v0 scaffold; enabling it cuts LCP/bandwidth on the logo-heavy grids.
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
+    // unavatar.io: podcast guests' X profile photos, cached through the optimiser
+    remotePatterns: [
+      { protocol: "https", hostname: "cdn.sanity.io" },
+      { protocol: "https", hostname: "unavatar.io" },
+    ],
   },
   // Ensure the repo-hosted MDX reports (content/reports/*.mdx) are bundled into
   // serverless functions that read them at runtime (ISR hub, sitemap, API).

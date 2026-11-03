@@ -5,9 +5,11 @@ import { Sky } from "@/components/onepager/sky"
 import { OpNav } from "@/components/onepager/op-nav"
 import { EpisodeAudio, EpisodeChapters, EpisodeControls } from "@/components/onepager/episode-player"
 import { NewsletterForm } from "@/components/onepager/newsletter-form"
+import { PlatformLinks } from "@/components/onepager/platform-links"
+import { GuestCard } from "@/components/onepager/guest-card"
 import { opFonts } from "@/components/onepager/fonts"
 import "@/components/onepager/onepager.css"
-import { SPOTIFY_SHOW, getEpisodes } from "@/lib/podcast"
+import { getEpisodes } from "@/lib/podcast"
 
 export const revalidate = 3600
 
@@ -58,6 +60,13 @@ export default async function EpisodePage({ params }: { params: Promise<{ slug: 
     .filter((e, k, arr) => e && e.slug !== ep.slug && arr.findIndex((x) => x?.slug === e.slug) === k)
     .slice(0, 3)
 
+  // X/Twitter links in the show notes are people; everything else is a site.
+  const guests = ep.links.flatMap((l) => {
+    const m = l.url.match(/^https?:\/\/(?:www\.)?(?:x|twitter)\.com\/([A-Za-z0-9_]{1,15})\/?$/)
+    return m ? [{ name: cap(l.label.replace(/^Connect with /, "")), handle: m[1], url: l.url }] : []
+  })
+  const sites = ep.links.filter((l) => !guests.some((g) => g.url === l.url))
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "PodcastEpisode",
@@ -96,34 +105,34 @@ export default async function EpisodePage({ params }: { params: Promise<{ slug: 
           <section aria-labelledby="ep-sum-h">
             <h2 id="ep-sum-h" className="ep-sec-h">About this episode</h2>
             <p className="ep-sum">{ep.summary}</p>
-            <div className="ep-out">
-              {ep.spotifyUrl ? (
-                <a className="op-btn op-btn-primary" href={ep.spotifyUrl} target="_blank" rel="noopener">
-                  Listen on Spotify <span aria-hidden="true">↗</span>
-                </a>
-              ) : null}
-              <a className="op-btn op-btn-ghost" href={SPOTIFY_SHOW} target="_blank" rel="noopener">
-                Follow the show
-              </a>
-            </div>
           </section>
+          <aside aria-labelledby="ep-listen-h">
+            <h2 id="ep-listen-h" className="ep-sec-h">Listen on</h2>
+            <PlatformLinks spotifyUrl={ep.spotifyUrl} />
+          </aside>
+        </div>
 
-          {ep.links.length ? (
-            <aside className="ep-people" aria-labelledby="ep-people-h">
-              <h2 id="ep-people-h" className="ep-sec-h">In this episode</h2>
-              <div className="ep-people-grid">
-                {ep.links.map((l) => (
-                  <a key={l.url} className="ep-person" href={l.url} target="_blank" rel="noopener">
-                    <span className="ep-person-n">{cap(l.label.replace(/^Connect with /, ""))}</span>
-                    <span className="ep-person-h">
-                      {host(l.url)} <span aria-hidden="true">↗</span>
-                    </span>
+        {guests.length || sites.length ? (
+          <section className="ep-guests" aria-labelledby="ep-people-h">
+            <h2 id="ep-people-h" className="ep-sec-h">In this episode</h2>
+            {guests.length ? (
+              <div className="gc-grid">
+                {guests.map((g) => (
+                  <GuestCard key={g.url} name={g.name} handle={g.handle} url={g.url} />
+                ))}
+              </div>
+            ) : null}
+            {sites.length ? (
+              <div className="ep-sites">
+                {sites.map((l) => (
+                  <a key={l.url} className="pl-link" href={l.url} target="_blank" rel="noopener">
+                    {cap(l.label.replace(/^Explore /, ""))} · {host(l.url)} <span aria-hidden="true">↗</span>
                   </a>
                 ))}
               </div>
-            </aside>
-          ) : null}
-        </div>
+            ) : null}
+          </section>
+        ) : null}
 
         {ep.chapters.length ? <EpisodeChapters chapters={ep.chapters} /> : null}
       </main>

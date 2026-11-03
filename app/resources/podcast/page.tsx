@@ -4,9 +4,10 @@ import { Sky } from "@/components/onepager/sky"
 import { OpNav } from "@/components/onepager/op-nav"
 import { PodcastPlayer, type PodEpisode } from "@/components/onepager/podcast-player"
 import { NewsletterForm } from "@/components/onepager/newsletter-form"
+import { PlatformLinks } from "@/components/onepager/platform-links"
 import { opFonts } from "@/components/onepager/fonts"
 import "@/components/onepager/onepager.css"
-import { SPOTIFY_EMBED, SPOTIFY_SHOW, getEpisodes } from "@/lib/podcast"
+import { SPOTIFY_EMBED, getEpisodes } from "@/lib/podcast"
 
 export const revalidate = 3600
 
@@ -46,9 +47,7 @@ export default async function PodcastPage() {
           fintechs. What they are building, and what the numbers underneath it say.
         </p>
         <div className="pc-hero-cta">
-          <a className="op-btn op-btn-primary" href={SPOTIFY_SHOW} target="_blank" rel="noopener">
-            Listen on Spotify <span aria-hidden="true">↗</span>
-          </a>
+          <PlatformLinks />
           {episodes.length ? <span className="pc-count">{episodes.length} episodes</span> : null}
         </div>
       </header>
