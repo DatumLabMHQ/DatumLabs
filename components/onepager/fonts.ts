@@ -1,18 +1,20 @@
-import { Funnel_Display, Funnel_Sans } from "next/font/google"
+import localFont from "next/font/local"
 
 /* One family for the whole one-pager world: Funnel Display for headlines,
-   Funnel Sans for everything else. Pages add `opFonts` to their root class. */
+   Funnel Sans for everything else. Pages add `opFonts` to their root class.
+   Self-hosted (latin, variable 300–800, SIL OFL) because next/font/google
+   failed to parse Google's response for these families on Vercel builds. */
 
-const display = Funnel_Display({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
+const display = localFont({
+  src: "./type/funnel-display.woff2",
+  weight: "300 800",
   variable: "--font-op-display",
   display: "swap",
 })
 
-const sans = Funnel_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const sans = localFont({
+  src: "./type/funnel-sans.woff2",
+  weight: "300 800",
   variable: "--font-op-sans",
   display: "swap",
 })

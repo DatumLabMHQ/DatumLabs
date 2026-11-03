@@ -1,16 +1,14 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteBackground, SiteFooter } from "@/components/site-background"
+import { ArticleShell } from "@/components/onepager/article-shell"
 import { RichText } from "@/components/portable-text"
 import { sanityFetch } from "@/sanity/lib/client"
 import { postBySlugQuery, postSlugsQuery } from "@/sanity/lib/queries"
 import { urlFor } from "@/sanity/lib/image"
 import { isSanityConfigured } from "@/sanity/env"
+import { getAllReports } from "@/lib/reports"
 
 export const revalidate = 60
 
@@ -62,7 +60,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 function formatDate(d?: string) {
   if (!d) return ""
-  return new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
+  return new Date(d).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -84,69 +82,41 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     mainEntityOfPage: `https://www.datumlab.xyz/resources/blog/${post.slug}`,
   }
 
+  const more = getAllReports()
+    .slice(0, 3)
+    .map((r) => ({
+      title: r.title,
+      href: `/resources/reports/${r.slug}`,
+      date: new Date(r.publishedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
+      kind: "Report",
+    }))
+
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      <SiteBackground />
-      <SiteNav active="Resources" />
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
-      <main id="main" className="relative px-6 lg:px-12 py-16">
-        <article className="max-w-3xl mx-auto">
-          <Link
-            href="/resources/blog"
-            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary mb-8"
-          >
-            <ArrowLeft className="h-4 w-4" /> Back to Blog
-          </Link>
-
-          <div className="flex items-center gap-2 mb-4 flex-wrap">
-            {post.categories?.map((c) => (
-              <span key={c.slug} className="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                {c.title}
-              </span>
-            ))}
-            <span className="text-sm text-muted-foreground">{formatDate(post.publishedAt)}</span>
-          </div>
-
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 text-balance">{post.title}</h1>
-
-          {post.author ? (
-            <div className="flex items-center gap-3 mb-8 pb-8 border-b border-border">
-              {post.author.image ? (
-                <Image
-                  src={urlFor(post.author.image).width(80).height(80).fit("crop").url()}
-                  alt={post.author.name}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-              ) : null}
-              <div>
-                <div className="text-sm font-medium">{post.author.name}</div>
-                {post.author.role ? <div className="text-xs text-muted-foreground">{post.author.role}</div> : null}
-              </div>
-            </div>
-          ) : null}
-
-          {post.mainImage ? (
+    <ArticleShell
+      kicker={post.categories?.length ? post.categories.map((c) => c.title).join(" · ") : "Article"}
+      title={post.title}
+      summary={post.excerpt}
+      meta={
+        <span className="art-byline">
+          {post.author?.image ? (
             <Image
-              src={urlFor(post.mainImage).width(1280).height(720).fit("crop").auto("format").url()}
-              alt={post.title}
-              width={1280}
-              height={720}
-              priority
-              className="rounded-2xl border border-border w-full h-auto mb-10"
+              src={urlFor(post.author.image).width(80).height(80).fit("crop").url()}
+              alt=""
+              width={28}
+              height={28}
             />
           ) : null}
-
-          <div className="text-lg">
-            <RichText value={post.body} />
-          </div>
-        </article>
-      </main>
-
-      <SiteFooter />
-    </div>
+          {post.author ? `${post.author.name} · ` : ""}
+          {formatDate(post.publishedAt)}
+        </span>
+      }
+      cover={post.mainImage ? urlFor(post.mainImage).width(1600).height(900).fit("crop").auto("format").url() : undefined}
+      more={more}
+    >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <div className="report-body">
+        <RichText value={post.body} />
+      </div>
+    </ArticleShell>
   )
 }
