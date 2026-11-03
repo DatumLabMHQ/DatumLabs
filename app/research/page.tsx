@@ -8,6 +8,7 @@ import "@/components/onepager/onepager.css"
 import type { ResourceItem } from "@/components/resources-browser"
 import { sanityFetch } from "@/sanity/lib/client"
 import { allResourcesQuery } from "@/sanity/lib/queries"
+import { urlFor } from "@/sanity/lib/image"
 import { getAllReports, getReportKpis, type ReportKpi } from "@/lib/reports"
 
 export const revalidate = 60
@@ -38,46 +39,54 @@ const SECTION: Record<ResourceItem["kind"], string> = {
   Research: "Research notes",
 }
 
+function coverUrl(image: unknown): string | undefined {
+  if (!image) return undefined
+  if (typeof image === "string") return image
+  try {
+    return urlFor(image).width(960).height(600).fit("crop").auto("format").url()
+  } catch {
+    return undefined
+  }
+}
+
 function day(d: string) {
   return new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })
 }
 
-function Ledger({ title, entries, figures }: { title: string; entries: Entry[]; figures: boolean }) {
+function Shelf({ title, entries }: { title: string; entries: Entry[] }) {
   return (
-    <section className="rx-ledger" aria-labelledby={`rx-${title}`}>
+    <section className="sx-shelf" aria-labelledby={`sx-${title}`}>
       <div className="rx-ledger-head">
-        <h2 id={`rx-${title}`} className="rx-ledger-h">{title}</h2>
+        <h2 id={`sx-${title}`} className="rx-ledger-h">{title}</h2>
         <span className="rx-ledger-n">{entries.length}</span>
       </div>
-      <div className={figures ? "rx-cols" : "rx-cols rx-cols-plain"} aria-hidden="true">
-        <span>Published</span>
-        <span>Title</span>
-        {figures ? <span>Headline figure</span> : null}
-      </div>
-      <ol className="rx-rows">
+      <ul className="sx-grid">
         {entries.map((e) => (
           <li key={e.id}>
-            <a className={figures ? "rx-row" : "rx-row rx-row-plain"} href={e.href}>
-              <span className="rx-date">{e.date}</span>
-              <span className="rx-main">
-                <span className="rx-t">{e.title}</span>
-                {e.summary ? <span className="rx-d">{e.summary}</span> : null}
+            <a className="sx-tile" href={e.href}>
+              <span className="sx-tile-img">
+                {e.cover ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={e.cover} alt="" loading="lazy" />
+                ) : (
+                  <span className="sx-tile-blank" aria-hidden="true">{e.title.slice(0, 1)}</span>
+                )}
               </span>
-              {figures ? (
-                <span className="rx-fig">
-                  {e.kpis[0] ? (
-                    <>
-                      <span className="rx-fig-v">{e.kpis[0].value}</span>
-                      <span className="rx-fig-l">{e.kpis[0].label}</span>
-                    </>
-                  ) : null}
+              <span className="sx-tile-k">
+                {e.date}
+                {e.period ? ` · ${e.period}` : ""}
+              </span>
+              <span className="sx-tile-t">{e.title}</span>
+              {e.kpis[0] ? (
+                <span className="sx-tile-fig">
+                  <span className="sx-tile-v">{e.kpis[0].value}</span>
+                  <span className="sx-tile-l">{e.kpis[0].label}</span>
                 </span>
               ) : null}
-              <span className="rx-go" aria-hidden="true">→</span>
             </a>
           </li>
         ))}
-      </ol>
+      </ul>
     </section>
   )
 }
@@ -100,7 +109,7 @@ export default async function ResearchPage() {
   for (const i of sanity.filter((x) => x._type !== "report")) {
     const name = SECTION[i.kind] ?? "Articles"
     const list = groups.get(name) ?? []
-    list.push({ id: i._id, title: i.title, href: `/resources/blog/${i.slug}`, date: day(i.publishedAt), summary: i.subtitle, kpis: [] })
+    list.push({ id: i._id, title: i.title, href: `/resources/blog/${i.slug}`, date: day(i.publishedAt), summary: i.subtitle, cover: coverUrl(i.image), kpis: [] })
     groups.set(name, list)
   }
 
@@ -163,9 +172,9 @@ export default async function ResearchPage() {
           <p className="pp-empty">The first reports are on their way.</p>
         )}
 
-        {rest.length ? <Ledger title="All reports" entries={rest} figures /> : null}
+        {rest.length ? <Shelf title="All reports" entries={rest} /> : null}
         {[...groups.entries()].map(([name, entries]) => (
-          <Ledger key={name} title={name} entries={entries} figures={false} />
+          <Shelf key={name} title={name} entries={entries} />
         ))}
       </main>
 

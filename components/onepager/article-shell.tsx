@@ -9,7 +9,7 @@ import "@/components/onepager/onepager.css"
    the title, fading into a light paper surface built for long reading,
    charts and tables. */
 
-export type MoreItem = { title: string; href: string; date: string; kind: string }
+export type MoreItem = { title: string; href: string; date: string; kind: string; cover?: string }
 
 export function ArticleShell({
   kicker,
@@ -63,19 +63,22 @@ export function ArticleShell({
         <section className="art-more" aria-labelledby="art-more-h">
           <div className="art-more-in">
             <h2 id="art-more-h" className="art-more-h">More research</h2>
-            <ol className="rx-rows">
+            <ul className="sx-grid">
               {more.map((it) => (
                 <li key={it.href}>
-                  <a className="rx-row rx-row-plain" href={it.href}>
-                    <span className="rx-date">{it.date}</span>
-                    <span className="rx-main">
-                      <span className="rx-t">{it.title}</span>
+                  <a className="sx-tile" href={it.href}>
+                    <span className="sx-tile-img">
+                      {it.cover ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={it.cover} alt="" loading="lazy" />
+                      ) : null}
                     </span>
-                    <span className="rx-go" aria-hidden="true">→</span>
+                    <span className="sx-tile-k">{it.date}</span>
+                    <span className="sx-tile-t">{it.title}</span>
                   </a>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </section>
       ) : null}

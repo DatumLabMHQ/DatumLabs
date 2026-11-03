@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Sky } from "@/components/onepager/sky"
 import { OpNav } from "@/components/onepager/op-nav"
 import { opFonts } from "@/components/onepager/fonts"
 import "@/components/onepager/onepager.css"
@@ -55,22 +56,33 @@ function Group({ title, items, up }: { title: string; items: Dash[]; up: Record<
         <h2 id={`dx-${title}`} className="rx-ledger-h">{title}</h2>
         <span className="rx-ledger-n">{items.length}</span>
       </div>
-      <ol className="rx-rows">
+      <ul className="dx-grid">
         {items.map((d) => (
           <li key={d.name}>
-            <a className={up[d.name] ? "dx-row" : "dx-row is-down"} href={d.href} {...(d.external ? { target: "_blank", rel: "noopener" } : {})}>
-              <span className={d.dark ? "dx-logo dx-logo-dark" : "dx-logo"}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                {d.logo ? <img src={d.logo} alt="" /> : null}
+            <a
+              className={up[d.name] ? "dx-tile" : "dx-tile is-down"}
+              href={d.href}
+              {...(d.external ? { target: "_blank", rel: "noopener" } : {})}
+            >
+              <span className="dx-tile-top">
+                <span className={d.dark ? "dx-logo dx-logo-dark" : "dx-logo"}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  {d.logo ? <img src={d.logo} alt="" /> : null}
+                </span>
+                <span className="dx-live">
+                  <span className="dx-dot" aria-hidden="true" />
+                  {up[d.name] ? "Live" : "Back soon"}
+                </span>
               </span>
               <span className="dx-name">{d.name}</span>
               <span className="dx-sub">{d.sub}</span>
-              <span className="dx-live"><span className="dx-dot" aria-hidden="true" />{up[d.name] ? "Live" : "Back soon"}</span>
-              <span className="dx-open">Open <span aria-hidden="true">↗</span></span>
+              <span className="dx-open">
+                Open <span aria-hidden="true">↗</span>
+              </span>
             </a>
           </li>
         ))}
-      </ol>
+      </ul>
     </section>
   )
 }
@@ -81,8 +93,10 @@ export default async function LiveDashboardsPage() {
   const up = Object.fromEntries(all.map((d, i) => [d.name, checks[i]]))
 
   return (
-    <div className={`pp-root ${opFonts}`}>
-      <OpNav tone="paper" active="lab" />
+    <div className={`pp-root sx-root ${opFonts}`}>
+      <Sky className="sx-sky" />
+      <div className="sx-veil" aria-hidden="true" />
+      <OpNav active="lab" />
 
       <header className="pp-mast">
         <div>
@@ -96,7 +110,7 @@ export default async function LiveDashboardsPage() {
           </p>
           <div className="pp-sub dx-ask">
             <p className="pp-sub-t">Want one for your protocol?</p>
-            <a className="art-btn" href={CAL} target="_blank" rel="noopener">
+            <a className="op-btn op-btn-primary" href={CAL} target="_blank" rel="noopener">
               Book a call <span aria-hidden="true">→</span>
             </a>
           </div>

@@ -31,8 +31,10 @@ function parseTitle(raw: string) {
 }
 
 function sizeFor(title: string) {
-  return title.length <= 26 ? "pc-xl" : title.length <= 46 ? "pc-l" : "pc-m"
+  return title.length <= 30 ? "pc-xl" : title.length <= 50 ? "pc-l" : "pc-m"
 }
+
+const clean = (d: string) => d.split(/\s*Chapters\s*\d/)[0]
 
 function PlayIcon({ playing }: { playing: boolean }) {
   return playing ? (
@@ -42,7 +44,6 @@ function PlayIcon({ playing }: { playing: boolean }) {
   )
 }
 
-const PANEL_TONES = ["pc-panel-ink", "pc-panel-grey", "pc-panel-paper"]
 
 export function PodcastPlayer({ episodes }: { episodes: PodEpisode[] }) {
   const audio = useRef<HTMLAudioElement>(null)
@@ -111,19 +112,17 @@ export function PodcastPlayer({ episodes }: { episodes: PodEpisode[] }) {
       {latest.map((ep, i) => {
         const { title, tag } = parseTitle(ep.title)
         return (
-          <section key={`${ep.title}-${i}`} className={`pc-panel ${PANEL_TONES[i]}`} aria-label={title}>
-            <h2 className={`pc-ep-t ${sizeFor(title)}`}>{title}</h2>
-            <div className="pc-ep-side">
+          <section key={`${ep.title}-${i}`} className={i % 2 ? "pc-panel pc-panel-flip" : "pc-panel"} aria-label={title}>
+            <p className="pc-ep-no" aria-hidden="true">{String(n - i).padStart(2, "0")}</p>
+            <div className="pc-ep-body">
               <p className="pc-ep-meta">
-                {i === 0 ? "Latest · " : ""}Episode {n - i}
-                {tag ? ` · ${tag}` : ""}
-              </p>
-              <p className="pc-ep-meta pc-ep-when">
-                {ep.date}
+                {i === 0 ? "Latest episode" : `Episode ${n - i}`}
+                {tag ? ` · ${tag}` : ""} · {ep.date}
                 {ep.duration ? ` · ${ep.duration}` : ""}
               </p>
-              {ep.description ? <p className="pc-ep-d">{ep.description.split(/\s*Chapters\s*\d/)[0]}</p> : null}
-              <button type="button" className="pc-btn" onClick={() => toggle(i)} aria-label={on(i) ? `Pause ${title}` : `Play ${title}`}>
+              <h2 className={`pc-ep-t ${sizeFor(title)}`}>{title}</h2>
+              {ep.description ? <p className="pc-ep-d">{clean(ep.description)}</p> : null}
+              <button type="button" className="op-btn op-btn-primary pc-listen" onClick={() => toggle(i)} aria-label={on(i) ? `Pause ${title}` : `Play ${title}`}>
                 <PlayIcon playing={on(i)} />
                 {on(i) ? "Pause" : current === i ? "Resume" : "Listen now"}
               </button>
@@ -134,32 +133,39 @@ export function PodcastPlayer({ episodes }: { episodes: PodEpisode[] }) {
 
       {rest.length ? (
         <section className="pc-all" aria-labelledby="pc-all-h">
-          <h2 id="pc-all-h" className="pc-all-h">All episodes</h2>
-          <ol className="pc-list">
+          <div className="rx-ledger-head">
+            <h2 id="pc-all-h" className="rx-ledger-h">Every episode</h2>
+            <span className="rx-ledger-n">{rest.length} more</span>
+          </div>
+          <ul className="pc-grid">
             {rest.map((ep, j) => {
               const i = j + 3
               const { title, tag } = parseTitle(ep.title)
               return (
-                <li key={`${ep.title}-${i}`} className={current === i ? "pc-row is-current" : "pc-row"}>
-                  <span className="pc-n">{String(n - i).padStart(2, "0")}</span>
-                  <span className="pc-row-t">
-                    {title}
-                    {tag ? <span className="pc-tag">{tag}</span> : null}
-                  </span>
-                  <span className="pc-row-m">{ep.date}</span>
-                  <span className="pc-row-m">{ep.duration}</span>
+                <li key={`${ep.title}-${i}`}>
                   <button
                     type="button"
-                    className={on(i) ? "pc-play is-on" : "pc-play"}
+                    className={current === i ? "pc-tile is-current" : "pc-tile"}
                     onClick={() => toggle(i)}
                     aria-label={on(i) ? `Pause ${title}` : `Play ${title}`}
                   >
-                    <PlayIcon playing={on(i)} />
+                    <span className="pc-tile-top">
+                      <span className="pc-tile-no">{String(n - i).padStart(2, "0")}</span>
+                      <span className={on(i) ? "pc-play is-on" : "pc-play"} aria-hidden="true">
+                        <PlayIcon playing={on(i)} />
+                      </span>
+                    </span>
+                    <span className="pc-tile-t">{title}</span>
+                    <span className="pc-tile-m">
+                      {ep.date}
+                      {ep.duration ? ` · ${ep.duration}` : ""}
+                      {tag ? ` · ${tag}` : ""}
+                    </span>
                   </button>
                 </li>
               )
             })}
-          </ol>
+          </ul>
         </section>
       ) : null}
 

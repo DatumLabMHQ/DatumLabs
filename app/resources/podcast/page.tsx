@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 
+import { Sky } from "@/components/onepager/sky"
 import { OpNav } from "@/components/onepager/op-nav"
 import { PodcastPlayer, type PodEpisode } from "@/components/onepager/podcast-player"
 import { NewsletterForm } from "@/components/onepager/newsletter-form"
-import { opFonts, podFont } from "@/components/onepager/fonts"
+import { opFonts } from "@/components/onepager/fonts"
 import "@/components/onepager/onepager.css"
 
 const SHOW_ID = "5ZZfeCsHFcZWXJ47FNeqJQ"
@@ -101,23 +102,25 @@ export default async function PodcastPage() {
   }))
 
   return (
-    <div className={`pc-root ${opFonts} ${podFont}`}>
-      <OpNav tone="paper" active="podcast" />
+    <div className={`pp-root sx-root pc-root ${opFonts}`}>
+      <Sky className="sx-sky" />
+      <div className="sx-veil" aria-hidden="true" />
+      <OpNav active="podcast" />
 
       <header className="pc-hero">
         <p className="pc-kick">The Datum Labs podcast &middot; formerly W3GM</p>
-        <h1 className="pc-word">Beyond the Protocol</h1>
-        <div className="pc-hero-row">
-          <p className="pc-hero-d">
-            Conversations with the founders building lending markets, stablecoins, exchanges, prediction markets and
-            fintechs. What they are building, and what the numbers underneath it say.
-          </p>
-          <div className="pc-hero-cta">
-            <p>Available on Spotify{episodes.length ? ` · ${episodes.length} episodes` : ""}</p>
-            <a className="pc-btn pc-btn-ink" href={SPOTIFY_SHOW} target="_blank" rel="noopener">
-              Subscribe now
-            </a>
-          </div>
+        <h1 className="pc-word">
+          Beyond <em>the</em> Protocol
+        </h1>
+        <p className="pc-hero-d">
+          Conversations with the founders building lending markets, stablecoins, exchanges, prediction markets and
+          fintechs. What they are building, and what the numbers underneath it say.
+        </p>
+        <div className="pc-hero-cta">
+          <a className="op-btn op-btn-primary" href={SPOTIFY_SHOW} target="_blank" rel="noopener">
+            Listen on Spotify <span aria-hidden="true">↗</span>
+          </a>
+          {episodes.length ? <span className="pc-count">{episodes.length} episodes</span> : null}
         </div>
       </header>
 
@@ -139,7 +142,7 @@ export default async function PodcastPage() {
         <NewsletterForm tone="ink" />
       </section>
 
-      <footer className="pod-foot art-foot pc-foot">
+      <footer className="pod-foot art-foot pp-foot">
         <span>&copy; 2026 Datum Labs</span>
         <a href="/">Financial data and reporting for blockchain protocols</a>
         <a href="mailto:hello@datumlab.xyz">hello@datumlab.xyz</a>

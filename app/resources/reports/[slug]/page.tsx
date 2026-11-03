@@ -102,6 +102,7 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
       href: `/resources/reports/${r.slug}`,
       date: new Date(r.publishedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
       kind: "Report",
+      cover: r.cover,
     }))
 
   return (

@@ -89,6 +89,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       href: `/resources/reports/${r.slug}`,
       date: new Date(r.publishedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
       kind: "Report",
+      cover: r.cover,
     }))
 
   return (
