@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 
+import { Sky } from "@/components/onepager/sky"
 import { OpNav } from "@/components/onepager/op-nav"
 import { NewsletterForm } from "@/components/onepager/newsletter-form"
 import { opFonts } from "@/components/onepager/fonts"
@@ -106,8 +107,10 @@ export default async function ResearchPage() {
   const [lead, ...rest] = reports
 
   return (
-    <div className={`pp-root ${opFonts}`}>
-      <OpNav tone="paper" active="research" />
+    <div className={`pp-root sx-root ${opFonts}`}>
+      <Sky className="sx-sky" />
+      <div className="sx-veil" aria-hidden="true" />
+      <OpNav active="research" />
 
       <header className="pp-mast">
         <div>
@@ -121,7 +124,7 @@ export default async function ResearchPage() {
           </p>
           <div className="pp-sub">
             <p className="pp-sub-t">Get each report the day it is published</p>
-            <NewsletterForm tone="paper" />
+            <NewsletterForm tone="ink" />
           </div>
         </div>
       </header>
