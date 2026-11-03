@@ -1,8 +1,19 @@
 import type { Metadata } from "next"
 
-import { SiteNav } from "@/components/site-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { RevealController } from "@/components/reveal-controller"
+import { Instrument_Serif } from "next/font/google"
+
+import { Sky } from "@/components/onepager/sky"
+import { OpNav } from "@/components/onepager/op-nav"
+import { PodcastPlayer, type PodEpisode } from "@/components/onepager/podcast-player"
+import "@/components/onepager/onepager.css"
+
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+  display: "swap",
+})
 
 const SHOW_ID = "5ZZfeCsHFcZWXJ47FNeqJQ"
 const SPOTIFY_SHOW = `https://open.spotify.com/show/${SHOW_ID}`
@@ -14,11 +25,11 @@ const RSS_URL = "https://anchor.fm/s/e16c2398/podcast/rss"
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: "W3GM Podcast — Onchain Builders & Analysts | Datum Labs",
+  title: "Beyond the Protocol — the Datum Labs podcast",
   description:
-    "W3GM — the Datum Labs podcast. Conversations with the operators, founders, and analysts building the onchain economy.",
+    "Beyond the Protocol, the Datum Labs podcast (formerly W3GM): conversations with the founders building lending markets, stablecoins, exchanges, prediction markets and fintechs.",
   alternates: { canonical: "/resources/podcast" },
-  openGraph: { title: "W3GM Podcast — Onchain Builders & Analysts | Datum Labs", url: "/resources/podcast", type: "website" },
+  openGraph: { title: "Beyond the Protocol — the Datum Labs podcast", url: "/resources/podcast", type: "website" },
 }
 
 type Episode = {
@@ -89,99 +100,54 @@ async function getEpisodes(): Promise<Episode[]> {
 }
 
 export default async function PodcastPage() {
-  const episodes = await getEpisodes()
+  const raw = await getEpisodes()
+  const episodes: PodEpisode[] = raw.map((e) => ({
+    title: e.title,
+    date: formatDate(e.pubDate),
+    duration: formatDuration(e.duration),
+    description: e.description,
+    audioUrl: e.audioUrl,
+  }))
 
   return (
-    <>
-      <RevealController />
-      <SiteNav active="Resources" />
-
-      <header className="page-header">
-        <div className="wrap">
-          <span className="kicker">Resources · Podcast</span>
-          <h1>W3GM. Conversations from the <span className="it">onchain frontier.</span></h1>
-          <p>The Datum Labs podcast. We sit down with the operators, founders, and analysts building the onchain economy, the people actually shipping, not just posting.</p>
-          <div className="meta-row">
-            <span>Hosted by <strong>Datum Labs</strong></span>
-            <span>Show · <strong>W3GM</strong></span>
-            {episodes.length > 0 ? <span>Episodes · <strong>{episodes.length}</strong></span> : <span>On · <strong>Spotify</strong></span>}
+    <div className={`pod-root ${instrument.variable}`}>
+      <header className="pod-hero">
+        <Sky className="pod-sky" />
+        <OpNav />
+        <div className="pod-hero-in">
+          <p className="pod-kick">The Datum Labs podcast &middot; formerly W3GM</p>
+          <h1 className="pod-h1">
+            Beyond <em>the</em> Protocol
+          </h1>
+          <p className="pod-sub">
+            Conversations with the founders building lending markets, stablecoins, exchanges, prediction markets and
+            fintechs. What they are building, and what the numbers underneath it say.
+          </p>
+          <div className="pod-listen">
+            <a className="op-btn op-btn-primary" href={SPOTIFY_SHOW} target="_blank" rel="noopener">
+              Listen on Spotify <span aria-hidden="true">↗</span>
+            </a>
+            {episodes.length ? <span className="pod-count">{episodes.length} episodes</span> : null}
           </div>
         </div>
       </header>
 
-      <main id="main" className="wrap">
-        <section className="section" style={{ paddingTop: 32 }}>
-          <div data-reveal style={{ borderRadius: 16, overflow: "hidden", boxShadow: "var(--shadow-md)", border: "1px solid var(--border-subtle)" }}>
-            <iframe
-              title="W3GM on Spotify"
-              src={SPOTIFY_EMBED}
-              width="100%"
-              height={352}
-              style={{ border: 0, display: "block" }}
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-            />
+      <main id="main" className="pod-main">
+        {episodes.length ? (
+          <PodcastPlayer episodes={episodes} />
+        ) : (
+          <div className="pod-empty">
+            <p>Episodes are loading from the feed. Meanwhile, the show is on Spotify.</p>
+            <iframe title="Beyond the Protocol on Spotify" src={SPOTIFY_EMBED} width="100%" height={352} loading="lazy" />
           </div>
-          <div className="hero-ctas" style={{ marginTop: 24 }}>
-            <a href={SPOTIFY_SHOW} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Listen on Spotify ↗</a>
-          </div>
-        </section>
-
-        {episodes.length > 0 ? (
-          <section className="section" style={{ paddingTop: 8 }}>
-            <div className="section-head" data-reveal>
-              <span className="kicker">All episodes</span>
-            </div>
-            <div data-reveal>
-              {episodes.map((ep, i) => (
-                <article
-                  key={`${ep.title}-${i}`}
-                  style={{
-                    borderTop: "1px solid var(--border-subtle)",
-                    padding: "24px 4px",
-                    display: "grid",
-                    gap: 10,
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 14, flexWrap: "wrap" }}>
-                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-tertiary)" }}>
-                      {String(episodes.length - i).padStart(2, "0")}
-                    </span>
-                    <h3 style={{ fontFamily: "var(--font-sans)", fontSize: 18, fontWeight: 600, margin: 0, color: "var(--text-primary)" }}>
-                      {ep.title}
-                    </h3>
-                  </div>
-                  <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--text-tertiary)" }}>
-                    {formatDate(ep.pubDate)}{ep.duration ? ` · ${formatDuration(ep.duration)}` : ""}
-                  </div>
-                  {ep.description ? (
-                    <p
-                      style={{
-                        margin: 0,
-                        fontSize: 14,
-                        lineHeight: 1.6,
-                        color: "var(--text-secondary)",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {ep.description}
-                    </p>
-                  ) : null}
-                  {ep.audioUrl ? (
-                    // eslint-disable-next-line jsx-a11y/media-has-caption
-                    <audio controls preload="none" src={ep.audioUrl} style={{ width: "100%", maxWidth: 560, height: 36 }} />
-                  ) : null}
-                </article>
-              ))}
-            </div>
-          </section>
-        ) : null}
+        )}
       </main>
 
-      <SiteFooter />
-    </>
+      <footer className="pod-foot">
+        <span>&copy; 2026 Datum Labs</span>
+        <a href="/">Financial data and reporting for blockchain protocols</a>
+        <a href="mailto:hello@datumlab.xyz">hello@datumlab.xyz</a>
+      </footer>
+    </div>
   )
 }
