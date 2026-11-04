@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
 import { Sky } from "@/components/onepager/sky"
 import { OpNav } from "@/components/onepager/op-nav"
+import { NewsletterForm } from "@/components/onepager/newsletter-form"
 import { opFonts } from "@/components/onepager/fonts"
 import "@/components/onepager/onepager.css"
-
-const CAL = "https://calendly.com/datumlabss/30min"
 
 export const metadata: Metadata = {
   title: "Live DeFi Protocol Dashboards — Aave, Morpho, NAVI | Datum Labs",
@@ -109,10 +108,12 @@ export default async function LiveDashboardsPage() {
             real-world assets. Each one is open to anyone.
           </p>
           <div className="pp-sub dx-ask">
-            <p className="pp-sub-t">Want one for your protocol?</p>
-            <a className="op-btn op-btn-primary" href={CAL} target="_blank" rel="noopener">
-              Book a call <span aria-hidden="true">→</span>
-            </a>
+            <p className="pp-sub-t">The numbers behind these dashboards, in your inbox</p>
+            <p className="pp-sub-d">
+              We send a short note when the markets on these dashboards move, with what changed and why, read straight from
+              the data.
+            </p>
+            <NewsletterForm source="dashboards" tone="ink" cta="Get the insights" />
           </div>
         </div>
       </header>

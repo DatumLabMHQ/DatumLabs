@@ -2,45 +2,74 @@ import { NextResponse } from "next/server"
 
 export const dynamic = "force-dynamic"
 
-// Subscribes an email to the Datum Labs Beehiiv publication.
-// Credentials live in BEEHIIV_API_KEY / BEEHIIV_PUBLICATION_ID (server-only env).
+// Website email capture -> OnchainSuite (Datum's own product), through its
+// Custom Events ingest (POST /api/v1/events) with a server-only sk_live key.
+// The event creates or updates the contact by email, and `addToList` puts it
+// on the funnel list for the page it came from (OnchainSuite creates a list
+// the first time it sees a name). That list join is also an automation
+// trigger, so a welcome sequence can hang off each funnel.
+//
+// Config (server-only env, Vercel project v0-website-build):
+//  - ONCHAINSUITE_SECRET_KEY  sk_live_… key from OnchainSuite > Settings > Developer
+//  - ONCHAINSUITE_API_URL     optional, defaults to https://api.onchainsuite.com/api/v1
+
+// The list a form may add to is decided here, never by the client.
+const LISTS = {
+  research: "Research Page Funnel",
+  podcast: "Podcast Page Funnel",
+  dashboards: "Dashboard Page Funnel",
+} as const
+type Source = keyof typeof LISTS
+
+const isSource = (s: unknown): s is Source => typeof s === "string" && s in LISTS
+
 export async function POST(request: Request) {
+  let body: { email?: unknown; source?: unknown; page?: unknown }
   try {
-    const { email } = await request.json()
+    body = await request.json()
+  } catch {
+    return NextResponse.json({ error: "A valid email is required" }, { status: 400 })
+  }
 
-    if (!email || typeof email !== "string" || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      return NextResponse.json({ error: "A valid email is required" }, { status: 400 })
-    }
+  const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : ""
+  if (!email || email.length > 320 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    return NextResponse.json({ error: "A valid email is required" }, { status: 400 })
+  }
 
-    const publicationId = process.env.BEEHIIV_PUBLICATION_ID
-    const apiKey = process.env.BEEHIIV_API_KEY
-    if (!publicationId || !apiKey) {
-      return NextResponse.json({ error: "Newsletter is not configured" }, { status: 503 })
-    }
+  const apiKey = process.env.ONCHAINSUITE_SECRET_KEY
+  if (!apiKey) {
+    console.error("[subscribe] ONCHAINSUITE_SECRET_KEY is not set")
+    return NextResponse.json({ error: "Newsletter is not configured" }, { status: 503 })
+  }
+  const base = (process.env.ONCHAINSUITE_API_URL || "https://api.onchainsuite.com/api/v1").replace(/\/+$/, "")
 
-    const response = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`, {
+  // Older pages' footer form sends no source: those contacts are tagged but
+  // join no funnel list.
+  const source = isSource(body.source) ? body.source : undefined
+  const page = typeof body.page === "string" ? body.page.slice(0, 200) : undefined
+
+  try {
+    const res = await fetch(`${base}/events`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
       body: JSON.stringify({
-        email,
-        reactivate_existing: true,
-        send_welcome_email: true,
-        utm_source: "datumlabs-website",
+        event: "website_signup",
+        contact: { email },
+        attributes: { signup_source: source ?? "website-footer" },
+        payload: { source: source ?? "website-footer", page },
+        tags: ["website", source ? `website-${source}` : "website-footer"],
+        ...(source ? { addToList: LISTS[source] } : {}),
       }),
     })
 
-    if (!response.ok) {
-      const details = await response.json().catch(() => ({}))
-      console.error("Beehiiv subscribe failed:", details)
-      return NextResponse.json({ error: "Failed to subscribe" }, { status: response.status })
+    if (!res.ok) {
+      const details = await res.json().catch(() => ({}))
+      console.error("[subscribe] OnchainSuite rejected the event", res.status, details?.error?.code ?? details)
+      return NextResponse.json({ error: "Failed to subscribe" }, { status: 502 })
     }
-
     return NextResponse.json({ ok: true })
   } catch (error) {
-    console.error("Failed to subscribe:", error)
-    return NextResponse.json({ error: "Failed to subscribe" }, { status: 500 })
+    console.error("[subscribe] OnchainSuite request failed", error)
+    return NextResponse.json({ error: "Failed to subscribe" }, { status: 502 })
   }
 }

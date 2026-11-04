@@ -2,9 +2,17 @@
 
 import { useState } from "react"
 
-/* Email sign-up for the Datum Labs newsletter (Beehiiv, via /api/subscribe).
-   `tone` matches the surface it sits on. */
-export function NewsletterForm({ tone = "paper", cta = "Subscribe" }: { tone?: "paper" | "ink"; cta?: string }) {
+/* Email capture -> OnchainSuite (via /api/subscribe). `source` picks the
+   funnel list on the server; `tone` matches the surface it sits on. */
+export function NewsletterForm({
+  source,
+  tone = "paper",
+  cta = "Subscribe",
+}: {
+  source: "research" | "podcast" | "dashboards"
+  tone?: "paper" | "ink"
+  cta?: string
+}) {
   const [email, setEmail] = useState("")
   const [state, setState] = useState<"idle" | "busy" | "done" | "error">("idle")
   const [msg, setMsg] = useState("")
@@ -18,7 +26,7 @@ export function NewsletterForm({ tone = "paper", cta = "Subscribe" }: { tone?: "
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source, page: window.location.pathname }),
       })
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))

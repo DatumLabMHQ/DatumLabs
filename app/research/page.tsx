@@ -133,7 +133,7 @@ export default async function ResearchPage() {
           </p>
           <div className="pp-sub">
             <p className="pp-sub-t">Get each report the day it is published</p>
-            <NewsletterForm tone="ink" />
+            <NewsletterForm source="research" tone="ink" />
           </div>
         </div>
       </header>

@@ -67,7 +67,7 @@ export default async function PodcastPage() {
         <p className="pc-deliver-k">Beyond the Protocol</p>
         <h2 id="pc-deliver-h" className="pc-deliver-h">Delivered</h2>
         <p className="pc-deliver-d">New episodes and new Datum Labs reports, in your inbox when they are published.</p>
-        <NewsletterForm tone="ink" />
+        <NewsletterForm source="podcast" tone="ink" />
       </section>
 
       <footer className="pod-foot art-foot pp-foot">

@@ -7,7 +7,7 @@ import { Loader2, Check } from "lucide-react"
 type Status = "idle" | "loading" | "success" | "error"
 
 /**
- * Beehiiv newsletter signup. Posts to /api/subscribe (server-side, keeps the
+ * Newsletter signup (older pages' footer). Posts to /api/subscribe, which sends it to OnchainSuite tagged website-footer (server-side, keeps the
  * API key secret). Styled to sit in the footer.
  */
 export function NewsletterForm() {

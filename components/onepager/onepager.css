@@ -574,3 +574,4 @@ a.pc-tile { text-decoration: none; }
 .gc-name { font-family: var(--op-serif); font-size: 21px; letter-spacing: -0.02em; }
 .gc-handle { font-size: 13.5px; color: rgba(255, 255, 255, 0.6); }
 .ep-sites { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.pp-sub-d { margin: -4px 0 14px; max-width: 46ch; font-size: 14.5px; line-height: 1.5; color: var(--ink-3); }

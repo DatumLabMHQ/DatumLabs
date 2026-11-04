@@ -161,12 +161,11 @@ Requires `.env.local` (ask a teammate; never commit it):
 ```
 NEXT_PUBLIC_SANITY_PROJECT_ID=suz3kpgy
 NEXT_PUBLIC_SANITY_DATASET=production
-BEEHIIV_API_KEY=...
-BEEHIIV_PUBLICATION_ID=pub_689a0650-1d71-4f0d-a426-03f81425b37a
+ONCHAINSUITE_SECRET_KEY=sk_live_...   # email capture -> OnchainSuite funnel lists (app/api/subscribe)
 DEMO_CONTENT=1      # local only — sample content so pages aren't empty. NEVER set in prod.
 ```
 
-The site builds fine without Sanity/Beehiiv keys (falls back to empty content), so report work only strictly needs Node + pnpm.
+The site builds fine without Sanity/OnchainSuite keys (falls back to empty content), so report work only strictly needs Node + pnpm.
 
 ---
 
@@ -182,6 +181,7 @@ app/resources/reports/[slug]/    Renders a report (compileMDX + JSON-LD)
 app/research/                    Research index (merges Sanity posts + MDX reports)
 app/page.tsx + components/onepager/  One-pager homepage, nav, podcast + research styling
 app/api/latest-research/         Feeds the homepage research strip (also merged)
+app/api/subscribe/               Email capture -> OnchainSuite events API; source research|podcast|dashboards picks the funnel list
 app/page.tsx                     Homepage
 app/globals.css, app/ds-v2.css   Design system (brand accent #4A6CF7)
 components/site-nav.tsx          Nav (mega-menu; "Research & Reports" → /resources)
