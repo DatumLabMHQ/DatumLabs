@@ -11,7 +11,7 @@ type LabItem = { label: string; href: string; note: string; ext?: boolean }
 const LAB: (LabItem & { group: string })[] = [
   { group: "Dashboards", label: "Live dashboards", href: "/live-dashboards", note: "Protocol terminals, rebuilt from the chain" },
   { group: "Product", label: "OnchainSuite", href: "https://onchainsuite.com", note: "Retention for onchain businesses", ext: true },
-  { group: "Product", label: "Setnel", href: "https://setnel.datumlab.xyz", note: "Onchain risk monitoring", ext: true },
+  { group: "Product", label: "Setnel", href: "https://setnel-hub.datumlabs.workers.dev", note: "Onchain risk monitoring", ext: true },
 ]
 
 function Chevron() {

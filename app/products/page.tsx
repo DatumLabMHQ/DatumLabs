@@ -26,7 +26,7 @@ const PRODUCTS = [
     tag: "Risk Monitoring",
     tagline: "Onchain risk, watched in real time.",
     desc: "Real-time risk monitoring for onchain protocols, surfacing position health, market drift, and the exposures that only show up when you model risk continuously rather than in snapshots.",
-    href: "https://setnel.datumlab.xyz/setnel",
+    href: "https://setnel-hub.datumlabs.workers.dev/setnel",
     cta: "Visit Setnel",
   },
 ]

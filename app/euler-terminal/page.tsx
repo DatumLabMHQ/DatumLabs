@@ -14,7 +14,7 @@ import Link from "next/link"
  * Euler Research Terminal - embedded dashboard.
  *
  * Ships from a separate Vercel project (repo: euler-dashboard-next). We iframe the
- * project's stable production domain (euler-dashboard-next.vercel.app)
+ * project's stable production domain (euler-dashboard-next.datumlabs.workers.dev)
  * rather than a manual alias, so every deploy of that project is reflected here
  * with no re-alias step. Asset paths are absolute within that origin, so the
  * iframe needs no rewrite under datumlab.xyz.
@@ -50,7 +50,7 @@ export default function EulerTerminalPage() {
         </Link>
       </div>
       <iframe
-        src="https://euler-dashboard-next.vercel.app/"
+        src="https://euler-dashboard-next.datumlabs.workers.dev/"
         className="w-full flex-1 border-0"
         title="Euler Research Terminal"
         allow="clipboard-write"

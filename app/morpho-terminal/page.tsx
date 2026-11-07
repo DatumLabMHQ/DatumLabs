@@ -13,7 +13,7 @@ import Link from "next/link"
  * Morpho Research Terminal — embedded dashboard.
  *
  * Ships from a separate Vercel project (repo: morpho-dashboard) at
- * https://morpho-terminal.vercel.app. Asset paths are absolute within that
+ * https://morpho-terminal.datumlabs.workers.dev. Asset paths are absolute within that
  * origin, so the iframe needs no rewrite under datumlab.xyz.
  *
  * Pattern mirrors /app/navi/page.tsx and /app/lending-terminal-sui/page.tsx:
@@ -48,7 +48,7 @@ export default function MorphoTerminalPage() {
         </Link>
       </div>
       <iframe
-        src="https://morpho-terminal-dashboard.vercel.app/"
+        src="https://morpho-terminal-dashboard.datumlabs.workers.dev/"
         className="w-full flex-1 border-0"
         title="Morpho Research Terminal"
         allow="clipboard-write"
