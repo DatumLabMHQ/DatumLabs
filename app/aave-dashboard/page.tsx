@@ -11,7 +11,7 @@ export default function AaveDashboardPage() {
   return (
     <div className="w-full h-screen">
       <iframe
-        src="https://aave-dashboard-next.vercel.app/"
+        src="https://aave-dashboard-next.datumlabs.workers.dev/"
         className="w-full h-full border-0"
         title="Aave Dashboard"
         allow="clipboard-write"

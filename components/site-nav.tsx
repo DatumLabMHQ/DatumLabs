@@ -105,7 +105,7 @@ const PRODUCTS_GROUPS: MegaGroup[] = [
       {
         label: "Setnel",
         desc: "Onchain risk monitoring",
-        href: "https://setnel.datumlab.xyz/setnel",
+        href: "https://setnel-hub.datumlabs.workers.dev/setnel",
         external: true,
         icon: (
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">

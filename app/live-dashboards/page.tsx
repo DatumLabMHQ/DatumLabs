@@ -32,21 +32,21 @@ async function isUp(url: string) {
 // The index of dashboards we run. Each one is its own app (embedded, proxied
 // or linked); this page only lists them.
 const LENDING: Dash[] = [
-  { name: "Aave", sub: "Multi-chain lending markets", logo: "/images/aave-logo.png", href: "/aave-dashboard", probe: "https://aave-dashboard-next.vercel.app/" },
-  { name: "Morpho", sub: "Curated lending vaults and markets", logo: "/images/logo-3.png", href: "/morpho-terminal", probe: "https://morpho-terminal.vercel.app/" },
-  { name: "Euler", sub: "Modular EVK lending vaults", logo: "/images/euler-logo.jpg", href: "/euler-terminal", probe: "https://euler-dashboard-next.vercel.app/", dark: true },
-  { name: "Fluid", sub: "Lending and DEX liquidity layer", logo: "/images/fluid-logo.jpg", href: "/fluid-terminal", probe: "https://fluid-dashboard-next.vercel.app/", dark: true },
-  { name: "SparkLend", sub: "SparkLend markets", logo: "/images/sparklend-logo.png", href: "/sparklend", probe: "https://spark-dashboard-next.vercel.app/sparklend" },
-  { name: "NAVI", sub: "Sui-native money market", logo: "/images/navi-logo.png", href: "/navi", probe: "https://sui-lending.vercel.app/", dark: true },
-  { name: "Lending Terminal · Sui", sub: "Sui lending, across protocols", logo: "/images/lending-terminal-sui-logo.png", href: "/lending-terminal-sui", probe: "https://sui-lending.vercel.app/" },
+  { name: "Aave", sub: "Multi-chain lending markets", logo: "/images/aave-logo.png", href: "/aave-dashboard", probe: "https://aave-dashboard-next.datumlabs.workers.dev/" },
+  { name: "Morpho", sub: "Curated lending vaults and markets", logo: "/images/logo-3.png", href: "/morpho-terminal", probe: "https://morpho-terminal.datumlabs.workers.dev/" },
+  { name: "Euler", sub: "Modular EVK lending vaults", logo: "/images/euler-logo.jpg", href: "/euler-terminal", probe: "https://euler-dashboard-next.datumlabs.workers.dev/", dark: true },
+  { name: "Fluid", sub: "Lending and DEX liquidity layer", logo: "/images/fluid-logo.jpg", href: "/fluid-terminal", probe: "https://fluid-dashboard-next.datumlabs.workers.dev/", dark: true },
+  { name: "SparkLend", sub: "SparkLend markets", logo: "/images/sparklend-logo.png", href: "/sparklend", probe: "https://spark-dashboard-next.datumlabs.workers.dev/sparklend" },
+  { name: "NAVI", sub: "Sui-native money market", logo: "/images/navi-logo.png", href: "/navi", probe: "https://suilending.datumlabs.workers.dev/", dark: true },
+  { name: "Lending Terminal · Sui", sub: "Sui lending, across protocols", logo: "/images/lending-terminal-sui-logo.png", href: "/lending-terminal-sui", probe: "https://suilending.datumlabs.workers.dev/" },
   { name: "Incentiv", sub: "L1 incentive accounting", logo: "/images/incentiv-logo.png", href: "https://www.datumlab.xyz/Incentiv/dashboard/overview", probe: "https://incentiv-dashboard.vercel.app/Incentiv/dashboard/overview", external: true },
 ]
 
 const TERMINALS: Dash[] = [
-  { name: "Centrifuge RWA Terminal", sub: "Tokenised real-world asset pools", logo: "/images/centrifuge-logo.svg", href: "/centrifugerwa", probe: "https://centrifuge-rwa-next.vercel.app/" },
-  { name: "RWA Terminal", sub: "Aave Horizon tokenised RWAs", logo: "/images/datum-logo.png", href: "/rwa-terminal", probe: "https://rwa-terminal-dashboard.vercel.app/" },
-  { name: "Lending Terminal", sub: "Cross-protocol lending intelligence", logo: "/images/datum-logo.png", href: "/lending-terminal", probe: "https://lending-intelligence-terminal.vercel.app/" },
-  { name: "Liquidator Economy", sub: "Liquidator flows and incentives", logo: "/images/datum-logo.png", href: "/liquidator-economy", probe: "https://liquidator-economy-dashboard.vercel.app/" },
+  { name: "Centrifuge RWA Terminal", sub: "Tokenised real-world asset pools", logo: "/images/centrifuge-logo.svg", href: "/centrifugerwa", probe: "https://centrifuge-rwa-next.datumlabs.workers.dev/" },
+  { name: "RWA Terminal", sub: "Aave Horizon tokenised RWAs", logo: "/images/datum-logo.png", href: "/rwa-terminal", probe: "https://rwa-terminal-dashboard.datumlabs.workers.dev/" },
+  { name: "Lending Terminal", sub: "Cross-protocol lending intelligence", logo: "/images/datum-logo.png", href: "/lending-terminal", probe: "https://lending-intelligence-terminal.datumlabs.workers.dev/" },
+  { name: "Liquidator Economy", sub: "Liquidator flows and incentives", logo: "/images/datum-logo.png", href: "/liquidator-economy", probe: "https://liquidator-economy-dashboard.datumlabs.workers.dev/" },
 ]
 
 function Group({ title, items, up }: { title: string; items: Dash[]; up: Record<string, boolean> }) {

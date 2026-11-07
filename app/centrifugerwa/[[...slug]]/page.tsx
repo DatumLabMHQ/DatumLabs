@@ -18,7 +18,7 @@ interface PageProps {
 
 /**
  * Optional catch-all route for /centrifugerwa/*. The dashboard itself is
- * embedded as an iframe pointing at https://centrifuge-dashboard-datum.vercel.app (Datum Labs Vercel account)
+ * embedded as an iframe pointing at https://centrifuge-rwa-dashboard.datumlabs.workers.dev (Datum Labs Vercel account)
  * — but because the parent owns the URL bar, deep paths like
  * /centrifugerwa/dashboard/methodology need a real route here, otherwise
  * Next.js returns 404 on reload.

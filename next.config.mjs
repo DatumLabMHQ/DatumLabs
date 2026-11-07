@@ -40,11 +40,11 @@ const nextConfig = {
       // partitioning), so we serve it from the same origin instead.
       {
         source: '/sparklend',
-        destination: 'https://spark-dashboard-next.vercel.app/sparklend',
+        destination: 'https://spark-dashboard-next.datumlabs.workers.dev/sparklend',
       },
       {
         source: '/sparklend/:path*',
-        destination: 'https://spark-dashboard-next.vercel.app/sparklend/:path*',
+        destination: 'https://spark-dashboard-next.datumlabs.workers.dev/sparklend/:path*',
       },
     ];
   },

@@ -13,7 +13,7 @@ import Link from "next/link"
  * NAVI — embedded dashboard.
  *
  * The standalone navi_dash deployment was superseded by the Sui Lending
- * terminal (repo: DatumLabMHQ/SuiLending, https://sui-lending.vercel.app),
+ * terminal (repo: DatumLabMHQ/SuiLending, https://suilending.datumlabs.workers.dev),
  * which carries the same NAVI data plus Suilend, Scallop, AlphaLend and
  * Bucket. This page keeps the /navi URL and embeds the terminal's NAVI
  * protocol view directly. See /lending-terminal-sui for the cross-protocol
@@ -32,7 +32,7 @@ export default function NaviDashboardPage() {
         </Link>
       </div>
       <iframe
-        src="https://sui-lending.vercel.app/Protocol.html?protocol=navi"
+        src="https://suilending.datumlabs.workers.dev/Protocol.html?protocol=navi"
         className="w-full flex-1 border-0"
         title="NAVI Lending Dashboard"
         allow="clipboard-write"

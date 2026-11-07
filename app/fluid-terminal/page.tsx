@@ -13,7 +13,7 @@ import Link from "next/link"
  * Fluid Research Terminal — embedded dashboard.
  *
  * Ships from a separate Vercel project (repo: fluid-dashboard-next). We iframe the
- * project's stable production domain (fluid-dashboard-next.vercel.app)
+ * project's stable production domain (fluid-dashboard-next.datumlabs.workers.dev)
  * rather than the manual fluid-terminal.vercel.app alias, so every `vercel --prod`
  * of that project is reflected here with no re-alias step. Asset paths are
  * absolute within that origin, so the iframe needs no rewrite under datumlab.xyz.
@@ -49,7 +49,7 @@ export default function FluidTerminalPage() {
         </Link>
       </div>
       <iframe
-        src="https://fluid-dashboard-next.vercel.app/"
+        src="https://fluid-dashboard-next.datumlabs.workers.dev/"
         className="w-full flex-1 border-0"
         title="Fluid Research Terminal"
         allow="clipboard-write"

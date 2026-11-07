@@ -13,7 +13,7 @@ import Link from "next/link"
  * Lending Terminal: SUI — embedded dashboard.
  *
  * The dashboard itself ships from a separate Vercel project (Sui Lending,
- * repo: Olusegun-Aborode/SuiLending) at https://sui-lending.vercel.app.
+ * repo: Olusegun-Aborode/SuiLending) at https://suilending.datumlabs.workers.dev.
  * That deployment serves static HTML at /Overview.html (and other page
  * shells), so we point the iframe straight at it. Asset paths inside the
  * Sui Lending app are absolute (`/data.js`, `/api/sui-lending`) which is
@@ -54,7 +54,7 @@ export default function LendingTerminalSuiPage() {
         </Link>
       </div>
       <iframe
-        src="https://sui-lending-dashboard-neon.vercel.app/"
+        src="https://sui-lending-dashboard.datumlabs.workers.dev/"
         className="w-full flex-1 border-0"
         title="Lending Terminal: SUI"
         allow="clipboard-write"

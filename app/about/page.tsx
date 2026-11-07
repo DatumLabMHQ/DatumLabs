@@ -43,7 +43,7 @@ export default function AboutPage() {
             <p>We don&apos;t advise from the sidelines. We embed. A senior operator who has shipped your exact problem before — for a real protocol, with real money on the line — runs the engagement end to end. There is no junior bench and no account-management layer between you and the person who lives in your data.</p>
             <ul>
               <li>We run the stack (nodes → indexer → warehouse → models → surfaces); you consume the result.</li>
-              <li>We ship SaaS like <a href="https://www.onchainsuite.com" target="_blank" rel="noopener noreferrer">OnchainSuite</a> and <a href="https://setnel.datumlab.xyz/setnel" target="_blank" rel="noopener noreferrer">Setnel</a> when a problem recurs across protocols. <a href="/products">See our products →</a></li>
+              <li>We ship SaaS like <a href="https://www.onchainsuite.com" target="_blank" rel="noopener noreferrer">OnchainSuite</a> and <a href="https://setnel-hub.datumlabs.workers.dev/setnel" target="_blank" rel="noopener noreferrer">Setnel</a> when a problem recurs across protocols. <a href="/products">See our products →</a></li>
               <li>We publish public receipts on <a href="https://dune.com/jorel" target="_blank" rel="noopener noreferrer">Dune</a> so the work is verifiable, not asserted.</li>
             </ul>
 
